@@ -382,12 +382,12 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.Purchasing.SecurityStub.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.Purchasing.Stores.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Assets/Kawaii Slime/Cameras/Scripts/AbstractTargetFollower.cs"
-"Assets/Kawaii Slime/Cameras/Scripts/FreeLookCam.cs"
-"Assets/Kawaii Slime/Cameras/Scripts/PivotBasedCameraRig.cs"
-"Assets/Kawaii Slime/Scripts/AI/EnemyAi.cs"
-"Assets/Kawaii Slime/Scripts/AI/Face.cs"
-"Assets/Kawaii Slime/Scripts/GameManager.cs"
+"Assets/Import package/Kawaii Slime/Cameras/Scripts/AbstractTargetFollower.cs"
+"Assets/Import package/Kawaii Slime/Cameras/Scripts/FreeLookCam.cs"
+"Assets/Import package/Kawaii Slime/Cameras/Scripts/PivotBasedCameraRig.cs"
+"Assets/Import package/Kawaii Slime/Scripts/AI/EnemyAi.cs"
+"Assets/Import package/Kawaii Slime/Scripts/AI/Face.cs"
+"Assets/Import package/Kawaii Slime/Scripts/GameManager.cs"
 -langversion:9.0
 
 /deterministic
