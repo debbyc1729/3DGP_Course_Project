@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class Unit : MonoBehaviour
     public Transform target;
     public float speed = 1;
     public float AutoChaseRadio = 1.0f;
+    
+    public float Health;
+    public float MixHealth;
+    public GameObject HealthBar;
+    public Slider slider;
+
     Vector3[] path;
     int targetIndex;
     Animator animator;
@@ -23,8 +30,12 @@ public class Unit : MonoBehaviour
 
     void Start()
     {
+        target = GameObject.FindWithTag("player").transform;
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
+
+        Health = MixHealth;
+        slider.value = ComputeHealth();
         //PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
     }
 
@@ -35,17 +46,17 @@ public class Unit : MonoBehaviour
         //Apply the movement vector to the current position, which is
         //multiplied by deltaTime and speed for a smooth MovePosition
         //rigidbody.MovePosition(transform.position + m_Input * Time.deltaTime * speed);
-
+        UpdateHealth();
 
         timer += Time.deltaTime;
         
-        Debug.Log(transform.name + " (target.position - transform.position).magnitude= " + (target.position - transform.position).magnitude);
+        //Debug.Log(transform.name + " (target.position - transform.position).magnitude= " + (target.position - transform.position).magnitude);
         if ((target.position - transform.position).magnitude < AutoChaseRadio)
         {
             Vector3 face = new Vector3(target.position.x, transform.position.y, target.position.z);
             Vector3 targ = target.position - transform.position;
             targ.y = 0.0f;
-            Debug.Log(transform.name + " face= " + face);
+            //Debug.Log(transform.name + " face= " + face);
 
             moveDirection = targ;
 
@@ -97,7 +108,7 @@ public class Unit : MonoBehaviour
         //Debug.Log("OnCollisionEnter");
         if (collision.gameObject.tag == "player")
         {
-            Debug.Log("OnCollisionEnter player");
+            //Debug.Log("OnCollisionEnter player");
             StopCoroutine("FollowPath");
             animator.SetBool("Attack", true);
             hitplayerSuccessful = true;
@@ -163,7 +174,7 @@ public class Unit : MonoBehaviour
     IEnumerator FollowPath()
     {
         //Debug.Log("FollowPath");
-        Debug.Log(transform.gameObject.name + " path len= " + path.Length);
+        //Debug.Log(transform.gameObject.name + " path len= " + path.Length);
         if (path.Length == 0)
         {
             animator.SetBool("Walk", false);
@@ -190,7 +201,7 @@ public class Unit : MonoBehaviour
                         moveDirection = targ;
                         Rotate(face, 0.1f);
                         rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
-                        Debug.Log(transform.name + " targetIndex >= path.Length moveDirectionLen= " + moveDirectionLen);
+                        //Debug.Log(transform.name + " targetIndex >= path.Length moveDirectionLen= " + moveDirectionLen);
                         yield return null;
                     }
                     yield break;
@@ -201,7 +212,7 @@ public class Unit : MonoBehaviour
             moveDirection = currentWaypoint - transform.position;
             moveDirectionLen = (currentWaypoint - transform.position).magnitude;
             Rotate(currentWaypoint, 0.1f);
-            Debug.Log(transform.name + " face= " + currentWaypoint);
+            //Debug.Log(transform.name + " face= " + currentWaypoint);
             rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);//speed * Time.deltaTime
             
             
@@ -224,5 +235,30 @@ public class Unit : MonoBehaviour
         float dstZ = PosA.z - PosB.z;
         
         return dstX * dstX + dstZ * dstZ;
+    }
+
+    //Health Bar-------------------------------------------------------------------------------------------
+    void UpdateHealth() {
+        slider.value = ComputeHealth();
+        if (Health < MixHealth)
+        {
+            HealthBar.SetActive(true);
+        }
+
+        if (Health <= 0)
+        {
+            //monster be killed
+            Destroy(transform.gameObject);
+        }
+
+        if (Health > MixHealth)
+        {
+            Health = MixHealth;
+        }
+    }
+
+    float ComputeHealth()
+    {
+        return Health / MixHealth;
     }
 }

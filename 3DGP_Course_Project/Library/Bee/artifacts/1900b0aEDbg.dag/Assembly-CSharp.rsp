@@ -396,6 +396,8 @@
 "Assets/Import package/Kawaii Slime/Scripts/AI/EnemyAi.cs"
 "Assets/Import package/Kawaii Slime/Scripts/AI/Face.cs"
 "Assets/Import package/Kawaii Slime/Scripts/GameManager.cs"
+"Assets/Monster/Script/MonsterHealthBackup.cs"
+"Assets/Monster/Script/MonsterManager.cs"
 "Assets/Player.cs"
 "Assets/playmove.cs"
 -langversion:9.0
