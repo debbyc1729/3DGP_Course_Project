@@ -8,6 +8,8 @@ TagManager:
   - MazeGeo
   - SphereOfPath
   - player
+  - monster
+  - gem
   layers:
   - Default
   - TransparentFX

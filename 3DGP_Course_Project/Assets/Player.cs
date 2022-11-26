@@ -6,12 +6,15 @@ public class Player : MonoBehaviour
 {
     float walkSpeed;
     float rotateSpeed;
-    [SerializeField] GameObject mainCamera;
-    [SerializeField] Vector3 cameraOffset;
+    Vector3 cameraOffset;
     Animator anima;
-    float xMove;
-    float yMove;
+    float xMouseMove;
+    float yMouseMove;
     float pitch;
+    Crosshair target;
+    
+    bool flgPickGem;
+    float scaleRate;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +29,9 @@ public class Player : MonoBehaviour
         cameraOffset = new Vector3(0f, 0.7f, -0.03f);
         anima = GetComponent<Animator>();
         pitch = 0f;
+        target = FindObjectOfType<Crosshair>();
+        flgPickGem = false;
+        scaleRate = 0f;
 
         UpdateMainCamera();
     }
@@ -33,8 +39,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        xMove = yMove = 0f;
+        xMouseMove = yMouseMove = 0f;
 
+        UpdatePosition();
+        UpdateRotation();
+        PickGem();
+
+        UpdateMainCamera();
+    }
+
+    void UpdatePosition()
+    {
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward * walkSpeed * Time.deltaTime);
@@ -51,29 +66,70 @@ public class Player : MonoBehaviour
         {
             transform.Translate(Vector3.right * walkSpeed * Time.deltaTime);
         }
-        if ((xMove = Input.GetAxis("Mouse X")) != 0 || (yMove = Input.GetAxis("Mouse Y")) != 0)
-        {
-            transform.Rotate(0f, rotateSpeed * Time.deltaTime * xMove, 0f);
-            pitch -= rotateSpeed * Time.deltaTime * yMove;
+    }
 
-            if (pitch < -30f)
+    void UpdateRotation()
+    {
+        if ((xMouseMove = Input.GetAxis("Mouse X")) != 0 || (yMouseMove = Input.GetAxis("Mouse Y")) != 0)
+        {
+            transform.Rotate(0f, rotateSpeed * Time.deltaTime * xMouseMove, 0f);
+            pitch -= 2 * rotateSpeed * Time.deltaTime * yMouseMove;
+
+            if (pitch < -60f)
             {
-                pitch = -30f;
+                pitch = -60f;
             }
-            else if (pitch > 30f)
+            else if (pitch > 60f)
             {
-                pitch = 30f;
+                pitch = 60f;
             }
         }
-
-        UpdateMainCamera();
     }
 
     void UpdateMainCamera()
     {
-        mainCamera.transform.position = transform.position;
-        mainCamera.transform.rotation = transform.rotation;
-        mainCamera.transform.Translate(cameraOffset);
-        mainCamera.transform.Rotate(pitch, 0f, 0f);
+        Camera.main.transform.position = transform.position;
+        Camera.main.transform.rotation = transform.rotation;
+        Camera.main.transform.Translate(cameraOffset);
+        Camera.main.transform.Rotate(pitch, 0f, 0f);
+    }
+
+    void PickGem()
+    {
+        if (target.hitGem)
+        {
+            flgPickGem = true;
+            target.hitGem = false;
+            scaleRate = 0f;
+            target.gem.GetComponent<Collider>().enabled = false;
+
+            float distance = 1.3f * Vector3.Distance(transform.position, target.gem.transform.position);
+            float throwingAngle = 35f;
+            float velocity = Mathf.Sqrt(distance * Physics.gravity.magnitude / Mathf.Sin(2 * throwingAngle * Mathf.Deg2Rad));
+            float Vx = velocity * Mathf.Cos(throwingAngle * Mathf.Deg2Rad);
+            float Vy = velocity * Mathf.Sin(throwingAngle * Mathf.Deg2Rad);
+            Vector3 V0 = new Vector3(0, Vy, Vx);
+            target.gem.GetComponent<Rigidbody>().velocity = Quaternion.LookRotation(transform.position - target.gem.transform.position) * V0;
+
+            float during = 2 * velocity * Mathf.Sin(throwingAngle * Mathf.Deg2Rad) / Physics.gravity.magnitude;
+            Destroy(target.gem, during);
+        }
+
+        if (flgPickGem && target.gem != null)
+        {
+            if (scaleRate > Time.deltaTime * -0.3f)
+            {
+                scaleRate += Time.deltaTime * -0.03f;
+            }
+
+            target.gem.transform.localScale += Vector3.one * scaleRate;
+
+            if (target.gem.transform.localScale.x <= scaleRate ||
+                target.gem.transform.localScale.y <= scaleRate ||
+                target.gem.transform.localScale.z <= scaleRate)
+            {
+                flgPickGem = false;
+            }
+        }
     }
 }

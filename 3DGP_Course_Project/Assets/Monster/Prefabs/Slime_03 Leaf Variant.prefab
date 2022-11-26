@@ -636,6 +636,20 @@ MonoBehaviour:
   MixHealth: 100
   HealthBar: {fileID: 1115762953}
   slider: {fileID: 593040794}
+--- !u!136 &2788092387879709145
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624068453412878572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.40181875
+  m_Height: 0.8036375
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.34934258, z: 0.0022835732}
 --- !u!4 &5431391104642835030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6118174221721670358, guid: 66ae442726d1cf4428dacb34edd61ac4,
