@@ -1277,6 +1277,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa2763a42acb1438ea91005677189942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireBallPrefab: {fileID: 8849492145370184101, guid: 5e4e3bcc0b6f34783a18af6a98203e52,
+    type: 3}
+  firePrefab: {fileID: 6447721221493176914, guid: 94bc59559366d4d7986294d14d5f9e9b,
+    type: 3}
 --- !u!54 &886323487
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1299,6 +1303,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2101644276}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &886323492
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886323485}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2cccf444c4d4b4e879efc901d80a1420, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &942419022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1758,7 +1782,7 @@ RectTransform:
   m_GameObject: {fileID: 1723005639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1722377298}
@@ -1816,11 +1840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 426b1cf997829408dacb632ddff74834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitState: 0
   hitGem: 0
-  hitMonster: 0
   gem: {fileID: 0}
-  monster: {fileID: 0}
 --- !u!114 &1723005644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2132,6 +2153,69 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.401607
   m_Center: {x: 0.0014672279, y: 0.3492923, z: 0}
+--- !u!1 &1968912072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1968912074}
+  - component: {fileID: 1968912073}
+  m_Layer: 0
+  m_Name: AudioMgr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1968912073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968912072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3909f1e8af684523acd1547e7f97f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Burn
+    clip: {fileID: 8300000, guid: e8d693146763e473885a277dd4d5ccd1, type: 3}
+    volume: 0.593
+    pitch: 0.87
+    loop: 1
+    source: {fileID: 0}
+  - name: Throw
+    clip: {fileID: 8300000, guid: cb77de189941040d0b135407167bcd3d, type: 3}
+    volume: 0.593
+    pitch: 0.87
+    loop: 0
+    source: {fileID: 0}
+  - name: Boom
+    clip: {fileID: 8300000, guid: f0c2670a9ff564c8b99cfc0c290586a9, type: 3}
+    volume: 0.593
+    pitch: 0.87
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &1968912074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968912072}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.22412938, y: 0.30779076, z: 0.053161558}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2101644276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2145,7 +2229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1248815240492774, guid: ccd8c3b89aa02e943a08ab9238a8a70c, type: 3}
       propertyPath: m_Name
-      value: PolyArtWizardStandardMat
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1248815240492774, guid: ccd8c3b89aa02e943a08ab9238a8a70c, type: 3}
       propertyPath: m_TagString
@@ -2245,7 +2329,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bc69fc6ad5b6c7645aa0c00ecda79767, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 95538263452871118, guid: ccd8c3b89aa02e943a08ab9238a8a70c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ccd8c3b89aa02e943a08ab9238a8a70c, type: 3}
 --- !u!1 &2143443700 stripped
 GameObject:

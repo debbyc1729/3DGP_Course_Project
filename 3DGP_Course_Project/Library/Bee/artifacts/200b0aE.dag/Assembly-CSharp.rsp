@@ -381,6 +381,8 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.Purchasing.SecurityStub.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.Purchasing.Stores.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
+"Assets/Audios/Scripts/AudioMgr.cs"
+"Assets/Audios/Scripts/Sound.cs"
 "Assets/A_Star/A_Star_Pathfinding.cs"
 "Assets/A_Star/Grid.cs"
 "Assets/A_Star/Heap.cs"
@@ -389,7 +391,6 @@
 "Assets/A_Star/PathRequestManager.cs"
 "Assets/A_Star/Unit.cs"
 "Assets/A_Star/Unit_backup.cs"
-"Assets/Crosshair.cs"
 "Assets/Import package/Kawaii Slime/Cameras/Scripts/AbstractTargetFollower.cs"
 "Assets/Import package/Kawaii Slime/Cameras/Scripts/FreeLookCam.cs"
 "Assets/Import package/Kawaii Slime/Cameras/Scripts/PivotBasedCameraRig.cs"
@@ -398,8 +399,12 @@
 "Assets/Import package/Kawaii Slime/Scripts/GameManager.cs"
 "Assets/Monster/Script/MonsterHealthBackup.cs"
 "Assets/Monster/Script/MonsterManager.cs"
-"Assets/Player.cs"
-"Assets/playmove.cs"
+"Assets/ParticleSystems/Scripts/Explosion.cs"
+"Assets/ParticleSystems/Scripts/Fire.cs"
+"Assets/ParticleSystems/Scripts/Fireball.cs"
+"Assets/Player/Player.cs"
+"Assets/Scripts/Crosshair.cs"
+"Assets/Scripts/playmove.cs"
 -langversion:9.0
 
 /deterministic
