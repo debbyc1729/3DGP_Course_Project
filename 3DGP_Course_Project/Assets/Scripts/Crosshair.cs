@@ -5,8 +5,9 @@ using UnityEngine;
 public class Crosshair : MonoBehaviour
 {
     RaycastHit hit;
-    Ray ray;
 
+    [HideInInspector]
+    public Ray ray;
     [HideInInspector]
     public bool hitGem;
     [HideInInspector]

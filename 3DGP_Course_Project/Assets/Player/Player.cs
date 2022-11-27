@@ -125,18 +125,26 @@ public class Player : MonoBehaviour
     {
         if (target.hitGem)
         {
+            float distance = 1f * Vector3.Distance(Camera.main.transform.position, target.gem.transform.position);
+
+            if (distance > 4.5f)
+            {
+                return;
+            }
+
             flgPickGem = true;
             target.hitGem = false;
             scaleRate = 0f;
-            target.gem.GetComponent<Collider>().enabled = false;
+            Rigidbody rb = target.gem.GetComponent<Rigidbody>();
+            rb.isKinematic = false;
+            rb.detectCollisions = false;
 
-            float distance = 1.3f * Vector3.Distance(transform.position, target.gem.transform.position);
-            float throwingAngle = 35f;
+            float throwingAngle = 30f;
             float velocity = Mathf.Sqrt(distance * Physics.gravity.magnitude / Mathf.Sin(2 * throwingAngle * Mathf.Deg2Rad));
             float Vx = velocity * Mathf.Cos(throwingAngle * Mathf.Deg2Rad);
             float Vy = velocity * Mathf.Sin(throwingAngle * Mathf.Deg2Rad);
             Vector3 V0 = new Vector3(0, Vy, Vx);
-            target.gem.GetComponent<Rigidbody>().velocity = Quaternion.LookRotation(transform.position - target.gem.transform.position) * V0;
+            rb.velocity = Quaternion.LookRotation(-target.ray.direction) * V0;
 
             float during = 2 * velocity * Mathf.Sin(throwingAngle * Mathf.Deg2Rad) / Physics.gravity.magnitude;
             Destroy(target.gem, during);
@@ -144,16 +152,14 @@ public class Player : MonoBehaviour
 
         if (flgPickGem && target.gem != null)
         {
-            if (scaleRate > Time.deltaTime * -0.3f)
+            if (scaleRate < Time.deltaTime * 0.2f)
             {
-                scaleRate += Time.deltaTime * -0.03f;
+                scaleRate += Time.deltaTime * 0.01f;
             }
 
-            target.gem.transform.localScale += Vector3.one * scaleRate;
+            target.gem.transform.localScale -= Vector3.one * scaleRate;
 
-            if (target.gem.transform.localScale.x <= scaleRate ||
-                target.gem.transform.localScale.y <= scaleRate ||
-                target.gem.transform.localScale.z <= scaleRate)
+            if (target.gem.transform.localScale.magnitude <= 0.01f)
             {
                 flgPickGem = false;
             }
