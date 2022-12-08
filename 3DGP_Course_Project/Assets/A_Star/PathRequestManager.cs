@@ -5,7 +5,6 @@ using System;
 
 public class PathRequestManager : MonoBehaviour
 {
-
     Queue<PathRequest> pathRequestQueue = new Queue<PathRequest>();
     PathRequest currentPathRequest;
 
@@ -23,23 +22,13 @@ public class PathRequestManager : MonoBehaviour
 
     public static void RequestPath(Vector3 pathStart, Vector3 pathEnd, Action<Vector3[], bool> callback)
     {
-        //Debug.Log("RequestPath");
-        //Debug.Log("pathEnd= " + pathEnd);
-        //if (pathEndTemp != pathEnd)// && pathEndTemp != null
-        //{
-            //Debug.Log("pathRequestQueue.Clear()");
-            //instance.pathRequestQueue.Clear();
-
-            PathRequest newRequest = new PathRequest(pathStart, pathEnd, callback);
-            instance.pathRequestQueue.Enqueue(newRequest);
-            instance.TryProcessNext();
-        //}
-        //pathEndTemp = pathEnd;
+        PathRequest newRequest = new PathRequest(pathStart, pathEnd, callback);
+        instance.pathRequestQueue.Enqueue(newRequest);
+        instance.TryProcessNext();
     }
 
     void TryProcessNext()
     {
-        //Debug.Log("TryProcessNext");
         if (!isProcessingPath && pathRequestQueue.Count > 0)
         {
             currentPathRequest = pathRequestQueue.Dequeue();
@@ -50,7 +39,6 @@ public class PathRequestManager : MonoBehaviour
 
     public void FinishedProcessingPath(Vector3[] path, bool success)
     {
-        //Debug.Log("FinishedProcessingPath");
         currentPathRequest.callback(path, success);
         isProcessingPath = false;
         TryProcessNext();

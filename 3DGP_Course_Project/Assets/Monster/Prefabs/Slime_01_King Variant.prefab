@@ -508,6 +508,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 787358118064465505, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9991352
+      objectReference: {fileID: 0}
+    - target: {fileID: 787358118064465505, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9991352
+      objectReference: {fileID: 0}
+    - target: {fileID: 787358118064465505, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9991352
+      objectReference: {fileID: 0}
+    - target: {fileID: 787358118064465505, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9919288
+      objectReference: {fileID: 0}
+    - target: {fileID: 787358118064465505, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.07245565
+      objectReference: {fileID: 0}
+    - target: {fileID: 787358118064465505, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.007580504
+      objectReference: {fileID: 0}
+    - target: {fileID: 787358118064465505, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.10377852
+      objectReference: {fileID: 0}
     - target: {fileID: 873531700701352353, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
         type: 3}
       propertyPath: m_Name
@@ -522,6 +557,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156295224627675165, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.000896
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156295224627675165, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.000896
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156295224627675165, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.000896
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175312543014260292, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9991352
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175312543014260292, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9991352
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175312543014260292, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9991352
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175312543014260292, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99122113
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175312543014260292, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.08156754
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175312543014260292, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.00853406
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175312543014260292, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.10370452
       objectReference: {fileID: 0}
     - target: {fileID: 8955322500898459853, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
         type: 3}
@@ -636,7 +721,7 @@ SphereCollider:
   m_GameObject: {fileID: 7954718093505303278}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.35
   m_Center: {x: 0, y: 0.3, z: 0}
@@ -673,12 +758,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  target_ATK: 10
   speed: 1
   AutoChaseRadio: 1.5
   Health: 0
   MixHealth: 100
   HealthBar: {fileID: 1760033755}
   slider: {fileID: 1690250603}
+  maxAttackCoolTime: 2
+  maxHurtCoolTime: 2
+  hitEffect: {fileID: 1570927096764274, guid: 6b8d93bfeba88384fb7ccb4197515540, type: 3}
+  hurtEffect: {fileID: 0}
+  dieEffect: {fileID: 0}
+  dust: {fileID: 1876081050882714, guid: 5f383f1ea4b44a247b8a6cd49ae05e27, type: 3}
+  sounds:
+  - name: Walk
+    clip: {fileID: 8300000, guid: aa1bc57235760cf44b31c54b6cd5816f, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Attack
+    clip: {fileID: 8300000, guid: 3b15bc1ecdc04554eb4eb0f99256eadc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hurt
+    clip: {fileID: 8300000, guid: ac79e8832e69ab04fa3a968d2c50b512, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Die
+    clip: {fileID: 8300000, guid: d5550582926888949942790c2c53cb5d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &9193833196965626706 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2156295224627675165, guid: 28d0a30d6aed6fc4c8ca473413f70c24,

@@ -5,7 +5,6 @@ using UnityEngine;
 public class MonsterManager : MonoBehaviour
 {
     public int MixMonsterNum = 4;
-    //public GameObject MonsterObject;
     public GameObject[] MonsterObjects;
     public Transform target;
     public float SpawnRadio = 5.0f;
@@ -15,11 +14,9 @@ public class MonsterManager : MonoBehaviour
     void Start()
     {
         SpawnPoint = new Vector3[MixMonsterNum];
-        //MonsterObjects = new GameObject[MixMonsterNum];
 
         for (int i=0;i< MixMonsterNum;i++) {
             SpawnPoint[i] = transform.GetChild(i).position;
-            //MonsterObjects[i] = transform.GetChild(i).gameObject;
         }
     }
 
@@ -36,8 +33,6 @@ public class MonsterManager : MonoBehaviour
             }
             int NumMonsterObjects = MonsterObjects.Length;
             GameObject newMonster = Instantiate(MonsterObjects[Random.Range(0, NumMonsterObjects)], SpawnPoint[index % MixMonsterNum], Quaternion.identity);
-            //GameObject newMonster = Instantiate(MonsterObject, SpawnPoint[index % MixMonsterNum], Quaternion.identity);
-            //newMonster.
             newMonster.transform.SetParent(transform);
         }
     }

@@ -597,6 +597,19 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 3
+--- !u!135 &1883509485
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624068453412878572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!95 &1580803902
 Animator:
   serializedVersion: 4
@@ -630,26 +643,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  target_ATK: 10
   speed: 1
   AutoChaseRadio: 1.5
   Health: 0
   MixHealth: 100
   HealthBar: {fileID: 1115762953}
   slider: {fileID: 593040794}
---- !u!136 &2788092387879709145
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4624068453412878572}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.40181875
-  m_Height: 0.8036375
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.34934258, z: 0.0022835732}
+  maxAttackCoolTime: 2
+  maxHurtCoolTime: 2
+  hitEffect: {fileID: 1570927096764274, guid: 6b8d93bfeba88384fb7ccb4197515540, type: 3}
+  hurtEffect: {fileID: 0}
+  dieEffect: {fileID: 0}
+  dust: {fileID: 1876081050882714, guid: 5f383f1ea4b44a247b8a6cd49ae05e27, type: 3}
+  sounds:
+  - name: Walk
+    clip: {fileID: 8300000, guid: aa1bc57235760cf44b31c54b6cd5816f, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Attack
+    clip: {fileID: 8300000, guid: 3b15bc1ecdc04554eb4eb0f99256eadc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hurt
+    clip: {fileID: 8300000, guid: ac79e8832e69ab04fa3a968d2c50b512, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Die
+    clip: {fileID: 8300000, guid: d5550582926888949942790c2c53cb5d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &5431391104642835030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6118174221721670358, guid: 66ae442726d1cf4428dacb34edd61ac4,
@@ -673,7 +704,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.38
   m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!4 &7055470046514757253 stripped
 Transform:

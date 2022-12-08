@@ -89,40 +89,15 @@ public class Grid : MonoBehaviour
         return grid[x, y];
     }
 
-    /*void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
-        if (grid != null && displayGridGizmos)
-        {
-            foreach (Node n in grid)
-            {
-                Gizmos.color = (n.walkable) ? Color.white : Color.red;
-                Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
-            }
-        }
-    }*/
-
     public List<Node> path;
     void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
-
-
+        
         if (grid != null && displayGridGizmos)
         {
-            //Node playerNode = NodeFromWorldPoint(player.position);
-            /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitData;
-            Node playerNode = null;
-            if(Physics.Raycast(ray, out hitData, Mathf.Infinity))
-            {
-                playerNode = NodeFromWorldPoint(hitData.point);
-                //Debug.Log("hitData.point= " + hitData.point);
-            }*/
-
             foreach (Node n in grid)
             {
-                //Debug.Log("hitData.point= " + n.worldPosition);
                 Gizmos.color = (n.walkable) ? Color.white : Color.red;
                 if (path != null)
                 {
@@ -131,12 +106,6 @@ public class Grid : MonoBehaviour
                         Gizmos.color = Color.black;
                     }
                 }
-                //Debug.Log("n= " + n.worldPosition + ", playerNode= " + playerNode.worldPosition);
-                /*if (playerNode == n)
-                {
-                    //Debug.Log("n and playerNode cover!!");
-                    Gizmos.color = Color.cyan;
-                }*/
 
                 Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
             }
@@ -153,7 +122,6 @@ public class Grid : MonoBehaviour
                 {
                     if (path.Contains(n))
                     {
-                        //Instantiate_Sphere.Generate(n.worldPosition);
                         Instantiate(Sphere, n.worldPosition, Quaternion.identity);
                         //nodeRadius
                     }

@@ -603,7 +603,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.38
   m_Center: {x: 0, y: 0.34, z: 0}
 --- !u!4 &4667142830726512234 stripped
 Transform:
@@ -642,7 +642,7 @@ SphereCollider:
   m_GameObject: {fileID: 4667142830726512235}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.4
   m_Center: {x: 0, y: 0.34, z: 0}
@@ -679,9 +679,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  target_ATK: 10
   speed: 1
   AutoChaseRadio: 1.5
   Health: 0
   MixHealth: 100
   HealthBar: {fileID: 779415918}
   slider: {fileID: 781613195}
+  maxAttackCoolTime: 2
+  maxHurtCoolTime: 2
+  hitEffect: {fileID: 1570927096764274, guid: 6b8d93bfeba88384fb7ccb4197515540, type: 3}
+  hurtEffect: {fileID: 0}
+  dieEffect: {fileID: 0}
+  dust: {fileID: 1876081050882714, guid: 5f383f1ea4b44a247b8a6cd49ae05e27, type: 3}
+  sounds:
+  - name: Walk
+    clip: {fileID: 8300000, guid: aa1bc57235760cf44b31c54b6cd5816f, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Attack
+    clip: {fileID: 8300000, guid: 3b15bc1ecdc04554eb4eb0f99256eadc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hurt
+    clip: {fileID: 8300000, guid: ac79e8832e69ab04fa3a968d2c50b512, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Die
+    clip: {fileID: 8300000, guid: d5550582926888949942790c2c53cb5d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

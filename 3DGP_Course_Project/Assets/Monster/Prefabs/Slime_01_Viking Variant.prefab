@@ -578,6 +578,91 @@ PrefabInstance:
       propertyPath: m_TagString
       value: monster
       objectReference: {fileID: 0}
+    - target: {fileID: 8232614543835699760, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9991352
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232614543835699760, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9991352
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232614543835699760, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9991352
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232614543835699760, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99122113
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232614543835699760, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.08156754
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232614543835699760, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.00853406
+      objectReference: {fileID: 0}
+    - target: {fileID: 8232614543835699760, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.10370452
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011977493725603791, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.000896
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011977493725603791, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.000896
+      objectReference: {fileID: 0}
+    - target: {fileID: 9011977493725603791, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.000896
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042293886379564985, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9991352
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042293886379564985, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9991352
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042293886379564985, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9991352
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042293886379564985, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9919288
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042293886379564985, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.07245565
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042293886379564985, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.007580504
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042293886379564985, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.10377852
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11eed2dfd1329ab4db9e7f27b8e628b7, type: 3}
 --- !u!4 &6828430269282510575 stripped
@@ -603,7 +688,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.33
   m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!4 &8379308744571599420 stripped
 Transform:
@@ -642,7 +727,7 @@ SphereCollider:
   m_GameObject: {fileID: 9152044813903978630}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.4
   m_Center: {x: 0, y: 0.3, z: 0}
@@ -679,9 +764,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  target_ATK: 10
   speed: 1
   AutoChaseRadio: 1.5
   Health: 0
   MixHealth: 100
   HealthBar: {fileID: 1539203692}
   slider: {fileID: 865890160}
+  maxAttackCoolTime: 2
+  maxHurtCoolTime: 2
+  hitEffect: {fileID: 1570927096764274, guid: 6b8d93bfeba88384fb7ccb4197515540, type: 3}
+  hurtEffect: {fileID: 0}
+  dieEffect: {fileID: 0}
+  dust: {fileID: 1876081050882714, guid: 5f383f1ea4b44a247b8a6cd49ae05e27, type: 3}
+  sounds:
+  - name: Walk
+    clip: {fileID: 8300000, guid: aa1bc57235760cf44b31c54b6cd5816f, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Attack
+    clip: {fileID: 8300000, guid: 3b15bc1ecdc04554eb4eb0f99256eadc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hurt
+    clip: {fileID: 8300000, guid: ac79e8832e69ab04fa3a968d2c50b512, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Die
+    clip: {fileID: 8300000, guid: d5550582926888949942790c2c53cb5d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
