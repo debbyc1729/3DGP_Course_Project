@@ -5,6 +5,7 @@ using System;
 
 public class Monster : MonoBehaviour
 {
+    public bool setHurt = false;
     public Transform target;
     public float target_ATK = 10;
     public float speed = 1;
@@ -261,6 +262,7 @@ public class Monster : MonoBehaviour
     //Hit by fire ball
     private void OnParticleCollision(GameObject other)
     {
+        if (!setHurt) return;
         if (other.name[0] == 'M')
         {
             Health -= target_ATK;
