@@ -3,14 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - MazeGeo
-  - SphereOfPath
-  - player
-  - monster
-  - gem
-  - Ground
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -18,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Unwalkable
-  - Minimap
-  - Ground
+  - 
+  - 
+  - 
   - 
   - 
   - 
