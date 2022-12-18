@@ -6,11 +6,16 @@ using System;
 public class Monster : MonoBehaviour
 {
     public bool setHurt = false;
+    public int ChaseMode = 0;
+    public int AttackMode = 0;
+    public Transform ShootPoint;
+    public GameObject bullet;
     public Transform target;
     public float target_ATK = 10;
     public float speed = 1;
     public float AutoChaseRadio = 1.0f;
-    
+    public float AutoHitRadio = 1.0f;
+
     public float Health;
     public float MixHealth;
     public GameObject HealthBar;
@@ -51,7 +56,7 @@ public class Monster : MonoBehaviour
     //Initialization
     void Start()
     {
-        target = GameObject.FindWithTag("player").transform;
+        target = GameObject.FindWithTag("Player").transform;
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
 
@@ -70,6 +75,27 @@ public class Monster : MonoBehaviour
 
         Health = MixHealth;
         slider.value = ComputeHealth();
+
+        switch (ChaseMode){
+            case 0:
+                AutoHitRadio = 1.0f;
+                AttackMode = 0;
+                break;
+            case 1:
+                AutoHitRadio = 3.0f;
+                AttackMode = 1;
+                break;
+            case 2:
+                AutoHitRadio = 5.0f;
+                AttackMode = 2;
+                break;
+            case 3:
+                AutoHitRadio = 7.0f;
+                AttackMode = 3;
+                break;
+            default:
+                break;
+        }
     }
     
     void Update()
@@ -109,6 +135,7 @@ public class Monster : MonoBehaviour
         //Tracing directly when close enough
         if ((target.position - transform.position).magnitude < AutoChaseRadio && !attackFlg)
         {
+            //Debug.Log("Tracing directly, " + transform.name);
             Vector3 face = new Vector3(target.position.x, transform.position.y, target.position.z);
             Vector3 targ = target.position - transform.position;
             targ.y = 0.0f;
@@ -120,8 +147,10 @@ public class Monster : MonoBehaviour
         }
         else//A_star
         {
+            //Debug.Log("A_star timer= " + timer % 3 + ", startFind= "+ startFind);
             if (timer % 3 < 1 && startFind)
             {
+                //Debug.Log("A_star, " + transform.name);
                 targetPositionTemp = target.position;
                 hitplayerSuccessful = false;
                 startFind = false;
@@ -140,8 +169,11 @@ public class Monster : MonoBehaviour
 
         float targetRadius = target.GetComponent<CapsuleCollider>().radius;
         Vector3 distence = target.position - transform.position;
-        if (distence.magnitude < targetRadius * 1.15)
+        //Debug.Log("distence= "+ distence.magnitude + ", AutoHitRadio= " + AutoHitRadio);
+        //if (distence.magnitude < targetRadius * 3)
+        if (distence.magnitude < AutoHitRadio)
         {
+            //Debug.Log("distence.magnitude < AutoHitRadio");
             //if(!attackCoolTimeFlg) return;
             StopCoroutine("FollowPath");
             monsterAttack(target.position);
@@ -162,6 +194,7 @@ public class Monster : MonoBehaviour
     {
         if (hurtCoolTimeFlg) return;
 
+        //Debug.Log("monsterMove, hurtCoolTimeFlg");
         stateChange("Walk");
         rigidbody.MovePosition(postion);
     }
@@ -170,10 +203,43 @@ public class Monster : MonoBehaviour
     {
         if (!attackCoolTimeFlg) return;
 
+        //Debug.Log("monsterAttack, !attackCoolTimeFlg");
         //SoundPlay("Attack");
         //StartCoroutine(updateParticlesystem("Hit", postion));
-        stateChange("Attack");
+
+        switch (AttackMode)
+        {
+            case 0:
+                stateChange("Attack0");
+                break;
+            case 1:
+                stateChange("Attack1");
+                shoot();
+                break;
+            case 2:
+                stateChange("Attack1");
+                shoot();
+                break;
+            case 3:
+                stateChange("Attack1");
+                shoot();
+                break;
+            default:
+                break;
+        }
         attackCoolTimeFlg = false;
+
+
+    }
+    void shoot()
+    {
+        Rigidbody bulletRb;
+        bulletRb = Instantiate(bullet, ShootPoint.position,Quaternion.identity).GetComponent<Rigidbody>();
+        bulletRb.AddForce(transform.forward * AutoHitRadio, ForceMode.Impulse);
+        bulletRb.AddForce(transform.up * 4.0f, ForceMode.Impulse);
+
+        bulletRb.transform.SetParent(transform);
+        SoundPlay("Throw");
     }
 
     void monsterDie()//monster be killed
@@ -200,7 +266,7 @@ public class Monster : MonoBehaviour
             StartCoroutine(updateParticlesystem("Dust", transform.position));
         }
         
-        if (collision.gameObject.tag == "player")
+        if (collision.gameObject.tag == "Player" && AttackMode == 0)
         {
             SoundPlay("Attack");
             Vector3 hitPoint = collision.GetContact(0).point;
@@ -223,15 +289,23 @@ public class Monster : MonoBehaviour
     //Animation changing
     void stateChange(String state)
     {
+        //Debug.Log("stateChange= "+ state);
         switch (state)
         {
             case "Walk":
                 animator.SetBool("Walk", true);
                 animator.SetBool("Attack", false);
                 break;
-            case "Attack":
+            case "Attack0":
                 animator.SetBool("Idle", true);
                 animator.SetBool("Attack", true);
+                attackCoolTimeFlg = false;
+                attackCoolTimer = 0.0f;
+                animator.SetBool("Walk", false);
+                break;
+            case "Attack1":
+                animator.SetBool("Idle", true);
+                //animator.SetBool("Attack", true);
                 attackCoolTimeFlg = false;
                 attackCoolTimer = 0.0f;
                 animator.SetBool("Walk", false);
@@ -334,6 +408,7 @@ public class Monster : MonoBehaviour
     {
         if (pathSuccessful && !hitplayerSuccessful)// && newPath.Length != 0
         {
+            //Debug.Log("OnPathFound, " + transform.name);
             path = newPath;
             targetIndex = 0;
             StopCoroutine("FollowPath");
@@ -343,6 +418,7 @@ public class Monster : MonoBehaviour
 
     IEnumerator FollowPath()
     {
+        //Debug.Log("FollowPath, " + transform.name);
         if (path.Length == 0)
         {
             stateChange("Idle");

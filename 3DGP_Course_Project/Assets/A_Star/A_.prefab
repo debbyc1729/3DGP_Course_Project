@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &512187819811915972
 Transform:
   m_ObjectHideFlags: 0
@@ -49,10 +49,10 @@ MonoBehaviour:
   displayGridGizmos: 0
   displaySphereOfPath: 0
   player: {fileID: 0}
-  Sphere: {fileID: 0}
+  Sphere: {fileID: 2959497277809437122, guid: dccebf5e45f982c4d9739893e11b8245, type: 3}
   unwalkableMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   gridWorldSize: {x: 21, y: 21}
   nodeRadius: 0.15
 --- !u!114 &512187819811915970
