@@ -29,7 +29,6 @@ public class Fireball : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Boom");
         int numCollisionEvents = ps.GetCollisionEvents(other, collisionEvents);
         Vector3 contactPos = collisionEvents[0].intersection;
         explosionPrefab.transform.position = contactPos;

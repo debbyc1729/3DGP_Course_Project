@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
         walkSpeed = 2f;
         rotateSpeed = 1000f;
-        cameraOffset = new Vector3(-0.3f, 0.8f, -0.2f);
+        cameraOffset = new Vector3(0f, 0.8f, -0.2f);
         anima = GetComponent<Animator>();
         pitch = 0f;
         target = FindObjectOfType<Crosshair>();
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
         {
             UpdatePosition();
             UpdateRotation();
-            // PickGem();
+            PickGem();
         }
         // Landing();
 
@@ -91,11 +91,6 @@ public class Player : MonoBehaviour
         if (flgMove)
         {
             anima.SetBool("run", true);
-
-            if (anima.GetBool("ready"))
-            {
-                FindObjectOfType<Fire>().SetPosition(Camera.main.transform.position, transform.rotation);   
-            }
         }
     }
 

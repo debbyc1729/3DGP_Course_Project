@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class SkillMgr : MonoBehaviour
@@ -49,38 +50,39 @@ public class SkillMgr : MonoBehaviour
 
     void UseSkill(string name, float delay = 0f)
     {
-        if (flgShowSkill)
+        Skill s = Array.Find(skills, skill => skill.name == name);
+
+        if (s == null)
+        {
+            return;
+        }
+        if (flgShowSkill || s.flgCooldown)
         {
             return;
         }
         flgShowSkill = true;
-        SelectSkill(name);
-        StartCoroutine(UseSkillCoroutine(delay));
+        StartCoroutine(UseSkillCoroutine(s, delay));
     }
 
-    void SelectSkill(string name)
-    {
-        currentSkill = Array.Find(skills, skill => skill.name == name);
-    }
-
-    IEnumerator UseSkillCoroutine(float delay)
+    IEnumerator UseSkillCoroutine(Skill s, float delay)
     {
         yield return new WaitForSeconds(delay);
         anima.SetBool("attack", true);
-        ShowSkillOnWeapon();
-        yield return new WaitForSeconds(1f);
+        ShowSkillOnWeapon(s);
+        yield return new WaitForSeconds(0.8f);
         anima.SetBool("attack", false);
-        yield return new WaitForSeconds(0.5f);
-        ShowSkill();
-        InvokeSkill(0f);
-        yield return new WaitForSeconds(currentSkill.duration);
+        ShowSkill(s);
+        InvokeSkill(s, 0f);
+        // FindObjectOfType<BuffMgr>().InvokeBuff(s.name, s.duration);
+        CoolDown(s);
+        yield return new WaitForSeconds(0.2f);
         flgShowSkill = false;
         yield break;
     }
 
-    void ShowSkillOnWeapon()
+    void ShowSkillOnWeapon(Skill s)
     {
-        GameObject skillPrefab = currentSkill.prefab[0];
+        GameObject skillPrefab = s.ps.prefab[0];
         skillPrefab.transform.position = player.transform.position;
         skillPrefab.transform.rotation = player.transform.rotation;
         skillPrefab.transform.Translate(0.3f, 0.7f, 0.5f);
@@ -90,66 +92,94 @@ public class SkillMgr : MonoBehaviour
         skillOnWeapon.transform.localScale = scale;
     }
 
-    void ShowSkill()
+    void ShowSkill(Skill s)
     {
         if (skillOnWeapon != null)
         {
             Destroy(skillOnWeapon, 0f);
         }
-        GameObject skillPrefab = currentSkill.prefab[1];
+        GameObject skillPrefab = s.ps.prefab[1];
         skillPrefab.transform.position = player.transform.position;
         skillPrefab.transform.rotation = player.transform.rotation;
-        skillPrefab.transform.Translate(currentSkill.offset);
+        skillPrefab.transform.Translate(s.ps.offset);
         GameObject skill = Instantiate(skillPrefab, skillPrefab.transform.position, skillPrefab.transform.rotation);
-        // skill.transform.parent = transform;
-        Destroy(skill, currentSkill.lifeTime);
+        Destroy(skill, s.ps.lifeTime);
     }
 
-    void InvokeSkill(float delay)
+    void InvokeSkill(Skill s, float delay)
     {
-        if (currentSkill.name == "Fire")
+        if (s.effect != null)
         {
-            StartCoroutine(Fire(delay));
+            StopCoroutine(s.effect);
         }
-        if (currentSkill.name == "SpeedUp")
+        if (s.name == "Fire")
         {
-            StartCoroutine(SpeedUp(delay));
+            s.effect = StartCoroutine(Fire(s, delay));
         }
-        if (currentSkill.name == "SlowDown")
+        if (s.name == "SpeedUp")
         {
-            StartCoroutine(SlowDown(delay));
+            s.effect = StartCoroutine(SpeedUp(s, delay));
         }
-        if (currentSkill.name == "Fly")
+        if (s.name == "SlowDown")
         {
-            StartCoroutine(Fly(delay));
+            s.effect = StartCoroutine(SlowDown(s, delay));
+        }
+        if (s.name == "Fly")
+        {
+            s.effect = StartCoroutine(Fly(s, delay));
         }
     }
 
-    IEnumerator Fire(float delay)
+    void CoolDown(Skill s)
+    {
+        if (!s.flgCooldown)
+        {
+            StartCoroutine(CoolDownCoroutine(s));
+        }
+    }
+
+    IEnumerator CoolDownCoroutine(Skill s)
+    {
+        s.flgCooldown = true;
+        Image skillImage = s.IconImage;
+        float timer = 0f;
+        while (skillImage.fillAmount > 0f)
+        {
+            timer += Time.deltaTime;
+            skillImage.fillAmount = Mathf.Lerp(1f, 0f, timer / s.cooldown);
+            yield return null;
+        }
+
+        skillImage.fillAmount = 1f;
+        s.flgCooldown = false;
+        yield break;
+    }
+
+    IEnumerator Fire(Skill s, float delay)
     {
         yield break;
     }
 
-    IEnumerator SpeedUp(float delay)
+    IEnumerator SpeedUp(Skill s, float delay)
     {
         yield return new WaitForSeconds(delay);
-        playerScript.setWalkSpeedFactor(3f);
-        yield return new WaitForSeconds(currentSkill.duration);
+        playerScript.setWalkSpeedFactor(1.3f);
+        yield return new WaitForSeconds(s.duration);
         playerScript.setWalkSpeedFactor(1f);
         yield break;
     }
 
-    IEnumerator SlowDown(float delay)
+    IEnumerator SlowDown(Skill s, float delay)
     {
         yield break;
     }
 
-    IEnumerator Fly(float delay)
+    IEnumerator Fly(Skill s, float delay)
     {
         yield return new WaitForSeconds(delay);
         playerScript.Fly(2.5f, 0.2f);
         // playerScript.SetFloating(true, 1f);
-        yield return new WaitForSeconds(currentSkill.duration);
+        yield return new WaitForSeconds(s.duration);
         playerScript.SetFloating(false, 0f);
         yield break;
     }
