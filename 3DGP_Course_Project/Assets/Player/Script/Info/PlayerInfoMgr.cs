@@ -96,12 +96,19 @@ public class PlayerInfoMgr : MonoBehaviour
         if (Hp < 0f) Hp = 0f;
     }
 
-    public void ModifyMp(float value)
+    public bool ModifyMp(float value)
     {
         Mp += value;
 
         if (Mp > 1f) Mp = 1f;
-        if (Mp < 0f) Mp = 0f;
+        if (Mp < 0f)
+        {
+            Debug.Log("Sorry, You don't have enough MP.");
+            Mp -= value;
+            return false;
+        }
+
+        return true;
     }
 
     public void ModifyLevel(float value)

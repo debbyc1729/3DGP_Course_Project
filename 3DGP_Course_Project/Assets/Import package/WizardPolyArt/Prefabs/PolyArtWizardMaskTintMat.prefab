@@ -55,7 +55,7 @@ MonoBehaviour:
       prefab:
       - {fileID: 6588740274391054522, guid: 94bc59559366d4d7986294d14d5f9e9b, type: 3}
       - {fileID: 1932696840610236988, guid: 5e4e3bcc0b6f34783a18af6a98203e52, type: 3}
-      offset: {x: 0, y: 0, z: 0.5}
+      offset: {x: 0.1, y: 0.5, z: 1}
       lifeTime: 3
     flgCooldown: 0
   - name: SpeedUp
@@ -75,21 +75,21 @@ MonoBehaviour:
     IconImage: {fileID: 0}
     damage: 0
     consumption: 0
-    duration: 7
+    duration: 5
     cooldown: 3
     ps:
       prefab:
       - {fileID: 4932736048725201908, guid: 312cb20bc85d34bb3ba53a6690b8e9ad, type: 3}
       - {fileID: 8647157597122774206, guid: fcc9254573fa3422daee1f59b6501ecd, type: 3}
-      offset: {x: 0, y: 0, z: 3}
-      lifeTime: 7
+      offset: {x: 0.1, y: 0, z: 2}
+      lifeTime: 5
     flgCooldown: 0
   - name: Fly
     IconImage: {fileID: 0}
     damage: 0
     consumption: 0
-    duration: 5
-    cooldown: 7
+    duration: 10
+    cooldown: 12
     ps:
       prefab:
       - {fileID: 8141951232488775033, guid: f26bc7ff8c05b441eb356819194e4c5a, type: 3}

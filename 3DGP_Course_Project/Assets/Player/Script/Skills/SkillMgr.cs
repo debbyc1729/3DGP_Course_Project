@@ -14,6 +14,7 @@ public class SkillMgr : MonoBehaviour
     Animator anima;
     Transform weapon;
     Skill currentSkill;
+    PlayerInfoMgr infoMgr;
     bool flgShowSkill;
 
     // Start is called before the first frame update
@@ -24,6 +25,7 @@ public class SkillMgr : MonoBehaviour
         playerScript = player.GetComponent<Player>();
         anima = player.GetComponent<Animator>();
         weapon = player.transform.Find("root").Find("pelvis").Find("Weapon");
+        infoMgr = FindObjectOfType<PlayerInfoMgr>();
         flgShowSkill = false;
     }
 
@@ -48,7 +50,7 @@ public class SkillMgr : MonoBehaviour
         }
     }
 
-    void UseSkill(string name, float delay = 0f)
+    void UseSkill(string name)
     {
         Skill s = Array.Find(skills, skill => skill.name == name);
 
@@ -60,13 +62,16 @@ public class SkillMgr : MonoBehaviour
         {
             return;
         }
+        if (!infoMgr.ModifyMp(-s.duration * 0.05f))
+        {
+            return;
+        }
         flgShowSkill = true;
-        StartCoroutine(UseSkillCoroutine(s, delay));
+        StartCoroutine(UseSkillCoroutine(s));
     }
 
-    IEnumerator UseSkillCoroutine(Skill s, float delay)
+    IEnumerator UseSkillCoroutine(Skill s)
     {
-        yield return new WaitForSeconds(delay);
         anima.SetBool("attack", true);
         ShowSkillOnWeapon(s);
         yield return new WaitForSeconds(0.8f);
@@ -99,8 +104,8 @@ public class SkillMgr : MonoBehaviour
             Destroy(skillOnWeapon, 0f);
         }
         GameObject skillPrefab = s.ps.prefab[1];
-        skillPrefab.transform.position = player.transform.position;
-        skillPrefab.transform.rotation = player.transform.rotation;
+        skillPrefab.transform.position = Camera.main.transform.position;
+        skillPrefab.transform.rotation = Camera.main.transform.rotation;
         skillPrefab.transform.Translate(s.ps.offset);
         GameObject skill = Instantiate(skillPrefab, skillPrefab.transform.position, skillPrefab.transform.rotation);
         Destroy(skill, s.ps.lifeTime);

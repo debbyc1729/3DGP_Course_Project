@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -4447312937490033962}
   m_Layer: 0
   m_Name: RockBullet
-  m_TagString: Untagged
+  m_TagString: monsterBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

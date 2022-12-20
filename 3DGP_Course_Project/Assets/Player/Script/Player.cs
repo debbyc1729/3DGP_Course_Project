@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     SkillMgr skillMgr;
     // PortalMgr portalMgr;
     Coroutine recordCoroutine;
+    PlayerInfoMgr infoMgr;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
         scaleRate = 0f;
         activateMoving = true;
         skillMgr = FindObjectOfType<SkillMgr>();
+        infoMgr = FindObjectOfType<PlayerInfoMgr>();
         // portalMgr = FindObjectOfType<PortalMgr>();
 
         UpdateMainCamera();
@@ -59,7 +61,6 @@ public class Player : MonoBehaviour
             UpdateRotation();
             PickGem();
         }
-        // Landing();
 
         UpdateMainCamera();
     }
@@ -240,14 +241,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Landing()
+    void OnCollisionEnter(Collision other)
     {
-        // anima.SetBool("hitGround", false);
-
-        // if (anima.GetInteger("jump") == 2 && transform.position.y < 0.1f)
-        // {
-        //     anima.SetInteger("jump", 0);
-        //     anima.SetBool("hitGround", true);
-        // }
+        if (other.gameObject.tag == "monsterBullet")
+        {
+            infoMgr.ModifyHp(-0.1f);
+        }
     }
 }
