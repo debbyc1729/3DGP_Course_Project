@@ -36,16 +36,16 @@ public class PlayerInfoMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-            ModifyHp(-0.1f);
-        if (Input.GetKeyDown(KeyCode.O))
-            ModifyHp(0.1f);
-        if (Input.GetKeyDown(KeyCode.K))
-            ModifyMp(-0.1f);
-        if (Input.GetKeyDown(KeyCode.L))
-            ModifyMp(0.1f);
-        if (Input.GetKeyDown(KeyCode.P))
-            ModifyLevel(2.3f);
+        // if (Input.GetKeyDown(KeyCode.I))
+        //     ModifyHp(-0.1f);
+        // if (Input.GetKeyDown(KeyCode.O))
+        //     ModifyHp(0.1f);
+        // if (Input.GetKeyDown(KeyCode.K))
+        //     ModifyMp(-0.1f);
+        // if (Input.GetKeyDown(KeyCode.L))
+        //     ModifyMp(0.1f);
+        // if (Input.GetKeyDown(KeyCode.P))
+        //     ModifyLevel(2.3f);
 
         UpdateHp();
         UpdateMp();
@@ -84,7 +84,7 @@ public class PlayerInfoMgr : MonoBehaviour
 
     void AutoHeal()
     {
-        ModifyHp(0.03f * Time.deltaTime);
+        ModifyHp(0.01f * Time.deltaTime);
         ModifyMp(0.03f * Time.deltaTime);
     }
 
@@ -142,7 +142,7 @@ public class PlayerInfoMgr : MonoBehaviour
     IEnumerator ExpAnimation(float targetAmount, int targetLevel)
     {
         float originAmount = levelAmount.fillAmount;
-        float duration = (targetAmount - originAmount) * 0.3f;
+        float duration = (targetAmount - originAmount) * 0.7f;
         float timer = 0f;
 
         while (levelAmount.fillAmount < targetAmount)

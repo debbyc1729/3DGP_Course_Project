@@ -247,6 +247,7 @@ public class Monster : MonoBehaviour
         if (dieFlg) return;
 
         dieFlg = true;
+        FindObjectOfType<PlayerInfoMgr>().ModifyLevel(2.3f);
         transform.GetComponent<SphereCollider>().enabled = false;
         transform.GetChild(0).GetChild(0).GetComponent<SphereCollider>().enabled = false;
         StopCoroutine("FollowPath");
