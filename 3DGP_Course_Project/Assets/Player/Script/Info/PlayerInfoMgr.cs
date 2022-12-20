@@ -15,6 +15,7 @@ public class PlayerInfoMgr : MonoBehaviour
     Text levelText;
     Image levelAmount;
     float levelAmountTemp;
+    Transform FullScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -31,21 +32,24 @@ public class PlayerInfoMgr : MonoBehaviour
         levelAmount = LevelBar.GetComponent<Image>();
         levelAmount.fillAmount = 0f;
         levelAmountTemp = 0f;
+        FullScreen  = transform.Find("FullScreen");
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.I))
-        //     ModifyHp(-0.1f);
-        // if (Input.GetKeyDown(KeyCode.O))
-        //     ModifyHp(0.1f);
-        // if (Input.GetKeyDown(KeyCode.K))
-        //     ModifyMp(-0.1f);
-        // if (Input.GetKeyDown(KeyCode.L))
-        //     ModifyMp(0.1f);
-        // if (Input.GetKeyDown(KeyCode.P))
-        //     ModifyLevel(2.3f);
+        if (Input.GetKeyDown(KeyCode.I))
+            ModifyHp(-0.1f);
+        if (Input.GetKeyDown(KeyCode.O))
+            ModifyHp(0.1f);
+        if (Input.GetKeyDown(KeyCode.K))
+            ModifyMp(-0.1f);
+        if (Input.GetKeyDown(KeyCode.L))
+            ModifyMp(0.1f);
+        if (Input.GetKeyDown(KeyCode.P))
+            ModifyLevel(2.3f);
+
+        // FullScreen.GetComponent<Animator>().SetBool("hurt", false);
 
         UpdateHp();
         UpdateMp();
@@ -94,6 +98,11 @@ public class PlayerInfoMgr : MonoBehaviour
 
         if (Hp > 1f) Hp = 1f;
         if (Hp < 0f) Hp = 0f;
+
+        if (value < 0f)
+        {
+            StartCoroutine(GetHurt());
+        }
     }
 
     public bool ModifyMp(float value)
@@ -103,7 +112,7 @@ public class PlayerInfoMgr : MonoBehaviour
         if (Mp > 1f) Mp = 1f;
         if (Mp < 0f)
         {
-            Debug.Log("Sorry, You don't have enough MP.");
+            StartCoroutine(LowMagic());
             Mp -= value;
             return false;
         }
@@ -158,6 +167,23 @@ public class PlayerInfoMgr : MonoBehaviour
         }
         levelText.text = targetLevel.ToString();
 
+        yield break;
+    }
+
+    IEnumerator GetHurt()
+    {
+        FullScreen.GetComponent<Animator>().SetBool("hurt", true);
+        yield return new WaitForSeconds(0.05f);
+        FullScreen.GetComponent<Animator>().SetBool("hurt", false);
+        yield break;
+    }
+
+    IEnumerator LowMagic()
+    {
+        Debug.Log("LowMagic");
+        FullScreen.GetComponent<Animator>().SetBool("deplete", true);
+        yield return new WaitForSeconds(0.05f);
+        FullScreen.GetComponent<Animator>().SetBool("deplete", false);
         yield break;
     }
 }

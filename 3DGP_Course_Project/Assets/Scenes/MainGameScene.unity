@@ -304,6 +304,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1482839463}
     m_Modifications:
+    - target: {fileID: 1298403127965671289, guid: f52aeec35ea044900b76110ff38b02f8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298403127965671289, guid: f52aeec35ea044900b76110ff38b02f8,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715529289451724072, guid: f52aeec35ea044900b76110ff38b02f8,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715529289451724072, guid: f52aeec35ea044900b76110ff38b02f8,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350720729416958103, guid: f52aeec35ea044900b76110ff38b02f8,
+        type: 3}
+      propertyPath: mainScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350720729416958103, guid: f52aeec35ea044900b76110ff38b02f8,
+        type: 3}
+      propertyPath: mainColor.b
+      value: 0.4339623
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350720729416958103, guid: f52aeec35ea044900b76110ff38b02f8,
+        type: 3}
+      propertyPath: mainColor.g
+      value: 0.21848938
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350720729416958103, guid: f52aeec35ea044900b76110ff38b02f8,
+        type: 3}
+      propertyPath: mainColor.r
+      value: 0.09620862
+      objectReference: {fileID: 0}
     - target: {fileID: 5071820128093207730, guid: f52aeec35ea044900b76110ff38b02f8,
         type: 3}
       propertyPath: m_Pivot.x
@@ -413,6 +453,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536081697852145199, guid: f52aeec35ea044900b76110ff38b02f8,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536081697852145199, guid: f52aeec35ea044900b76110ff38b02f8,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384891501628754327, guid: f52aeec35ea044900b76110ff38b02f8,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384891501628754327, guid: f52aeec35ea044900b76110ff38b02f8,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f52aeec35ea044900b76110ff38b02f8, type: 3}
@@ -2617,14 +2677,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1103088513, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
-      propertyPath: skills.Array.data[0].cooldown
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1103088513, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
-      propertyPath: skills.Array.data[2].cooldown
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1103088513, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
       propertyPath: skills.Array.data[0].IconImage
       value: 
       objectReference: {fileID: 598716002}
@@ -2640,18 +2692,6 @@ PrefabInstance:
       propertyPath: skills.Array.data[3].IconImage
       value: 
       objectReference: {fileID: 664269237}
-    - target: {fileID: 1103088513, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
-      propertyPath: skills.Array.data[0].ps.offset.x
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1103088513, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
-      propertyPath: skills.Array.data[0].ps.offset.y
-      value: -0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1103088513, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
-      propertyPath: skills.Array.data[0].ps.offset.z
-      value: 1.2
-      objectReference: {fileID: 0}
     - target: {fileID: 1953271650171834, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
       propertyPath: m_Name
       value: Player

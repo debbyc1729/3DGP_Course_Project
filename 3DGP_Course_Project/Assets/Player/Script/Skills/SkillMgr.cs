@@ -104,8 +104,16 @@ public class SkillMgr : MonoBehaviour
             Destroy(skillOnWeapon, 0f);
         }
         GameObject skillPrefab = s.ps.prefab[1];
-        skillPrefab.transform.position = Camera.main.transform.position;
-        skillPrefab.transform.rotation = Camera.main.transform.rotation;
+        if (s.isDirectional)
+        {
+            skillPrefab.transform.position = Camera.main.transform.position;
+            skillPrefab.transform.rotation = Camera.main.transform.rotation;
+        }
+        else
+        {
+            skillPrefab.transform.position = player.transform.position;
+            skillPrefab.transform.rotation = player.transform.rotation;
+        }
         skillPrefab.transform.Translate(s.ps.offset);
         GameObject skill = Instantiate(skillPrefab, skillPrefab.transform.position, skillPrefab.transform.rotation);
         Destroy(skill, s.ps.lifeTime);

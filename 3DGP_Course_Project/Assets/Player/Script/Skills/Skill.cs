@@ -14,6 +14,7 @@ public class Skill
     public float consumption;
     public float duration;
     public float cooldown;
+    public bool isDirectional;
     public PS ps;
 
     [HideInInspector]
