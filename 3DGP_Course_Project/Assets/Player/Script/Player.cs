@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
         walkSpeed = 2f;
         rotateSpeed = 1000f;
-        cameraOffset = new Vector3(0f, 0.8f, -0.2f);
+        cameraOffset = new Vector3(0f, 0.8f, -0.15f);
         anima = GetComponent<Animator>();
         pitch = 0f;
         target = FindObjectOfType<Crosshair>();

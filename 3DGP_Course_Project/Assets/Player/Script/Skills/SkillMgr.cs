@@ -73,7 +73,7 @@ public class SkillMgr : MonoBehaviour
         anima.SetBool("attack", false);
         ShowSkill(s);
         InvokeSkill(s, 0f);
-        // FindObjectOfType<BuffMgr>().InvokeBuff(s.name, s.duration);
+        FindObjectOfType<BuffMgr>().InvokeBuff(s.name, s.duration);
         CoolDown(s);
         yield return new WaitForSeconds(0.2f);
         flgShowSkill = false;
@@ -163,7 +163,7 @@ public class SkillMgr : MonoBehaviour
     IEnumerator SpeedUp(Skill s, float delay)
     {
         yield return new WaitForSeconds(delay);
-        playerScript.setWalkSpeedFactor(1.3f);
+        playerScript.setWalkSpeedFactor(3f);
         yield return new WaitForSeconds(s.duration);
         playerScript.setWalkSpeedFactor(1f);
         yield break;
