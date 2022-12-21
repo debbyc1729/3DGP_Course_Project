@@ -23,7 +23,7 @@ public class MonsterManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.childCount < MixMonsterNum) {
+        if (transform.childCount < MixMonsterNum + 1) {
             //距離玩家太近不要生成
             int index = Random.Range(0, MixMonsterNum);
             Debug.Log("index= "+ index);

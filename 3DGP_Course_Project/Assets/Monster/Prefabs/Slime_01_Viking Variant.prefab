@@ -112,6 +112,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &683992695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 683992696}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &683992696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683992695}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.311, z: 0.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8379308744571599420}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &865890158
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +458,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1880397427}
   - component: {fileID: 1880397428}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: MinimapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +552,7 @@ PrefabInstance:
     - target: {fileID: 6312573360258431772, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2091322
+      value: 0.085
       objectReference: {fileID: 0}
     - target: {fileID: 6312573360258431772, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
         type: 3}
@@ -566,7 +597,7 @@ PrefabInstance:
     - target: {fileID: 6688149642241925542, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
         type: 3}
       propertyPath: m_Name
-      value: Slime_01_Viking
+      value: Slime_01_Viking Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6688149642241925542, guid: 11eed2dfd1329ab4db9e7f27b8e628b7,
         type: 3}
@@ -716,7 +747,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 3
 --- !u!135 &845258890
 SphereCollider:
@@ -763,10 +794,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989068d1076495b48930ab474991ed0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setHurt: 1
+  ChaseMode: 2
+  ShootPoint: {fileID: 683992696}
+  bullet: {fileID: 8081796345623663961, guid: 51a7a114b7aa97b44aafba24a0b473be, type: 3}
   target: {fileID: 0}
   target_ATK: 10
   speed: 1
-  AutoChaseRadio: 1.5
+  AutoChaseRadio: 1
   Health: 0
   MixHealth: 100
   HealthBar: {fileID: 1539203692}
@@ -783,22 +818,38 @@ MonoBehaviour:
     volume: 1
     pitch: 0.5
     loop: 0
+    fadeOut: 0
+    duration: 0
+    source: {fileID: 0}
+  - name: Throw
+    clip: {fileID: 8300000, guid: b15d7775ae5a183428d0a180e4147e2c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    fadeOut: 0
+    duration: 0
     source: {fileID: 0}
   - name: Attack
     clip: {fileID: 8300000, guid: 3b15bc1ecdc04554eb4eb0f99256eadc, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    fadeOut: 0
+    duration: 0
     source: {fileID: 0}
   - name: Hurt
     clip: {fileID: 8300000, guid: ac79e8832e69ab04fa3a968d2c50b512, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    fadeOut: 0
+    duration: 0
     source: {fileID: 0}
   - name: Die
     clip: {fileID: 8300000, guid: d5550582926888949942790c2c53cb5d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    fadeOut: 0
+    duration: 0
     source: {fileID: 0}

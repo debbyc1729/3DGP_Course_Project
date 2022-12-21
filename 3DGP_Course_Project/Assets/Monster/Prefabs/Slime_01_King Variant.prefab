@@ -162,7 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 449543347}
   - component: {fileID: 449543348}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: MinimapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,6 +309,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &643199957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 643199958}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &643199958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643199957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.244, z: 0.312}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2178633774093620098}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1690250601
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +577,7 @@ PrefabInstance:
     - target: {fileID: 873531700701352353, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
         type: 3}
       propertyPath: m_Name
-      value: Slime_01_King
+      value: Slime_01_King Variant
       objectReference: {fileID: 0}
     - target: {fileID: 873531700701352353, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
         type: 3}
@@ -621,7 +652,7 @@ PrefabInstance:
     - target: {fileID: 8955322500898459853, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.20913267
+      value: 0.085
       objectReference: {fileID: 0}
     - target: {fileID: 8955322500898459853, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
         type: 3}
@@ -682,8 +713,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.35
-  m_Center: {x: 0, y: 0.3, z: 0}
+  m_Radius: 0.28
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!4 &2178633774093620098 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8955322500898459853, guid: 28d0a30d6aed6fc4c8ca473413f70c24,
@@ -710,7 +741,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 3
 --- !u!135 &142946519
 SphereCollider:
@@ -757,10 +788,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989068d1076495b48930ab474991ed0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setHurt: 1
+  ChaseMode: 1
+  ShootPoint: {fileID: 643199958}
+  bullet: {fileID: 185300, guid: 2b3b0fa3773d26140b996212c91608fd, type: 3}
   target: {fileID: 0}
   target_ATK: 10
   speed: 1
-  AutoChaseRadio: 1.5
+  AutoChaseRadio: 1
   Health: 0
   MixHealth: 100
   HealthBar: {fileID: 1760033755}
@@ -777,24 +812,40 @@ MonoBehaviour:
     volume: 1
     pitch: 0.5
     loop: 0
+    fadeOut: 0
+    duration: 0
+    source: {fileID: 0}
+  - name: Throw
+    clip: {fileID: 8300000, guid: 50a256b31ec795149bc8fae35133d4dc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    fadeOut: 0
+    duration: 0
     source: {fileID: 0}
   - name: Attack
     clip: {fileID: 8300000, guid: 3b15bc1ecdc04554eb4eb0f99256eadc, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    fadeOut: 0
+    duration: 0
     source: {fileID: 0}
   - name: Hurt
     clip: {fileID: 8300000, guid: ac79e8832e69ab04fa3a968d2c50b512, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    fadeOut: 0
+    duration: 0
     source: {fileID: 0}
   - name: Die
     clip: {fileID: 8300000, guid: d5550582926888949942790c2c53cb5d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
+    fadeOut: 0
+    duration: 0
     source: {fileID: 0}
 --- !u!4 &9193833196965626706 stripped
 Transform:

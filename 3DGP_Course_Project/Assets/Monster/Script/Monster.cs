@@ -7,14 +7,14 @@ public class Monster : MonoBehaviour
 {
     public bool setHurt = false;
     public int ChaseMode = 0;
-    public int AttackMode = 0;
+    int AttackMode = 0;
     public Transform ShootPoint;
     public GameObject bullet;
     public Transform target;
     public float target_ATK = 10;
     public float speed = 1;
-    public float AutoChaseRadio = 1.0f;
-    public float AutoHitRadio = 1.0f;
+    public float AutoChaseRadio = 2.5f;
+    float AutoHitRadio = 2.0f;
 
     public float Health;
     public float MixHealth;
@@ -38,6 +38,7 @@ public class Monster : MonoBehaviour
     bool dieFlg = false;
 
     bool attackCoolTimeFlg = true;
+    bool attack1CoolTimeFlg = true;
     int attackCoolTime = 0;
     float attackCoolTimer = 0.0f;
     public float maxAttackCoolTime = 2.0f;
@@ -78,7 +79,7 @@ public class Monster : MonoBehaviour
 
         switch (ChaseMode){
             case 0:
-                AutoHitRadio = 1.0f;
+                AutoHitRadio = 1.5f;
                 AttackMode = 0;
                 break;
             case 1:
@@ -86,11 +87,11 @@ public class Monster : MonoBehaviour
                 AttackMode = 1;
                 break;
             case 2:
-                AutoHitRadio = 5.0f;
+                AutoHitRadio = 3.0f;
                 AttackMode = 2;
                 break;
             case 3:
-                AutoHitRadio = 7.0f;
+                AutoHitRadio = 3.0f;
                 AttackMode = 3;
                 break;
             default:
@@ -117,6 +118,7 @@ public class Monster : MonoBehaviour
         
         if (!attackCoolTimeFlg && attackCoolTimer > maxAttackCoolTime)
         {
+            //Debug.Log("!attackCoolTimeFlg && attackCoolTimer > maxAttackCoolTime");
             attackCoolTimeFlg = true;
         }
         
@@ -165,7 +167,9 @@ public class Monster : MonoBehaviour
     
     void checkHitPlayer()
     {
+        //Debug.Log("hurtCoolTimeFlg= " + hurtCoolTimeFlg);
         if (dieFlg) return;
+        if (hurtCoolTimeFlg) return;
 
         float targetRadius = target.GetComponent<CapsuleCollider>().radius;
         Vector3 distence = target.position - transform.position;
@@ -228,8 +232,6 @@ public class Monster : MonoBehaviour
                 break;
         }
         attackCoolTimeFlg = false;
-
-
     }
     void shoot()
     {
@@ -249,7 +251,7 @@ public class Monster : MonoBehaviour
         dieFlg = true;
         FindObjectOfType<PlayerInfoMgr>().ModifyLevel(2.3f);
         transform.GetComponent<SphereCollider>().enabled = false;
-        transform.GetChild(0).GetChild(0).GetComponent<SphereCollider>().enabled = false;
+        transform.GetChild(0).GetChild(0).GetComponent<Collider>().enabled = false;
         StopCoroutine("FollowPath");
         SoundPlay("Die");
         stateChange("Die");
@@ -269,6 +271,12 @@ public class Monster : MonoBehaviour
         
         if (collision.gameObject.tag == "Player" && AttackMode == 0)
         {
+            //Debug.Log("attackCoolTimeFlg= " + attackCoolTimeFlg);
+            //Debug.Log("attack1CoolTimeFlg= " + attack1CoolTimeFlg);
+            if (hurtCoolTimeFlg) return;
+            if (!attack1CoolTimeFlg) return;
+            attack1CoolTimeFlg = false;
+
             SoundPlay("Attack");
             Vector3 hitPoint = collision.GetContact(0).point;
             StartCoroutine(updateParticlesystem("Hit", hitPoint));
@@ -282,7 +290,6 @@ public class Monster : MonoBehaviour
         if (collision.gameObject.tag == "player")
         {
             //Debug.Log("player Exit");
-            animator.SetBool("Attack", false);
             hitplayerSuccessful = false;
         }
     }*/
@@ -295,24 +302,23 @@ public class Monster : MonoBehaviour
         {
             case "Walk":
                 animator.SetBool("Walk", true);
-                animator.SetBool("Attack", false);
                 break;
             case "Attack0":
                 animator.SetBool("Idle", true);
-                animator.SetBool("Attack", true);
-                attackCoolTimeFlg = false;
-                attackCoolTimer = 0.0f;
+                animator.SetTrigger("Attack");
                 animator.SetBool("Walk", false);
+
+                attack1CoolTimeFlg = true;
+                attackCoolTimer = 0.0f;
                 break;
             case "Attack1":
                 animator.SetBool("Idle", true);
-                //animator.SetBool("Attack", true);
-                attackCoolTimeFlg = false;
-                attackCoolTimer = 0.0f;
                 animator.SetBool("Walk", false);
+
+                attackCoolTimer = 0.0f;
                 break;
             case "Hurt":
-                animator.SetTrigger("test");
+                animator.SetTrigger("Hurt");
                 animator.SetBool("Walk", false);
                 animator.SetBool("Idle", true);
                 break;
