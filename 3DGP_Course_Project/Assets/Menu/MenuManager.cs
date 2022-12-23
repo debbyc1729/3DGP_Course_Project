@@ -20,11 +20,13 @@ public class MenuManager : MonoBehaviour
             if (PasuedMenu.activeSelf == false)
             {
                 PasuedMenu.SetActive(true);
+                Time.timeScale = 0;
                 //PasuedMenuFlg = false;
             }
             else
             {
                 PasuedMenu.SetActive(false);
+                Time.timeScale = 1;
                 //PasuedMenuFlg = true;
             }
         }

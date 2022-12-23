@@ -599,6 +599,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime_03 Sprout Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4667142830726512235, guid: 42f35c993b7f040409db1d41126563f0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42f35c993b7f040409db1d41126563f0, type: 3}
 --- !u!4 &505462541 stripped
@@ -701,32 +706,32 @@ PrefabInstance:
     - target: {fileID: 102416712137401796, guid: f9de5b73c9249bb47969e9c5879a04bc,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 102416712137401796, guid: f9de5b73c9249bb47969e9c5879a04bc,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 102416712137401796, guid: f9de5b73c9249bb47969e9c5879a04bc,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 102416712137401796, guid: f9de5b73c9249bb47969e9c5879a04bc,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 102416712137401796, guid: f9de5b73c9249bb47969e9c5879a04bc,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 102416712137401796, guid: f9de5b73c9249bb47969e9c5879a04bc,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 102416712137401796, guid: f9de5b73c9249bb47969e9c5879a04bc,
         type: 3}
@@ -798,6 +803,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 102416712791270980, guid: f9de5b73c9249bb47969e9c5879a04bc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6069230963252233791, guid: f9de5b73c9249bb47969e9c5879a04bc,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -805,39 +815,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6069230964188535572, guid: f9de5b73c9249bb47969e9c5879a04bc,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6069230964188535572, guid: f9de5b73c9249bb47969e9c5879a04bc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6069230964188535572, guid: f9de5b73c9249bb47969e9c5879a04bc,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 332244205}
-    - target: {fileID: 6069230964188535572, guid: f9de5b73c9249bb47969e9c5879a04bc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6069230964188535572, guid: f9de5b73c9249bb47969e9c5879a04bc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackFromOptions
-      objectReference: {fileID: 0}
-    - target: {fileID: 6069230964188535572, guid: f9de5b73c9249bb47969e9c5879a04bc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuBotton, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6069230964188535572, guid: f9de5b73c9249bb47969e9c5879a04bc,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6069230964519685166, guid: f9de5b73c9249bb47969e9c5879a04bc,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -935,6 +915,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slime_01_King Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7954718093505303278, guid: dfe4335ecd4c1f447bb4814fa111a0f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfe4335ecd4c1f447bb4814fa111a0f5, type: 3}
@@ -1310,10 +1295,23 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1255094838}
+    - target: {fileID: 1974632804, guid: 58d491d86b217a64b871fd505269934e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974632804, guid: 58d491d86b217a64b871fd505269934e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4624068453412878572, guid: 58d491d86b217a64b871fd505269934e,
         type: 3}
       propertyPath: m_Name
       value: Slime_03 Leaf Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624068453412878572, guid: 58d491d86b217a64b871fd505269934e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5431391104642835030, guid: 58d491d86b217a64b871fd505269934e,
         type: 3}
@@ -1892,6 +1890,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slime_01_Viking Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152044813903978630, guid: e3fd5f820f716b540842d3eeb750ddf8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3fd5f820f716b540842d3eeb750ddf8, type: 3}
@@ -2935,6 +2938,11 @@ PrefabInstance:
       propertyPath: Options
       value: 
       objectReference: {fileID: 564243401}
+    - target: {fileID: 1573300538936020586, guid: f3f62477a5e4aea48aa1c246ec04c71d,
+        type: 3}
+      propertyPath: PasuedMenu
+      value: 
+      objectReference: {fileID: 6147947935472926660}
     - target: {fileID: 1573300538936020587, guid: f3f62477a5e4aea48aa1c246ec04c71d,
         type: 3}
       propertyPath: PasuedMenu
@@ -3035,6 +3043,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PausedMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6147947934496213698, guid: 047f94e1535e29c489ad2528ecc095a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6147947934496213699, guid: 047f94e1535e29c489ad2528ecc095a7,
         type: 3}
