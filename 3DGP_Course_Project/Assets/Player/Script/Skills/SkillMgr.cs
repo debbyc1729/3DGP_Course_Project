@@ -95,7 +95,7 @@ public class SkillMgr : MonoBehaviour
     {
         Skill s = Array.Find(skills, skill => skill.name == name);
 
-        if (s == null)
+        if (s == null || s.enableLevel > infoMgr.GetLevel())
         {
             return;
         }
@@ -236,7 +236,7 @@ public class SkillMgr : MonoBehaviour
     {
         FindObjectOfType<AudioMgr>().Play("Fly", s.ps.lifeTime);
         yield return new WaitForSeconds(delay);
-        playerScript.Fly(1.5f, 0.2f);
+        playerScript.Fly(2f, 0.2f);
         // playerScript.SetFloating(true, 1f);
         yield return new WaitForSeconds(s.duration);
         playerScript.SetFloating(false, 0f);

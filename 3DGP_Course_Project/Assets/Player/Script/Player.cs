@@ -232,11 +232,11 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(delay);
         GetComponent<Rigidbody>().useGravity = false;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        Vector3 acceleration = Vector3.up * Time.deltaTime * -0.5f;
+        Vector3 acceleration = Vector3.up * Time.deltaTime * -0.3f;
 
         while (true)
         {
-            if (GetComponent<Rigidbody>().velocity.y < -0.5f || GetComponent<Rigidbody>().velocity.y > 0.5f)
+            if (GetComponent<Rigidbody>().velocity.y < -0.3f || GetComponent<Rigidbody>().velocity.y > 0.3f)
             {
                 acceleration = -acceleration;
             }
