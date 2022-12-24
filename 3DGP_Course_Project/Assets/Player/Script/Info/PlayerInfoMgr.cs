@@ -92,6 +92,21 @@ public class PlayerInfoMgr : MonoBehaviour
         ModifyMp(0.03f * Time.deltaTime);
     }
 
+    public float GetHp()
+    {
+        return Hp;
+    }
+
+    public float GetMp()
+    {
+        return Mp;
+    }
+
+    public int GetLevel()
+    {
+        return int.Parse(levelText.text);
+    }
+
     public void ModifyHp(float value)
     {
         Hp += value;
@@ -118,6 +133,11 @@ public class PlayerInfoMgr : MonoBehaviour
         }
 
         return true;
+    }
+
+    public bool CheckEnableToUseSkill(float mpCost)
+    {
+        return Mp - mpCost >= 0f;
     }
 
     public void ModifyLevel(float value)

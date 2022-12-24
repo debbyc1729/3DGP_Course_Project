@@ -67,9 +67,9 @@ MonoBehaviour:
     duration: 0
     source: {fileID: 0}
   - name: UseMagic
-    clip: {fileID: 8300000, guid: 748288a10eff043afaae0d9d1d4ecfc7, type: 3}
-    volume: 0.707
-    pitch: 1
+    clip: {fileID: 8300000, guid: f0012b025ebce43969b58d41ea6739f5, type: 3}
+    volume: 1
+    pitch: 1.97
     loop: 0
     duration: 0
     source: {fileID: 0}

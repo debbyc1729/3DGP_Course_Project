@@ -6,6 +6,7 @@ using System;
 
 public class SkillMgr : MonoBehaviour
 {
+    [SerializeField] GameObject skillUI;
     public Skill[] skills;
 
     GameObject skillOnWeapon;
@@ -27,11 +28,18 @@ public class SkillMgr : MonoBehaviour
         weapon = player.transform.Find("root").Find("pelvis").Find("Weapon");
         infoMgr = FindObjectOfType<PlayerInfoMgr>();
         flgShowSkill = false;
+
+        foreach (Skill s in skills)
+        {
+            s.cost = s.duration * 0.05f;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateSkillEnable();
+
         if (Input.GetKey(KeyCode.Keypad1) || Input.GetKey(KeyCode.Alpha1))
         {
             UseSkill("Fire");
@@ -50,6 +58,39 @@ public class SkillMgr : MonoBehaviour
         }
     }
 
+    public void EnableSkill(string name)
+    {
+        Button skillBtn = skillUI.transform.Find("Skill_" + name).Find("Border").GetComponent<Button>();
+        skillBtn.interactable = true;
+
+        Skill s = Array.Find(skills, skill => skill.name == name);
+        s.enable = true;
+    }
+
+    public void DisableSkill(string name)
+    {
+        Button skillBtn = skillUI.transform.Find("Skill_" + name).Find("Border").GetComponent<Button>();
+        skillBtn.interactable = false;
+
+        Skill s = Array.Find(skills, skill => skill.name == name);
+        s.enable = false;
+    }
+
+    public void UpdateSkillEnable()
+    {
+        foreach (Skill s in skills)
+        {
+            if (infoMgr.CheckEnableToUseSkill(s.cost) && s.enableLevel <= infoMgr.GetLevel())
+            {
+                EnableSkill(s.name);
+            }
+            else
+            {
+                DisableSkill(s.name);
+            }
+        }
+    }
+
     void UseSkill(string name)
     {
         Skill s = Array.Find(skills, skill => skill.name == name);
@@ -62,7 +103,7 @@ public class SkillMgr : MonoBehaviour
         {
             return;
         }
-        if (!infoMgr.ModifyMp(-s.duration * 0.05f))
+        if (!infoMgr.ModifyMp(-s.cost))
         {
             return;
         }

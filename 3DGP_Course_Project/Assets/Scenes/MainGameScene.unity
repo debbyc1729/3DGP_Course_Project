@@ -834,6 +834,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 564243399}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &584324534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7445489389927538537, guid: b572bb02850a24b1ea7f05aa13218892,
+    type: 3}
+  m_PrefabInstance: {fileID: 1063950398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &590094364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2273,6 +2279,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1103088513, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
+      propertyPath: skillUI
+      value: 
+      objectReference: {fileID: 584324534}
     - target: {fileID: 1103088513, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
       propertyPath: skills.Array.data[0].IconImage
       value: 

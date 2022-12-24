@@ -11,15 +11,19 @@ public class Skill
     [Range(0f, 1f)]
     public float damage;
     [Range(0f, 1f)]
-    public float consumption;
+    public float cost;
     public float duration;
     public float cooldown;
     public bool isDirectional;
+    public int enableLevel;
     public PS ps;
 
     [HideInInspector]
     public bool flgCooldown;
+    [HideInInspector]
     public Coroutine effect;
+    [HideInInspector]
+    public bool enable;
 }
 
 [System.Serializable]
