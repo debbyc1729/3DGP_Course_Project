@@ -148,6 +148,7 @@ public class Player : MonoBehaviour
 
             float during = 2 * velocity * Mathf.Sin(throwingAngle * Mathf.Deg2Rad) / Physics.gravity.magnitude;
             Destroy(target.gem, during);
+            FindObjectOfType<AudioMgr>().Play("PickGem");
 
             infoMgr.ModifyHp(0.4f);
             infoMgr.ModifyMp(0.2f);

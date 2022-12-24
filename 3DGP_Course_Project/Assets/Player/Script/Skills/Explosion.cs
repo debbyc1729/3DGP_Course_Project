@@ -11,7 +11,7 @@ public class Explosion : MonoBehaviour
     void Start()
     {
         audioName = "Boom";
-        FindObjectOfType<AudioMgr>().Play(audioName);
+        FindObjectOfType<AudioMgr>().Play(audioName, 1f);
         duration = 2f;
         Destroy(gameObject, duration);
     }

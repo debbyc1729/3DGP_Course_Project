@@ -173,6 +173,8 @@ public class PlayerInfoMgr : MonoBehaviour
     IEnumerator GetHurt()
     {
         FullScreen.GetComponent<Animator>().SetBool("hurt", true);
+        int option = Random.Range(1, 4);
+        FindObjectOfType<AudioMgr>().Play("Hurt" + option.ToString(), 0.5f);
         yield return new WaitForSeconds(0.05f);
         FullScreen.GetComponent<Animator>().SetBool("hurt", false);
         yield break;
@@ -182,6 +184,7 @@ public class PlayerInfoMgr : MonoBehaviour
     {
         Debug.Log("LowMagic");
         FullScreen.GetComponent<Animator>().SetBool("deplete", true);
+        FindObjectOfType<AudioMgr>().Play("LowMagic" , 0.5f);
         yield return new WaitForSeconds(0.05f);
         FullScreen.GetComponent<Animator>().SetBool("deplete", false);
         yield break;
