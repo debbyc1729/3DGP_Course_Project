@@ -74,6 +74,8 @@ public class SkillMgr : MonoBehaviour
     {
         anima.SetBool("attack", true);
         ShowSkillOnWeapon(s);
+        if (s.name != "Fire")
+            FindObjectOfType<AudioMgr>().Play("UseMagic", 0.8f);
         yield return new WaitForSeconds(0.8f);
         anima.SetBool("attack", false);
         ShowSkill(s);
@@ -175,6 +177,7 @@ public class SkillMgr : MonoBehaviour
 
     IEnumerator SpeedUp(Skill s, float delay)
     {
+        FindObjectOfType<AudioMgr>().Play("SpeedUp", s.ps.lifeTime);
         yield return new WaitForSeconds(delay);
         playerScript.setWalkSpeedFactor(3f);
         yield return new WaitForSeconds(s.duration);
@@ -184,16 +187,19 @@ public class SkillMgr : MonoBehaviour
 
     IEnumerator SlowDown(Skill s, float delay)
     {
+        FindObjectOfType<AudioMgr>().Play("SlowDown", s.duration);
         yield break;
     }
 
     IEnumerator Fly(Skill s, float delay)
     {
+        FindObjectOfType<AudioMgr>().Play("Fly", s.ps.lifeTime);
         yield return new WaitForSeconds(delay);
-        playerScript.Fly(2.5f, 0.2f);
+        playerScript.Fly(1.5f, 0.2f);
         // playerScript.SetFloating(true, 1f);
         yield return new WaitForSeconds(s.duration);
         playerScript.SetFloating(false, 0f);
+        FindObjectOfType<AudioMgr>().Play("Falling", 1f);
         yield break;
     }
 }

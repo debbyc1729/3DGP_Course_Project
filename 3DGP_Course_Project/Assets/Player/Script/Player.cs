@@ -180,12 +180,12 @@ public class Player : MonoBehaviour
         // anima.SetFloat("speed", factor);
     }
 
-    public void Fly(float force = 500f, float delay = 0f)
+    public void Fly(float force = 3f, float delay = 0f)
     {
         StartCoroutine(FlyCoroutine(force, delay));
     }
 
-    IEnumerator FlyCoroutine(float force = 500f, float delay = 0f)
+    IEnumerator FlyCoroutine(float force = 3f, float delay = 0f)
     {
         // anima.SetInteger("jump", 1);
         yield return new WaitForSeconds(delay);
@@ -235,7 +235,7 @@ public class Player : MonoBehaviour
 
         while (true)
         {
-            if (GetComponent<Rigidbody>().velocity.y < -1f || GetComponent<Rigidbody>().velocity.y > 1f)
+            if (GetComponent<Rigidbody>().velocity.y < -0.5f || GetComponent<Rigidbody>().velocity.y > 0.5f)
             {
                 acceleration = -acceleration;
             }
