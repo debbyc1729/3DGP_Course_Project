@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using System;
 
 public class AudioMgr : MonoBehaviour
@@ -11,18 +12,35 @@ public class AudioMgr : MonoBehaviour
     {
         foreach (Sound s in sounds)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
+            s.sourceList = new List<AudioSource>();
         }
+    }
+
+    void NewSource(Sound s)
+    {
+        s.sourceList.Add(gameObject.AddComponent<AudioSource>());
+        var audioSource = s.sourceList.Last();
+        audioSource.clip = s.clip;
+        audioSource.volume = s.volume;
+        audioSource.pitch = s.pitch;
+        audioSource.loop = s.loop;
+    }
+
+    void RemoveSource(Sound s)
+    {
+        if (s.sourceList.Count < 1) return;
+        s.sourceList[0].Stop();
+        Destroy(s.sourceList[0], 0f);
+        s.sourceList.RemoveAt(0);
     }
 
     public void Play(string name, float duration = 0f)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        s.source.Play();
+        if (s == null) return;
+    
+        NewSource(s);
+        s.sourceList.Last().Play();
 
         if (!s.loop)
         {
@@ -34,23 +52,26 @@ public class AudioMgr : MonoBehaviour
     public void Stop(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        s.source.Stop();
+        if (s == null) return;
+        RemoveSource(s);
     }
 
     IEnumerator FadeOut(Sound s, float duration)
     {
-        float volume = s.source.volume;
+        var audioSource = s.sourceList.Last();
+        float volume = audioSource.volume;
         float timer = 0f;
 
         while (timer < duration)
         {
             timer += Time.deltaTime;
-            s.source.volume = Mathf.Lerp(volume, 0f, timer / duration);
+            audioSource.volume = Mathf.Lerp(volume, 0f, timer / duration);
             yield return null;
         }
 
-        s.source.Stop();
-        s.source.volume = volume;
+        // s.sourceList.Stop();
+        // s.sourceList.volume = volume;
+        RemoveSource(s);
         yield break;
     }
 }
