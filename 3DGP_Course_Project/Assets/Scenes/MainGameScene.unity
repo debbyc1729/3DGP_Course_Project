@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6340621, g: 0.8729088, b: 0.9903737, a: 1}
+  m_IndirectSpecularColor: {r: 0.6339637, g: 0.87290245, b: 0.9904265, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -509,6 +509,7 @@ MonoBehaviour:
     loop: 0
     duration: 0
     source: {fileID: 0}
+    sourceList: []
   - name: Ice
     clip: {fileID: 8300000, guid: b706a8ef44c060e4ea723140ad080442, type: 3}
     volume: 1
@@ -516,6 +517,7 @@ MonoBehaviour:
     loop: 0
     duration: 0
     source: {fileID: 0}
+    sourceList: []
   - name: Rock
     clip: {fileID: 8300000, guid: 373b0c587fe03c548a66509e207015e0, type: 3}
     volume: 1
@@ -523,6 +525,7 @@ MonoBehaviour:
     loop: 0
     duration: 0
     source: {fileID: 0}
+    sourceList: []
 --- !u!1001 &505462540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -601,11 +604,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slime_03 Sprout Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 4667142830726512235, guid: 42f35c993b7f040409db1d41126563f0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42f35c993b7f040409db1d41126563f0, type: 3}
@@ -925,11 +923,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime_01_King Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 7954718093505303278, guid: dfe4335ecd4c1f447bb4814fa111a0f5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfe4335ecd4c1f447bb4814fa111a0f5, type: 3}
 --- !u!4 &590094365 stripped
@@ -1112,6 +1105,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1766724920351334461, guid: e6526052046af5941943d80d7d4d4f54,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7843873bd9c3b8043a0ee72ad1c16c27, type: 2}
     - target: {fileID: 1790050395066975974, guid: e6526052046af5941943d80d7d4d4f54,
         type: 3}
       propertyPath: m_Name
@@ -1171,6 +1169,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790050395478179959, guid: e6526052046af5941943d80d7d4d4f54,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790050396335478819, guid: e6526052046af5941943d80d7d4d4f54,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6526052046af5941943d80d7d4d4f54, type: 3}
@@ -1316,11 +1324,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Slime_03 Leaf Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 4624068453412878572, guid: 58d491d86b217a64b871fd505269934e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5431391104642835030, guid: 58d491d86b217a64b871fd505269934e,
         type: 3}
@@ -1823,11 +1826,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime_01_Viking Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 9152044813903978630, guid: e3fd5f820f716b540842d3eeb750ddf8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3fd5f820f716b540842d3eeb750ddf8, type: 3}
 --- !u!4 &1478471195 stripped
@@ -2305,6 +2303,10 @@ PrefabInstance:
       propertyPath: skills.Array.data[3].IconImage
       value: 
       objectReference: {fileID: 664269237}
+    - target: {fileID: 1420409496, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1599819795, guid: dbf7a0c9d76b77a40af3104feac0641d, type: 3}
       propertyPath: m_Enabled
       value: 1

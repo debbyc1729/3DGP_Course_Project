@@ -473,7 +473,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880397426}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -799,11 +799,11 @@ MonoBehaviour:
   ShootPoint: {fileID: 683992696}
   bullet: {fileID: 8081796345623663961, guid: 51a7a114b7aa97b44aafba24a0b473be, type: 3}
   target: {fileID: 0}
-  target_ATK: 10
+  target_ATK: 20
   speed: 1
   AutoChaseRadio: 1
   Health: 0
-  MixHealth: 100
+  MixHealth: 60
   HealthBar: {fileID: 1539203692}
   slider: {fileID: 865890160}
   maxAttackCoolTime: 2
@@ -818,38 +818,38 @@ MonoBehaviour:
     volume: 1
     pitch: 0.5
     loop: 0
-    fadeOut: 0
     duration: 0
     source: {fileID: 0}
+    sourceList: []
   - name: Throw
     clip: {fileID: 8300000, guid: b15d7775ae5a183428d0a180e4147e2c, type: 3}
     volume: 1
     pitch: 1
     loop: 0
-    fadeOut: 0
     duration: 0
     source: {fileID: 0}
+    sourceList: []
   - name: Attack
     clip: {fileID: 8300000, guid: 3b15bc1ecdc04554eb4eb0f99256eadc, type: 3}
     volume: 1
     pitch: 1
     loop: 0
-    fadeOut: 0
     duration: 0
     source: {fileID: 0}
+    sourceList: []
   - name: Hurt
     clip: {fileID: 8300000, guid: ac79e8832e69ab04fa3a968d2c50b512, type: 3}
     volume: 1
     pitch: 1
     loop: 0
-    fadeOut: 0
     duration: 0
     source: {fileID: 0}
+    sourceList: []
   - name: Die
     clip: {fileID: 8300000, guid: d5550582926888949942790c2c53cb5d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
-    fadeOut: 0
     duration: 0
     source: {fileID: 0}
+    sourceList: []
