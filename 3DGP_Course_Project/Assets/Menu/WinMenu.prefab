@@ -28,15 +28,15 @@ RectTransform:
   m_GameObject: {fileID: 227379222152414762}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 812326458928620381}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 195.733, y: 69.9771}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &227379222152414774
@@ -121,8 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573300538936020586, guid: f3f62477a5e4aea48aa1c246ec04c71d,
-          type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuBotton, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -149,7 +148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &812326457816022528
 RectTransform:
   m_ObjectHideFlags: 0
@@ -203,10 +202,10 @@ RectTransform:
   m_Father: {fileID: 876779942824623010}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 169.24998}
-  m_SizeDelta: {x: 500, y: -338.5}
+  m_AnchoredPosition: {x: 0, y: -165}
+  m_SizeDelta: {x: 1920, y: 330}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &812326458444332416
 GameObject:
@@ -316,9 +315,9 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -75}
-  m_SizeDelta: {x: 500, y: -150}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 375}
+  m_SizeDelta: {x: 500, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &812326459797454547
 GameObject:
@@ -347,16 +346,16 @@ RectTransform:
   m_GameObject: {fileID: 812326459797454547}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 812326457821805177}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2.875}
-  m_SizeDelta: {x: 500, y: 144.25}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 161}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &812326459797454544
 CanvasRenderer:
@@ -426,10 +425,10 @@ RectTransform:
   m_Father: {fileID: 812326458444332431}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5754906038802287940
 GameObject:
@@ -532,8 +531,8 @@ RectTransform:
   m_GameObject: {fileID: 5952027079786316083}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5754906038802287963}
   m_Father: {fileID: 812326458928620381}
@@ -541,7 +540,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 282.0179, y: 69.9771}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5952027079786316087
@@ -626,8 +625,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573300538936020586, guid: f3f62477a5e4aea48aa1c246ec04c71d,
-          type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuBotton, Assembly-CSharp
         m_MethodName: BackToTitle
         m_Mode: 1

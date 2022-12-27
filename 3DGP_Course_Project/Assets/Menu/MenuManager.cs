@@ -5,11 +5,13 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     public GameObject PasuedMenu;
+    public GameObject Options;
+    public GameObject WarningQuit;
+    public GameObject WarningRestart;
     bool PasuedMenuFlg = true;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -26,6 +28,9 @@ public class MenuManager : MonoBehaviour
             else
             {
                 PasuedMenu.SetActive(false);
+                Options.SetActive(false);
+                WarningQuit.SetActive(false);
+                WarningRestart.SetActive(false);
                 Time.timeScale = 1;
                 //PasuedMenuFlg = true;
             }
