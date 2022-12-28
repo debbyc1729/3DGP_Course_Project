@@ -94,6 +94,18 @@ public class Monster : MonoBehaviour
                 AutoHitRadio = 3.0f;
                 AttackMode = 3;
                 break;
+            case 4:
+                AutoHitRadio = 1.5f;
+                AttackMode = 0;
+                break;
+            case 5:
+                AutoHitRadio = 1.0f;
+                AttackMode = 0;
+                break;
+            case 6:
+                AutoHitRadio = 1.5f;
+                AttackMode = 0;
+                break;
             default:
                 break;
         }
@@ -118,12 +130,13 @@ public class Monster : MonoBehaviour
         
         if (!attackCoolTimeFlg && attackCoolTimer > maxAttackCoolTime)
         {
-            //Debug.Log("!attackCoolTimeFlg && attackCoolTimer > maxAttackCoolTime");
+            //Debug.Log("!attackCoolTimeFlg && attackCoolTimer > maxAttackCoolTime, attackCoolTimer= " + attackCoolTimer);
             attackCoolTimeFlg = true;
         }
         
         if (hurtCoolTimeFlg && hurtCoolTimer > maxHurtCoolTime)
         {
+            //Debug.Log("!attackCoolTimeFlg && attackCoolTimer > maxAttackCoolTime, hurtCoolTimer= " + hurtCoolTimer);
             stateChange("Walk");
             hurtCoolTimeFlg = false;
         }
@@ -132,20 +145,22 @@ public class Monster : MonoBehaviour
     void traceTarget()
     {
         if (dieFlg) return;
-        //if (hurtCoolTimeFlg) return;
+        if (hurtCoolTimeFlg || !attackCoolTimeFlg) return;
 
         //Tracing directly when close enough
+        //Debug.Log("(target.position - transform.position).magnitude= " + (target.position - transform.position).magnitude);
         if ((target.position - transform.position).magnitude < AutoChaseRadio && !attackFlg)
         {
-            //Debug.Log("Tracing directly, " + transform.name);
             Vector3 face = new Vector3(target.position.x, transform.position.y, target.position.z);
             Vector3 targ = target.position - transform.position;
             targ.y = 0.0f;
             moveDirection = targ;
 
+            //Debug.Log("Tracing directly, " + moveDirection.normalized * speed * Time.deltaTime);
             Rotate(face, 0.1f);
             //rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
-            monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
+            //monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
+            monsterMove(transform.position + moveDirection.normalized * speed * Time.deltaTime);
         }
         else//A_star
         {
@@ -198,7 +213,7 @@ public class Monster : MonoBehaviour
     {
         if (hurtCoolTimeFlg) return;
 
-        //Debug.Log("monsterMove, hurtCoolTimeFlg");
+        //Debug.Log("monsterMove, hurtCoolTimeFlg, postion= " + postion);
         stateChange("Walk");
         rigidbody.MovePosition(postion);
     }
@@ -218,23 +233,26 @@ public class Monster : MonoBehaviour
                 break;
             case 1:
                 stateChange("Attack1");
-                shoot();
                 break;
             case 2:
                 stateChange("Attack1");
-                shoot();
                 break;
             case 3:
                 stateChange("Attack1");
-                shoot();
                 break;
             default:
                 break;
         }
+        shoot();
         attackCoolTimeFlg = false;
     }
     void shoot()
     {
+        if (AttackMode == 0)
+        {
+            bullet.SetActive(true);
+            return;
+        }
         Rigidbody bulletRb;
         bulletRb = Instantiate(bullet, ShootPoint.position,Quaternion.identity).GetComponent<Rigidbody>();
         bulletRb.AddForce(transform.forward * AutoHitRadio, ForceMode.Impulse);
@@ -250,8 +268,8 @@ public class Monster : MonoBehaviour
 
         dieFlg = true;
         FindObjectOfType<PlayerInfoMgr>().ModifyLevel(2.3f);
-        transform.GetComponent<SphereCollider>().enabled = false;
-        transform.GetChild(0).GetChild(0).GetComponent<Collider>().enabled = false;
+        //transform.GetComponent<Collider>().enabled = false;
+        //transform.GetChild(0).GetChild(0).GetComponent<Collider>().enabled = false;
         StopCoroutine("FollowPath");
         SoundPlay("Die");
         stateChange("Die");
@@ -263,13 +281,13 @@ public class Monster : MonoBehaviour
     {
         if (dieFlg) return;
 
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" && ChaseMode < 4)
         {
             SoundPlay("Walk");
             StartCoroutine(updateParticlesystem("Dust", transform.position));
         }
         
-        if (collision.gameObject.tag == "Player" && AttackMode == 0)
+        /*if (collision.gameObject.tag == "Player" && AttackMode == 0)
         {
             //Debug.Log("attackCoolTimeFlg= " + attackCoolTimeFlg);
             //Debug.Log("attack1CoolTimeFlg= " + attack1CoolTimeFlg);
@@ -277,10 +295,11 @@ public class Monster : MonoBehaviour
             if (!attack1CoolTimeFlg) return;
             attack1CoolTimeFlg = false;
 
+            Debug.Log("SoundPlay(Attack);");
             SoundPlay("Attack");
             Vector3 hitPoint = collision.GetContact(0).point;
             StartCoroutine(updateParticlesystem("Hit", hitPoint));
-        }
+        }*/
     }
 
     /*void OnCollisionExit(Collision collision)

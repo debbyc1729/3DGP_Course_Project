@@ -33,6 +33,12 @@ public class MonsterAttaclAudio : MonoBehaviour
             case 'R':
                 s = Array.Find(sounds, sound => sound.name == "Rock");
                 break;
+            case 'h':
+                s = Array.Find(sounds, sound => sound.name == "hitPoint");
+                break;
+            case 'S':
+                s = Array.Find(sounds, sound => sound.name == "Smash");
+                break;
             default:
                 break;
         }

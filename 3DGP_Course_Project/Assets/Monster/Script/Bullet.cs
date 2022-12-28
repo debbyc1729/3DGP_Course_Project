@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer > 5.0f)
+        if (timer > 5.0f && transform.name != "hitPoint")
         {
             Destroy(transform.gameObject);
         }
@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
         {
         }*/
         //Instantiate(hitEffect, collision.transform.position, transform.rotation);
-        if (collision.gameObject != transform.parent.gameObject)
+        if (collision.gameObject != transform.parent.gameObject && transform.name != "hitPoint")
         {
             GameObject newHitEffect;
             newHitEffect = Instantiate(hitEffect, collision.GetContact(0).point, transform.rotation);
@@ -39,6 +39,15 @@ public class Bullet : MonoBehaviour
             //Audio.Play(hitEffect.name);
             FindObjectOfType<MonsterAttaclAudio>().Play(transform.name);
             Destroy(transform.gameObject);
+        }
+        if (collision.gameObject.name == "Player" && transform.name == "hitPoint")
+        {
+            GameObject newHitEffect;
+            newHitEffect = Instantiate(hitEffect, collision.GetContact(0).point, transform.rotation);
+            FindObjectOfType<MonsterAttaclAudio>().Play(transform.name);
+
+            //transform.gameObject.SetActive(false);
+            transform.GetComponent<Collider>().enabled = false;
         }
     }
 }
