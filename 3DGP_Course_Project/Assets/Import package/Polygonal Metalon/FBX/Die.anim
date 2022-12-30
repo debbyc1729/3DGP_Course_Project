@@ -85796,7 +85796,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.3
+  - time: 0.6
     functionName: DieParticlesystem
     data: 
     objectReferenceParameter: {fileID: 0}

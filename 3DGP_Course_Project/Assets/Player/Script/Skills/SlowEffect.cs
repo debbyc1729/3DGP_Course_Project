@@ -34,6 +34,16 @@ public class SlowEffect : MonoBehaviour
         {
             script.setWalkSpeedFactor(0.3f);
         }
+
+        //monster slow
+        if (other.gameObject.tag == "monster")
+        {
+            other.gameObject.GetComponent<Monster>().setMonsterSpeed(0.3f);
+        }
+        if (other.gameObject.tag == "boss")
+        {
+            other.gameObject.GetComponent<Boss>().setBossSpeed(0.3f);
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -43,6 +53,16 @@ public class SlowEffect : MonoBehaviour
         if (script != null)
         {
             script.setWalkSpeedFactor(1f);
+        }
+
+        //monster and boss slow
+        if (other.gameObject.tag == "monster")
+        {
+            other.gameObject.GetComponent<Monster>().setMonsterSpeed(1.0f);
+        }
+        if (other.gameObject.tag == "boss")
+        {
+            other.gameObject.GetComponent<Boss>().setBossSpeed(1.0f);
         }
     }
 }

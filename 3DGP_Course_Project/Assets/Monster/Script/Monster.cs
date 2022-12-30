@@ -13,6 +13,7 @@ public class Monster : MonoBehaviour
     public Transform target;
     public float target_ATK = 10;
     public float speed = 1;
+    float originSpeed;
     public float AutoChaseRadio = 2.5f;
     float AutoHitRadio = 2.0f;
 
@@ -48,6 +49,8 @@ public class Monster : MonoBehaviour
     float hurtCoolTimer = 0.0f;
     public float maxHurtCoolTime = 2.0f;
 
+    float walkCoolTimer = 0.0f;
+
     public GameObject hitEffect;
     public GameObject hurtEffect;
     public GameObject dieEffect;
@@ -60,6 +63,7 @@ public class Monster : MonoBehaviour
         target = GameObject.FindWithTag("Player").transform;
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
+        originSpeed = speed;
 
         foreach (Sound s in sounds)
         {
@@ -125,6 +129,7 @@ public class Monster : MonoBehaviour
 
     private void FixedUpdate()
     {
+        walkCoolTimer += Time.fixedDeltaTime;
         attackCoolTimer += Time.fixedDeltaTime;
         hurtCoolTimer += Time.fixedDeltaTime;
         
@@ -139,6 +144,12 @@ public class Monster : MonoBehaviour
             //Debug.Log("!attackCoolTimeFlg && attackCoolTimer > maxAttackCoolTime, hurtCoolTimer= " + hurtCoolTimer);
             stateChange("Walk");
             hurtCoolTimeFlg = false;
+        }
+
+        if (walkCoolTimer >= 5.0f)
+        {
+            SoundPlay("Walk");
+            walkCoolTimer = 0.0f;
         }
     }
 
@@ -156,11 +167,11 @@ public class Monster : MonoBehaviour
             targ.y = 0.0f;
             moveDirection = targ;
 
-            //Debug.Log("Tracing directly, " + moveDirection.normalized * speed * Time.deltaTime);
+            //Debug.Log("Tracing directly, " + moveDirection.normalized * speed  * Time.deltaTime);
             Rotate(face, 0.1f);
-            //rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
-            //monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
-            monsterMove(transform.position + moveDirection.normalized * speed * Time.deltaTime);
+            //rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed  * Time.deltaTime);
+            //monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed  * Time.deltaTime);
+            monsterMove(transform.position + moveDirection.normalized * speed  * Time.deltaTime);
         }
         else//A_star
         {
@@ -250,7 +261,8 @@ public class Monster : MonoBehaviour
     {
         if (AttackMode == 0)
         {
-            bullet.SetActive(true);
+            //bullet.SetActive(true);
+            bullet.GetComponent<Collider>().enabled = true;
             return;
         }
         Rigidbody bulletRb;
@@ -267,13 +279,27 @@ public class Monster : MonoBehaviour
         if (dieFlg) return;
 
         dieFlg = true;
-        FindObjectOfType<PlayerInfoMgr>().ModifyLevel(2.3f);
+        FindObjectOfType<PlayerInfoMgr>().ModifyLevel(2.3f);//Player level up
         //transform.GetComponent<Collider>().enabled = false;
         //transform.GetChild(0).GetChild(0).GetComponent<Collider>().enabled = false;
         StopCoroutine("FollowPath");
-        SoundPlay("Die");
+        //SoundPlay("Die");
         stateChange("Die");
         Destroy(transform.gameObject, 3.0f);
+    }
+
+    public void monsterAttackSound()
+    {
+        SoundPlay("Attack");
+    }
+    public void monsterDieSound()
+    {
+        SoundPlay("Die");
+    }
+
+    public void setMonsterSpeed(float speedFactor)
+    {
+        speed = originSpeed * speedFactor;
     }
 
     //Change sound effect and particle system
@@ -281,7 +307,7 @@ public class Monster : MonoBehaviour
     {
         if (dieFlg) return;
 
-        if (collision.gameObject.tag == "Ground" && ChaseMode < 4)
+        if (collision.gameObject.tag == "Ground" && ChaseMode == 0)
         {
             SoundPlay("Walk");
             StartCoroutine(updateParticlesystem("Dust", transform.position));
@@ -369,7 +395,7 @@ public class Monster : MonoBehaviour
             
             if (Health > 0)
             {
-                Vector3 moving = transform.position - moveDirection.normalized * moveDirectionLen * (target_ATK) * speed * Time.deltaTime;
+                Vector3 moving = transform.position - moveDirection.normalized * moveDirectionLen * (target_ATK) * speed  * Time.deltaTime;
                 rigidbody.MovePosition(moving);
                 SoundPlay("Hurt");
                 stateChange("Hurt");
@@ -467,8 +493,8 @@ public class Monster : MonoBehaviour
 
                         moveDirection = targ;
                         Rotate(face, 0.1f);
-                        //rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
-                        monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
+                        //rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed  * Time.deltaTime);
+                        monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed  * Time.deltaTime);
                         yield return null;
                     }
                     yield break;
@@ -478,8 +504,8 @@ public class Monster : MonoBehaviour
             moveDirection = currentWaypoint - transform.position;
             moveDirectionLen = (currentWaypoint - transform.position).magnitude;
             Rotate(currentWaypoint, 0.1f);
-            //rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);//speed * Time.deltaTime
-            monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
+            //rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed  * Time.deltaTime);//speed  * Time.deltaTime
+            monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed  * Time.deltaTime);
 
             yield return null;
         }

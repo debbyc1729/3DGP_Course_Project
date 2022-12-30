@@ -34,6 +34,7 @@ public class Boss : MonoBehaviour
 
     bool attackFlg = false;
     bool dieFlg = false;
+    bool angerFlg = false;
 
     bool attackCoolTimeFlg = true;
     bool attack1CoolTimeFlg = true;
@@ -45,6 +46,8 @@ public class Boss : MonoBehaviour
     int hurtCoolTime = 0;
     float hurtCoolTimer = 0.0f;
     public float maxHurtCoolTime = 2.0f;
+
+    float walkCoolTimer = 0.0f;
 
     public GameObject hitEffect;
     public GameObject hurtEffect;
@@ -68,7 +71,7 @@ public class Boss : MonoBehaviour
             s.source.loop = s.loop;
             s.source.rolloffMode = AudioRolloffMode.Linear;
             s.source.spatialBlend = 1.0f;
-            s.source.maxDistance = 10.0f;
+            s.source.maxDistance = 50.0f;
             s.source.minDistance = 0.0f;
         }
 
@@ -93,6 +96,7 @@ public class Boss : MonoBehaviour
 
     private void FixedUpdate()
     {
+        walkCoolTimer += Time.fixedDeltaTime;
         attackCoolTimer += Time.fixedDeltaTime;
         hurtCoolTimer += Time.fixedDeltaTime;
 
@@ -107,6 +111,16 @@ public class Boss : MonoBehaviour
             //Debug.Log("!attackCoolTimeFlg && attackCoolTimer > maxAttackCoolTime, hurtCoolTimer= " + hurtCoolTimer);
             stateChange("Walk");
             hurtCoolTimeFlg = false;
+        }
+
+        if (walkCoolTimer >= 5.0f)
+        {
+            if(angerFlg)
+                SoundPlay("Run");
+            else
+                SoundPlay("Walk");
+
+            walkCoolTimer = 0.0f;
         }
     }
 
@@ -197,10 +211,56 @@ public class Boss : MonoBehaviour
         //transform.GetComponent<Collider>().enabled = false;
         //transform.GetChild(0).GetChild(0).GetComponent<Collider>().enabled = false;
         //StopCoroutine("FollowPath");
-        SoundPlay("Die");//"Die roar"
+        //SoundPlay("Die");//"Die roar"
         stateChange("Die");
         HealthBar.SetActive(false);
         //Destroy(transform.gameObject, 10.0f);
+    }
+    public void bossRoar()
+    {
+        SoundPlay("Roar");
+    }
+
+    public void bossWalk()
+    {
+        SoundPlay("Walk");
+    }
+    public void bossRun()
+    {
+        SoundPlay("Run");
+    }
+
+    public void bossAngerAttack()
+    {
+        SoundPlay("AngerAttack");
+    }
+    public void bossAttack()
+    {
+        SoundPlay("Attack");
+    }
+
+    public void bossHurt()
+    {
+        SoundPlay("Hurt");
+    }
+    public void bossAngerHurt()
+    {
+        SoundPlay("AngerHurt");
+    }
+
+    public void bossAnger()
+    {
+        SoundPlay("Anger");
+    }
+    public void bossDie()
+    {
+        //SoundPlay("Die");
+        FindObjectOfType<MonsterAttaclAudio>().Play("BossDie");
+    }
+
+    public void setBossSpeed(float speedFactor)
+    {
+        speed = speed * speedFactor;
     }
 
     //Change sound effect and particle system
@@ -239,6 +299,7 @@ public class Boss : MonoBehaviour
                 break;
             case "Anger":
                 animator.SetBool("Anger", true);
+                angerFlg = true;
                 break;
             case "Hurt":
                 animator.SetTrigger("Hurt");
@@ -313,9 +374,9 @@ public class Boss : MonoBehaviour
 
             if (Health > 0)
             {
-                Vector3 moving = transform.position - moveDirection.normalized * (target_ATK) * speed * Time.deltaTime;
-                rigidbody.MovePosition(moving);
-                SoundPlay("Hurt");
+                //Vector3 moving = transform.position - moveDirection.normalized * (target_ATK) * speed * Time.deltaTime;
+                //rigidbody.MovePosition(moving);
+                //SoundPlay("Hurt");
                 stateChange("Hurt");
 
                 hurtCoolTimeFlg = true;

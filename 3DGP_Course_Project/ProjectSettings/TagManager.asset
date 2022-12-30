@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - gem
   - monsterBullet
+  - boss
   layers:
   - Default
   - TransparentFX
