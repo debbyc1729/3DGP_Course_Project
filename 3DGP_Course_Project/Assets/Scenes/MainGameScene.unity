@@ -550,6 +550,14 @@ MonoBehaviour:
     duration: 0
     source: {fileID: 0}
     sourceList: []
+  - name: RockRain
+    clip: {fileID: 8300000, guid: b8aa7f200faaac747bc1fceb8dac807c, type: 3}
+    volume: 1
+    pitch: 0.5
+    loop: 0
+    duration: 0
+    source: {fileID: 0}
+    sourceList: []
 --- !u!1001 &505462540
 PrefabInstance:
   m_ObjectHideFlags: 0

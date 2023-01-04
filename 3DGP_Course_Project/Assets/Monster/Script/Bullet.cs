@@ -26,11 +26,23 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log("OnCollisionEnter= " + collision.gameObject.tag);
+        Debug.Log("OnCollisionEnter= " + transform.name);
         /*if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Wall")
         {
         }*/
         //Instantiate(hitEffect, collision.transform.position, transform.rotation);
+
+        if (transform.name == "RockRain" || transform.parent.name == "Boss")
+        {
+            GameObject newHitEffect;
+            newHitEffect = Instantiate(hitEffect, collision.GetContact(0).point, transform.rotation);
+            //newHitEffect.transform.SetParent(transform);
+            //Audio.Play(hitEffect.name);
+            FindObjectOfType<MonsterAttaclAudio>().Play(transform.name);
+            Destroy(transform.gameObject);
+            return;
+        }
+
         if (collision.gameObject != transform.parent.gameObject && transform.name != "hitPoint")
         {
             GameObject newHitEffect;

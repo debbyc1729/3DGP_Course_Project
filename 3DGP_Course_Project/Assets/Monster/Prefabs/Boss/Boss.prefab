@@ -1871,6 +1871,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8905470708552380409}
     m_Modifications:
+    - target: {fileID: 2131078921663044188, guid: 1d3d9b4517dd6d044a6bf6413b6c2fd7,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 8907032142169760221}
+    - target: {fileID: 2131078921663044188, guid: 1d3d9b4517dd6d044a6bf6413b6c2fd7,
+        type: 3}
+      propertyPath: RockRain
+      value: 
+      objectReference: {fileID: 126190, guid: caa59afbae35d0c41b147cd614b10b59, type: 3}
     - target: {fileID: 2131078921663044189, guid: 1d3d9b4517dd6d044a6bf6413b6c2fd7,
         type: 3}
       propertyPath: m_Enabled

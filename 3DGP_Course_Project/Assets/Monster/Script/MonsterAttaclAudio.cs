@@ -31,7 +31,14 @@ public class MonsterAttaclAudio : MonoBehaviour
                 s = Array.Find(sounds, sound => sound.name == "Ice");
                 break;
             case 'R':
-                s = Array.Find(sounds, sound => sound.name == "Rock");
+                if (name[1] == 'o')
+                {
+                    s = Array.Find(sounds, sound => sound.name == "Rock");
+                }
+                if (name[1] == 'a')
+                {
+                    s = Array.Find(sounds, sound => sound.name == "RockRain");
+                }
                 break;
             case 'h':
                 s = Array.Find(sounds, sound => sound.name == "hitPoint");
