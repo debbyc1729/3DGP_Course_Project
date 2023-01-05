@@ -23,8 +23,12 @@ public class Boss_Attack : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //if (stateInfo.IsName("Smash Attack"))
-            //animator.GetComponent<Boss>().CloseSmashCollider();
+        //animator.GetComponent<Boss>().CloseSmashCollider();
         //if (stateInfo.IsName("Stab Attack"))
-            //animator.GetComponent<Boss>().CloseHitCollider();
+        //animator.GetComponent<Boss>().CloseHitCollider();
+
+        int skill = animator.GetInteger("skill");
+        animator.SetInteger("skill", ++skill);
+        Debug.Log("skill= " + skill);
     }
 }

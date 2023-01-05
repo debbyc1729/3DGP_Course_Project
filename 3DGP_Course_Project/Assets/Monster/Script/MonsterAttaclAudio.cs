@@ -49,6 +49,9 @@ public class MonsterAttaclAudio : MonoBehaviour
             case 'B':
                 s = Array.Find(sounds, sound => sound.name == "BossDie");
                 break;
+            case 'T':
+                s = Array.Find(sounds, sound => sound.name == "Tornado");
+                break;
             default:
                 break;
         }

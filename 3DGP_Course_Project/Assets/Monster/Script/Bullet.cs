@@ -26,7 +26,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("OnCollisionEnter= " + transform.name);
         /*if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Wall")
         {
         }*/
@@ -34,6 +33,7 @@ public class Bullet : MonoBehaviour
 
         if (transform.name == "RockRain" || transform.parent.name == "Boss")
         {
+            //Debug.Log("OnCollisionEnter= " + transform.name);
             GameObject newHitEffect;
             newHitEffect = Instantiate(hitEffect, collision.GetContact(0).point, transform.rotation);
             //newHitEffect.transform.SetParent(transform);

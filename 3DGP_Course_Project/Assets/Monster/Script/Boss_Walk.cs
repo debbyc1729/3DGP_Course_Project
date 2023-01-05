@@ -9,21 +9,22 @@ public class Boss_Walk : StateMachineBehaviour
 
     Transform player;
     Rigidbody rb;
-    //Boss boss;
+    Boss boss;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		rb = animator.GetComponent<Rigidbody>();
+        boss = animator.GetComponent<Boss>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //boss.LookAtPlayer();
-        /*boss.Rotate(player.position, 0.1f);
+        boss.Rotate(player.position, 0.1f);
 
-        Vector3 target = new Vector3(player.position.x, rb.position.y, player.position.z);
+        /*Vector3 target = new Vector3(player.position.x, rb.position.y, player.position.z);
         Vector3 newPos = Vector3.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
         rb.MovePosition(newPos);
 

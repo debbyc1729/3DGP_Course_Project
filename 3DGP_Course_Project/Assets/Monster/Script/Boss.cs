@@ -54,6 +54,7 @@ public class Boss : MonoBehaviour
     public GameObject dieEffect;
     public GameObject dust;
     public Sound[] sounds = null;
+    public GameObject TornadoEffect;
 
     //Initialization
     void Start()
@@ -139,7 +140,7 @@ public class Boss : MonoBehaviour
             moveDirection = targ;
 
             //Debug.Log("Tracing directly, " + moveDirection.normalized * speed * Time.deltaTime);
-            Rotate(face, 0.1f);
+            //Rotate(face, 0.1f);
             //rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
             //monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
             monsterMove(transform.position + moveDirection.normalized * speed * Time.deltaTime);
@@ -170,7 +171,7 @@ public class Boss : MonoBehaviour
             attackFlg = true;
 
             Vector3 face = new Vector3(target.position.x, transform.position.y, target.position.z);
-            Rotate(face, 0.1f);
+            //Rotate(face, 0.1f);
         }
         else
         {
@@ -351,6 +352,18 @@ public class Boss : MonoBehaviour
     {
         bullet.GetComponent<Collider>().enabled = false;
     }
+
+    public void showTornado()
+    {
+        Debug.Log("showTornado");
+        GameObject newTornadoEffect;
+        newTornadoEffect = Instantiate(TornadoEffect, transform.position, transform.rotation);
+        newTornadoEffect.transform.SetParent(transform);
+
+        FindObjectOfType<MonsterAttaclAudio>().Play("Tornado");
+    }
+
+
     public void DieParticlesystem()
     {
         //Debug.Log("DieParticlesystem");
