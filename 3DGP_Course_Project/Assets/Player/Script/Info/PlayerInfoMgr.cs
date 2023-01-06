@@ -14,6 +14,7 @@ public class PlayerInfoMgr : MonoBehaviour
     Transform DieMenu;
     float Hp;
     float Mp;
+    float healSpeed;
     float levelAmountTemp;
 
     // Start is called before the first frame update
@@ -30,6 +31,7 @@ public class PlayerInfoMgr : MonoBehaviour
 
         Hp = 1f;
         Mp = 1f;
+        SetAutoHealFactor(1f);
         levelText.text = "1";
         levelAmount.fillAmount = 0f;
         levelAmountTemp = 0f;
@@ -68,8 +70,13 @@ public class PlayerInfoMgr : MonoBehaviour
 
     void AutoHeal()
     {
-        ModifyHp(0.01f * Time.deltaTime);
-        ModifyMp(0.03f * Time.deltaTime);
+        ModifyHp(healSpeed * Time.deltaTime);
+        ModifyMp(healSpeed * 2f * Time.deltaTime);
+    }
+
+    public void SetAutoHealFactor(float factor)
+    {
+        healSpeed = 0.02f * factor;
     }
 
     public float GetHp()

@@ -52,24 +52,28 @@ public class SkillMgr : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Keypad2) || Input.GetKey(KeyCode.Alpha2))
         {
-            UseSkill("SpeedUp");
+            UseSkill("Heal");
         }
         if (Input.GetKey(KeyCode.Keypad3) || Input.GetKey(KeyCode.Alpha3))
         {
-            UseSkill("SlowDown");
+            UseSkill("SpeedUp");
         }
         if (Input.GetKey(KeyCode.Keypad4) || Input.GetKey(KeyCode.Alpha4))
+        {
+            UseSkill("SlowDown");
+        }
+        if (Input.GetKey(KeyCode.Keypad5) || Input.GetKey(KeyCode.Alpha5))
         {
             UseSkill("Fly");
         }
     }
 
-    public void EnableSkill(string name)
+    public void EnableSkill(Skill s)
     {
-        Button skillBtn = skillUI.transform.Find("Skill_" + name + "/Border").GetComponent<Button>();
-        Image skillIcon = skillUI.transform.Find("Skill_" + name + "/Mask/Icon").GetComponent<Image>();
+        Button skillBtn = skillUI.transform.Find("Skill_" + s.name + "/Border").GetComponent<Button>();
+        Image skillIcon = skillUI.transform.Find("Skill_" + s.name + "/Mask/Icon").GetComponent<Image>();
 
-        if (name != "Fire" && !skillBtn.interactable)
+        if (!skillBtn.interactable && s.enableLevel == infoMgr.GetLevel())
         {
             GainSkillDialog.gameObject.SetActive(true);
             dialogIcon.sprite = skillIcon.sprite;
@@ -78,8 +82,6 @@ public class SkillMgr : MonoBehaviour
         }
 
         skillBtn.interactable = true;
-
-        Skill s = Array.Find(skills, skill => skill.name == name);
         s.enable = true;
     }
 
@@ -89,12 +91,10 @@ public class SkillMgr : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void DisableSkill(string name)
+    public void DisableSkill(Skill s)
     {
-        Button skillBtn = skillUI.transform.Find("Skill_" + name).Find("Border").GetComponent<Button>();
+        Button skillBtn = skillUI.transform.Find("Skill_" + s.name).Find("Border").GetComponent<Button>();
         skillBtn.interactable = false;
-
-        Skill s = Array.Find(skills, skill => skill.name == name);
         s.enable = false;
     }
 
@@ -104,11 +104,11 @@ public class SkillMgr : MonoBehaviour
         {
             if (infoMgr.CheckEnableToUseSkill(s.cost) && s.enableLevel <= infoMgr.GetLevel())
             {
-                EnableSkill(s.name);
+                EnableSkill(s);
             }
             else
             {
-                DisableSkill(s.name);
+                DisableSkill(s);
             }
         }
     }
@@ -194,6 +194,10 @@ public class SkillMgr : MonoBehaviour
         {
             s.effect = StartCoroutine(Fire(s, delay));
         }
+        if (s.name == "Heal")
+        {
+            s.effect = StartCoroutine(Heal(s, delay));
+        }
         if (s.name == "SpeedUp")
         {
             s.effect = StartCoroutine(SpeedUp(s, delay));
@@ -235,6 +239,16 @@ public class SkillMgr : MonoBehaviour
 
     IEnumerator Fire(Skill s, float delay)
     {
+        yield break;
+    }
+
+    IEnumerator Heal(Skill s, float delay)
+    {
+        FindObjectOfType<AudioMgr>().Play("Heal", s.ps.lifeTime);
+        yield return new WaitForSeconds(delay);
+        infoMgr.SetAutoHealFactor(5f);
+        yield return new WaitForSeconds(s.duration);
+        infoMgr.SetAutoHealFactor(1f);
         yield break;
     }
 
