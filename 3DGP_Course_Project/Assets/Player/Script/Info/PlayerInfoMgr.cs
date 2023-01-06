@@ -16,6 +16,7 @@ public class PlayerInfoMgr : MonoBehaviour
     Image levelAmount;
     float levelAmountTemp;
     Transform FullScreen;
+    Transform DieMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,7 @@ public class PlayerInfoMgr : MonoBehaviour
         levelAmount.fillAmount = 0f;
         levelAmountTemp = 0f;
         FullScreen  = transform.Find("FullScreen");
+        DieMenu = GameObject.Find("/Canvas").transform.Find("DieMenu");
     }
 
     // Update is called once per frame
@@ -117,6 +119,10 @@ public class PlayerInfoMgr : MonoBehaviour
         if (value < 0f)
         {
             StartCoroutine(GetHurt());
+        }
+        if (Hp == 0f)
+        {
+            DieMenu.gameObject.SetActive(true);
         }
     }
 
