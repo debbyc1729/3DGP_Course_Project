@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuBotton : MonoBehaviour
+public class MenuButton : MonoBehaviour
 {
     public GameObject Options;
     public GameObject PasuedMenu;
@@ -14,6 +14,12 @@ public class MenuBotton : MonoBehaviour
     {
         FadeOut.SetActive(true);
         FadeOut.GetComponent<FadeInOut>().StartFadeIn();
+    }
+
+    public void ShowStory()
+    {
+        FadeOut.SetActive(true);
+        FadeOut.GetComponent<FadeInOut>().StartFadeOut("StoryScene");
     }
 
     public void Play()

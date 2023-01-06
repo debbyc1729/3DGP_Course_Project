@@ -11,7 +11,7 @@ public class Story : MonoBehaviour, IPointerDownHandler
     Text chineseText;
     Text englishText;
     Button next;
-    bool toPlay;
+    Button play;
     Coroutine lastCoroutine;
 
     void Start()
@@ -19,10 +19,13 @@ public class Story : MonoBehaviour, IPointerDownHandler
         this.pageIndex = 0;
         this.chineseText = transform.Find("Chinese").GetComponent<Text>();
         this.englishText = transform.Find("English").GetComponent<Text>();
-        this.next = transform.Find("Next").GetComponent<Button>();
-        this.next.onClick.AddListener(Next);
         this.SetUpProperty();
-        this.toPlay = false;
+
+        this.next = transform.Find("Next").GetComponent<Button>();
+        this.play = transform.Find("Play").GetComponent<Button>();
+        this.next.onClick.AddListener(Next);
+        this.play.onClick.AddListener(Play);
+
         this.lastCoroutine = StartCoroutine(StoryAnimation());
     }
 
@@ -61,21 +64,19 @@ public class Story : MonoBehaviour, IPointerDownHandler
 
     void Next()
     {
-        if (this.toPlay)
-        {
-            Debug.Log("Play");
-            return;
-        }
-
-        Debug.Log("Next");
         this.pageIndex += 1;
 
         if (this.pageIndex + 1 >= this.property.Length)
         {
-            this.next.gameObject.transform.Find("Text").GetComponent<Text>().text = "Play";
-            this.toPlay = true;
+            this.next.gameObject.SetActive(false);
+            this.play.gameObject.SetActive(true);
         }
         this.lastCoroutine = StartCoroutine(StoryAnimation());
+    }
+
+    void Play()
+    {
+        GetComponent<MenuButton>().Play();
     }
 
     public void OnPointerDown(PointerEventData pointerEventData)
