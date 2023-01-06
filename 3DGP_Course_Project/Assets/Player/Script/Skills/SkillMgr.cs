@@ -9,6 +9,9 @@ public class SkillMgr : MonoBehaviour
     [SerializeField] GameObject skillUI;
     public Skill[] skills;
 
+    Transform GainSkillDialog;
+    Image dialogIcon;
+    Button acceptBtn;
     GameObject skillOnWeapon;
     GameObject player;
     Player playerScript;
@@ -19,13 +22,16 @@ public class SkillMgr : MonoBehaviour
     bool flgShowSkill;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
+        GainSkillDialog = GameObject.Find("/Canvas").transform.Find("GainSkillDialog");
+        GainSkillDialog.Find("Background/Button/Accept").GetComponent<Button>().onClick.AddListener(CloseDialog);
+        dialogIcon = GainSkillDialog.Find("Background/Skill/Mask/Icon").GetComponent<Image>();
         skillOnWeapon = null;
         player = transform.parent.gameObject;
         playerScript = player.GetComponent<Player>();
         anima = player.GetComponent<Animator>();
-        weapon = player.transform.Find("root").Find("pelvis").Find("Weapon");
+        weapon = player.transform.Find("root/pelvis/Weapon");
         infoMgr = FindObjectOfType<PlayerInfoMgr>();
         flgShowSkill = false;
 
@@ -60,11 +66,27 @@ public class SkillMgr : MonoBehaviour
 
     public void EnableSkill(string name)
     {
-        Button skillBtn = skillUI.transform.Find("Skill_" + name).Find("Border").GetComponent<Button>();
+        Button skillBtn = skillUI.transform.Find("Skill_" + name + "/Border").GetComponent<Button>();
+        Image skillIcon = skillUI.transform.Find("Skill_" + name + "/Mask/Icon").GetComponent<Image>();
+
+        if (name != "Fire" && !skillBtn.interactable)
+        {
+            GainSkillDialog.gameObject.SetActive(true);
+            dialogIcon.sprite = skillIcon.sprite;
+            dialogIcon.color = skillIcon.color;
+            Time.timeScale = 0f;
+        }
+
         skillBtn.interactable = true;
 
         Skill s = Array.Find(skills, skill => skill.name == name);
         s.enable = true;
+    }
+
+    public void CloseDialog()
+    {
+        GainSkillDialog.gameObject.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void DisableSkill(string name)
