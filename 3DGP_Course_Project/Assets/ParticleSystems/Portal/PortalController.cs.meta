@@ -1,9 +1,11 @@
 fileFormatVersion: 2
-guid: 46f0ec76e5da641b7a5c42cf9684e44f
+guid: d9a9cc76b8d694d79883fef9f0e01981
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - portalPrefab: {fileID: 6979696395945933320, guid: c66e457dafbd64cdc954997ac8abdc65,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -14447,7 +14447,7 @@ GameObject:
   - component: {fileID: 5461462856949813564}
   - component: {fileID: 5461462856949813555}
   - component: {fileID: 5461462856949813554}
-  - component: {fileID: 361364357241577059}
+  - component: {fileID: 7419760449278007595}
   m_Layer: 1
   m_Name: Portal beam
   m_TagString: Untagged
@@ -19264,7 +19264,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &361364357241577059
+--- !u!114 &7419760449278007595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19273,7 +19273,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5461462856949813553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8e408cbc0cd74bc18754a8e89a411f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 611c9f04bf3104972b29a0ea3881305e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5461462856965389153

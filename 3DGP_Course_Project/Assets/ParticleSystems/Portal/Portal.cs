@@ -6,7 +6,7 @@ public class Portal : MonoBehaviour
 {
     [SerializeField] GameObject beamPrefab;
 
-    PortalMgr portalMgr;
+    PortalController portalCtr;
     int index;
 
     public Color StartColor
@@ -21,7 +21,7 @@ public class Portal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        portalMgr = FindObjectOfType<PortalMgr>();
+        portalCtr = FindObjectOfType<PortalController>();
         index = transform.GetSiblingIndex();
     }
 
@@ -30,16 +30,15 @@ public class Portal : MonoBehaviour
     {
     }
 
-
     void OnTriggerEnter(Collider other)
     {
         EmitBeam();
-        portalMgr.OnChildTriggerEnter(index, other.gameObject);
+        portalCtr.OnChildTriggerEnter(index, other.gameObject);
     }
 
     void OnTriggerExit(Collider other)
     {
-        portalMgr.OnChildTriggerExit(index);
+        portalCtr.OnChildTriggerExit(index);
     }
 
     void EmitBeam()
