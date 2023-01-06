@@ -33,7 +33,7 @@ public class PortalController : MonoBehaviour
         portalCount = 2;
 
         Vector3[] portalPosList = new Vector3[] {
-            new Vector3(0f, 0.1f, 3f), 
+            new Vector3(0f, 0.1f, 1f), 
             new Vector3(-1000f, -0.29f, -1.15f), 
             // new Vector3(0f, 0.2f, 5f), 
             // new Vector3(-50f, 0.2f, -28f), 
@@ -51,6 +51,23 @@ public class PortalController : MonoBehaviour
             GameObject portal = Instantiate(portalPrefab, portalPosList[i], Quaternion.identity);
             portal.transform.parent = transform;
             portal.GetComponent<Portal>().StartColor = portalColorList[i];
+            portal.SetActive(false);
+        }
+    }
+
+    public void ShowPortals()
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+    }
+
+    public void HidePortals()
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
         }
     }
 
@@ -77,27 +94,27 @@ public class PortalController : MonoBehaviour
         {
             enableDelivering = true;
         }
+        if (portalID == portalCount - 1)
+        {
+            HidePortals();
+        }
     }
 
     IEnumerator DeliverPlayer(Player player)
     {
-        FindObjectOfType<AudioMgr>().Play(audioName);
+        FindObjectOfType<AudioMgr>().Play(audioName, 3f);
     
         yield return new WaitForSeconds(0.2f);
-        // player.ActivateMoving(false);
-
-        yield return new WaitForSeconds(0.2f);
-        // player.Fade("Out");
+        player.ActivateMoving(false);
 
         yield return new WaitForSeconds(0.6f);
         client.transform.position = new Vector3(target.transform.position.x,
                                                 client.transform.position.y + target.transform.position.y,
                                                 target.transform.position.z);
 
-        yield return new WaitForSeconds(0.2f);
-        // player.Fade("In");
+        client.transform.rotation = Quaternion.identity;
 
         yield return new WaitForSeconds(0.2f);
-        // player.ActivateMoving(true);
+        player.ActivateMoving(true);
     }
 }

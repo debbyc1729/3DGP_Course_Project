@@ -47,7 +47,7 @@ public class PlayerInfoMgr : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
             ModifyMp(0.1f);
         if (Input.GetKeyDown(KeyCode.P))
-            ModifyLevel(2.3f);
+            ModifyLevel(5.3f);
 
         // FullScreen.GetComponent<Animator>().SetBool("hurt", false);
 
@@ -171,7 +171,7 @@ public class PlayerInfoMgr : MonoBehaviour
     IEnumerator ExpAnimation(float targetAmount, int targetLevel)
     {
         float originAmount = levelAmount.fillAmount;
-        float duration = (targetAmount - originAmount) * 0.7f;
+        float duration = (targetAmount - originAmount) * 0.4f;
         float timer = 0f;
 
         while (levelAmount.fillAmount < targetAmount)
@@ -184,6 +184,10 @@ public class PlayerInfoMgr : MonoBehaviour
         if (targetAmount >= 1f)
         {
             levelAmount.fillAmount = 0f;
+        }
+        if (targetLevel == 15 && int.Parse(levelText.text) != targetLevel)
+        {
+            FindObjectOfType<PortalController>().ShowPortals();
         }
         levelText.text = targetLevel.ToString();
 
