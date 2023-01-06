@@ -19,13 +19,10 @@ public class Story : MonoBehaviour, IPointerDownHandler
         this.pageIndex = 0;
         this.chineseText = transform.Find("Chinese").GetComponent<Text>();
         this.englishText = transform.Find("English").GetComponent<Text>();
-        this.SetUpProperty();
-
         this.next = transform.Find("Next").GetComponent<Button>();
         this.play = transform.Find("Play").GetComponent<Button>();
-        this.next.onClick.AddListener(Next);
-        this.play.onClick.AddListener(Play);
 
+        this.SetUpProperty();
         this.lastCoroutine = StartCoroutine(StoryAnimation());
     }
 
@@ -62,7 +59,7 @@ public class Story : MonoBehaviour, IPointerDownHandler
         yield break;
     }
 
-    void Next()
+    public void Next()
     {
         this.pageIndex += 1;
 
@@ -72,11 +69,6 @@ public class Story : MonoBehaviour, IPointerDownHandler
             this.play.gameObject.SetActive(true);
         }
         this.lastCoroutine = StartCoroutine(StoryAnimation());
-    }
-
-    void Play()
-    {
-        GetComponent<MenuButton>().Play();
     }
 
     public void OnPointerDown(PointerEventData pointerEventData)

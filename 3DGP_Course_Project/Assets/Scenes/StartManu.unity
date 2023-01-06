@@ -214,6 +214,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1038795056, guid: f3f62477a5e4aea48aa1c246ec04c71d, type: 3}
+      propertyPath: FadeOut
+      value: 
+      objectReference: {fileID: 1473350911}
+    - target: {fileID: 1038795056, guid: f3f62477a5e4aea48aa1c246ec04c71d, type: 3}
+      propertyPath: Options
+      value: 
+      objectReference: {fileID: 908833796}
     - target: {fileID: 1573300538936020588, guid: f3f62477a5e4aea48aa1c246ec04c71d,
         type: 3}
       propertyPath: m_RootOrder
@@ -624,29 +632,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 312892939}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1038795053 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1573300538936020589, guid: f3f62477a5e4aea48aa1c246ec04c71d,
+--- !u!114 &1038795056 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1038795056, guid: f3f62477a5e4aea48aa1c246ec04c71d,
     type: 3}
   m_PrefabInstance: {fileID: 132132647}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1038795056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1038795053}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11548a1b25e6d4b03b1b6f013c7863a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Options: {fileID: 908833796}
-  PasuedMenu: {fileID: 0}
-  WarningQuit: {fileID: 0}
-  WarningRestart: {fileID: 0}
-  FadeOut: {fileID: 1473350911}
 --- !u!1 &1376937756
 GameObject:
   m_ObjectHideFlags: 0
