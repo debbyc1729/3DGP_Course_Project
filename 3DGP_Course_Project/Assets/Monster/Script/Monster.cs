@@ -280,7 +280,7 @@ public class Monster : MonoBehaviour
 
         dieFlg = true;
         FindObjectOfType<PlayerInfoMgr>().ModifyLevel(2.3f);//Player level up
-        //transform.GetComponent<Collider>().enabled = false;
+        transform.GetComponent<Collider>().enabled = false;
         //transform.GetChild(0).GetChild(0).GetComponent<Collider>().enabled = false;
         StopCoroutine("FollowPath");
         //SoundPlay("Die");

@@ -24,7 +24,8 @@ public class Boss : MonoBehaviour
     public Slider slider;
     public GameObject SmashObject;
     public TextMeshProUGUI HPnumber;
-    
+    public GameObject EndMountain;
+
     Animator animator;
     bool hitplayerSuccessful = false;
     Rigidbody rigidbody;
@@ -371,8 +372,8 @@ public class Boss : MonoBehaviour
         for (int i = 0; i < maxTentacleNumber; i++)
         {
             Vector3 center = new Vector3(7.0f, 3.2f, 0.0f);
-            float rangeX = UnityEngine.Random.Range(center.x - 10, center.x + 10);
-            float rangeZ = UnityEngine.Random.Range(center.z - 10, center.z + 10);
+            float rangeX = UnityEngine.Random.Range(transform.position.x - 10, transform.position.x + 10);
+            float rangeZ = UnityEngine.Random.Range(transform.position.z - 10, transform.position.z + 10);
 
             GameObject tentacle = Instantiate(TentacleEffect, new Vector3(rangeX, center.y, rangeZ), Quaternion.identity);
 
@@ -384,7 +385,9 @@ public class Boss : MonoBehaviour
     {
         //Debug.Log("DieParticlesystem");
         //SoundPlay("Die");
-        FindObjectOfType<BGMPlayer>().BGMStop();
+
+        FindObjectOfType<MonsterManager>().isBossDie = true;
+
         StartCoroutine(updateParticlesystem("Die", transform.position));
         Destroy(transform.gameObject, 0.5f);
     }

@@ -24,7 +24,7 @@ public class BossRoomScene : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("OnTriggerEnter Boss Room Scene");
-        if (other.tag == "player")
+        if (other.tag == "Player")
         {
             Debug.Log("Game Boss Fight Start.");
             StartMountain.SetActive(true);

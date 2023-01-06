@@ -22,8 +22,12 @@ public class MonsterManager : MonoBehaviour
     public Slider slider;
     public TextMeshProUGUI HPnumber;
     public Transform BossSpawnPoint;
+    public GameObject EndMountain;
+    public GameObject BossRoom;
+    public bool isBossDie = false;
 
     Vector3[] SpawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,7 +70,12 @@ public class MonsterManager : MonoBehaviour
         {
             genBoss();
         }
-
+        if (isBossDie)
+        {
+            Debug.Log("isBossDie");
+            BossRoom.GetComponent<BGMPlayer>().BGMStop();
+            EndMountain.SetActive(false);
+        }
     }
 
     public void genLevelTwoMonsters()
@@ -88,6 +97,7 @@ public class MonsterManager : MonoBehaviour
             Boss.GetComponent<Boss>().HealthBar = HealthBar;
             Boss.GetComponent<Boss>().slider = slider;
             Boss.GetComponent<Boss>().HPnumber = HPnumber;
+            Boss.GetComponent<Boss>().EndMountain = EndMountain;
         }
     }
 }

@@ -59,6 +59,10 @@ public class FadeInOut : MonoBehaviour
         backImage.enabled = true;
         FadeToBlack();
         if (backImage.color.a >= 0.99f) {
+            if (SceneName == "Ending")
+            {
+                return;
+            }
             if(SceneName == "Quit")
             {
 #if UNITY_EDITOR
@@ -76,6 +80,15 @@ public class FadeInOut : MonoBehaviour
     {
         sceneOutStarting = true;
         SceneName = SName;
+
+        if(SName == "Ending")
+        {
+            fadeSpeed = 0.3f;
+        }
+        else
+        {
+            fadeSpeed = 1.0f;
+        }
     }
     public void StartFadeIn()
     {

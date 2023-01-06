@@ -14,14 +14,20 @@ public class BGMPlayer : MonoBehaviour
     private float deltaTime;
     bool fadeOutStarting = false;
     bool fadeInStarting = false;
+    AudioSource[] BGM;
     // Start is called before the first frame update
     void Start()
     {
         //transform.GetComponent<AudioSource>().volume = 0.5f;
         //transform.GetComponent<AudioSource>().Stop();
         deltaTime = Time.deltaTime;
-        transform.GetComponent<AudioSource>().volume = 0;
-        transform.GetComponent<AudioSource>().Play();
+        BGM = transform.GetComponents<AudioSource>();
+
+        foreach (AudioSource s in BGM)
+        {
+            s.volume = 0;
+            s.Play();
+        }
         //levelTemp = level;
         /*BGM.source = gameObject.AddComponent<AudioSource>();
         BGM.source.clip = BGM.clip;
@@ -39,6 +45,11 @@ public class BGMPlayer : MonoBehaviour
             FindObjectOfType<BGMManager>().Play(level.ToString());
             levelTemp = level;
         }*/
+
+        if(level == 0)
+        {
+            BGMPlay();
+        }
 
         if (fadeOutStarting)
         //if(Input.GetKeyDown(KeyCode.Space))
@@ -101,27 +112,33 @@ public class BGMPlayer : MonoBehaviour
 
     private void FadeOutMusic()
     {
-        float volume = transform.GetComponent<AudioSource>().volume;
-        transform.GetComponent<AudioSource>().volume = Mathf.Lerp(volume, minVolume, fadeSpeed * deltaTime);
-
-        if(volume < maxVolume * 0.1f)
+        foreach (AudioSource s in BGM)
         {
-            //Debug.Log("volume < maxVolume * 0.1f");
-            transform.GetComponent<AudioSource>().volume = 0;
-            transform.GetComponent<AudioSource>().Stop();
-            fadeOutStarting = false;
+            float volume = s.volume;
+            s.volume = Mathf.Lerp(volume, minVolume, fadeSpeed * deltaTime);
+
+            if (volume < maxVolume * 0.1f)
+            {
+                //Debug.Log("volume < maxVolume * 0.1f");
+                s.volume = 0;
+                s.Stop();
+                fadeOutStarting = false;
+            }
         }
     }
     private void FadeInMusic()
     {
-        float volume = transform.GetComponent<AudioSource>().volume;
-        transform.GetComponent<AudioSource>().volume = Mathf.Lerp(volume, maxVolume, fadeSpeed * deltaTime);
-
-        if (volume > maxVolume * 0.9f)
+        foreach (AudioSource s in BGM)
         {
-            //Debug.Log("volume + 0.001f == maxVolume");
-            transform.GetComponent<AudioSource>().volume = maxVolume;
-            fadeInStarting = false;
+            float volume = s.volume;
+            s.volume = Mathf.Lerp(volume, maxVolume, fadeSpeed * deltaTime);
+
+            if (volume > maxVolume * 0.9f)
+            {
+                //Debug.Log("volume + 0.001f == maxVolume");
+                s.volume = maxVolume;
+                fadeInStarting = false;
+            }
         }
     }
     
