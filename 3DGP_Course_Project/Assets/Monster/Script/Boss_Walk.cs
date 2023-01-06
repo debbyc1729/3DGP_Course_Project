@@ -16,13 +16,13 @@ public class Boss_Walk : StateMachineBehaviour
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		rb = animator.GetComponent<Rigidbody>();
         boss = animator.GetComponent<Boss>();
+        boss.Rotate(player.position, 0.1f);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //boss.LookAtPlayer();
-        boss.Rotate(player.position, 0.1f);
 
         /*Vector3 target = new Vector3(player.position.x, rb.position.y, player.position.z);
         Vector3 newPos = Vector3.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);

@@ -309,7 +309,7 @@ public class Monster : MonoBehaviour
 
         if (collision.gameObject.tag == "Ground" && ChaseMode == 0)
         {
-            Debug.Log("OnCollisionEnter name= " + transform.name);
+            //Debug.Log("OnCollisionEnter name= " + transform.name);
             SoundPlay("Walk");
             StartCoroutine(updateParticlesystem("Dust", transform.position));
         }

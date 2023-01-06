@@ -55,6 +55,8 @@ public class Boss : MonoBehaviour
     public GameObject dust;
     public Sound[] sounds = null;
     public GameObject TornadoEffect;
+    public GameObject TentacleEffect;
+    public int maxTentacleNumber = 10;
 
     //Initialization
     void Start()
@@ -140,7 +142,7 @@ public class Boss : MonoBehaviour
             moveDirection = targ;
 
             //Debug.Log("Tracing directly, " + moveDirection.normalized * speed * Time.deltaTime);
-            //Rotate(face, 0.1f);
+            Rotate(face, 0.1f);
             //rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
             //monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
             monsterMove(transform.position + moveDirection.normalized * speed * Time.deltaTime);
@@ -171,7 +173,7 @@ public class Boss : MonoBehaviour
             attackFlg = true;
 
             Vector3 face = new Vector3(target.position.x, transform.position.y, target.position.z);
-            //Rotate(face, 0.1f);
+            Rotate(face, 0.1f);
         }
         else
         {
@@ -363,12 +365,26 @@ public class Boss : MonoBehaviour
         FindObjectOfType<MonsterAttaclAudio>().Play("Tornado");
     }
 
+    public void showTentacle()
+    {
+        Debug.Log("showTentacle");
+        for (int i = 0; i < maxTentacleNumber; i++)
+        {
+            Vector3 center = new Vector3(7.0f, 3.2f, 0.0f);
+            float rangeX = UnityEngine.Random.Range(center.x - 10, center.x + 10);
+            float rangeZ = UnityEngine.Random.Range(center.z - 10, center.z + 10);
+
+            GameObject tentacle = Instantiate(TentacleEffect, new Vector3(rangeX, center.y, rangeZ), Quaternion.identity);
+
+            tentacle.transform.SetParent(transform);
+        }
+    }
 
     public void DieParticlesystem()
     {
         //Debug.Log("DieParticlesystem");
         //SoundPlay("Die");
-        FindObjectOfType<BGMPlay>().BGMStop();
+        FindObjectOfType<BGMPlayer>().BGMStop();
         StartCoroutine(updateParticlesystem("Die", transform.position));
         Destroy(transform.gameObject, 0.5f);
     }
