@@ -11,6 +11,7 @@ public class PortalController : MonoBehaviour
     GameObject client;
     bool enableDelivering;
     string audioName;
+    int respawnPortalID;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class PortalController : MonoBehaviour
         client = null;
         enableDelivering = true;
         audioName = "Deliver";
+        respawnPortalID = 0;
     }
 
     // Update is called once per frame
@@ -100,6 +102,16 @@ public class PortalController : MonoBehaviour
         }
     }
 
+    public void SetPosition(GameObject obj)
+    {
+        Transform portal = transform.GetChild(respawnPortalID);
+        obj.transform.position = new Vector3(portal.position.x,
+                                             obj.transform.position.y + portal.position.y,
+                                             portal.position.z);
+
+        obj.transform.rotation = Quaternion.identity;
+    }
+
     IEnumerator DeliverPlayer(Player player)
     {
         FindObjectOfType<AudioMgr>().Play(audioName, 3f);
@@ -116,5 +128,10 @@ public class PortalController : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
         player.ActivateMoving(true);
+    }
+    
+    public void SetRespawnPortalID(int i)
+    {
+        respawnPortalID = i;
     }
 }

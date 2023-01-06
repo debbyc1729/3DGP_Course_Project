@@ -123,6 +123,9 @@ public class PlayerInfoMgr : MonoBehaviour
         if (Hp == 0f)
         {
             DieMenu.gameObject.SetActive(true);
+            Hp = 1f;
+            Mp = 1f;
+            FindObjectOfType<PortalController>().SetPosition(GameObject.Find("/Player"));
         }
     }
 

@@ -47,6 +47,7 @@ public class BGMPlay : MonoBehaviour
             {
                 //FindObjectOfType<BGMManager>().Play("2");
                 FindObjectOfType<MonsterManager>().genLevelTwoMonsters();
+                FindObjectOfType<PortalController>().SetRespawnPortalID(1);
             }
             if (transform.name == "BossRoom")
             {
