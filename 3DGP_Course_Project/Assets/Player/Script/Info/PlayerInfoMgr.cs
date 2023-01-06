@@ -8,33 +8,31 @@ public class PlayerInfoMgr : MonoBehaviour
     Transform HealthBar;
     Transform MagicBar;
     Transform LevelBar;
-    int MaxHealthAmount;
-    int MaxMagicAmount;
-    float Hp;
-    float Mp;
     Text levelText;
     Image levelAmount;
-    float levelAmountTemp;
     Transform FullScreen;
     Transform DieMenu;
+    float Hp;
+    float Mp;
+    float levelAmountTemp;
 
     // Start is called before the first frame update
     void Start()
     {
-        HealthBar = transform.Find("HealthBar");
-        MagicBar  = transform.Find("MagicBar");
+        HealthBar = transform.Find("HealthBar/Bar");
+        Debug.Log(HealthBar);
+        MagicBar  = transform.Find("MagicBar/Bar");
         LevelBar  = transform.Find("LevelBar");
-        MaxHealthAmount = HealthBar.childCount;
-        MaxMagicAmount  = MagicBar.childCount;
-        Hp = 1f;
-        Mp = 1f;
         levelText = LevelBar.Find("Number").GetComponent<Text>();
-        levelText.text = "1";
-        levelAmount = LevelBar.GetComponent<Image>();
-        levelAmount.fillAmount = 0f;
-        levelAmountTemp = 0f;
+        levelAmount = LevelBar.Find("Bar").GetComponent<Image>();
         FullScreen  = transform.Find("FullScreen");
         DieMenu = GameObject.Find("/Canvas").transform.Find("DieMenu");
+
+        Hp = 1f;
+        Mp = 1f;
+        levelText.text = "1";
+        levelAmount.fillAmount = 0f;
+        levelAmountTemp = 0f;
     }
 
     // Update is called once per frame
@@ -60,32 +58,12 @@ public class PlayerInfoMgr : MonoBehaviour
 
     void UpdateHp()
     {
-        for(int i = 0; i < MaxHealthAmount; i++)
-        {
-            if (Hp * MaxHealthAmount > i)
-            {
-                HealthBar.GetChild(i).gameObject.SetActive(true);
-            }
-            else
-            {
-                HealthBar.GetChild(i).gameObject.SetActive(false);
-            }
-        }
+        HealthBar.GetComponent<Image>().fillAmount = Hp;
     }
 
     void UpdateMp()
     {
-        for(int i = 0; i < MaxMagicAmount; i++)
-        {
-            if (Mp * MaxMagicAmount > i)
-            {
-                MagicBar.GetChild(i).gameObject.SetActive(true);
-            }
-            else
-            {
-                MagicBar.GetChild(i).gameObject.SetActive(false);
-            }
-        }
+        MagicBar.GetComponent<Image>().fillAmount = Mp;
     }
 
     void AutoHeal()
