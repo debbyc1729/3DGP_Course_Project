@@ -75,6 +75,7 @@ public class SkillMgr : MonoBehaviour
 
         if (!skillBtn.interactable && s.enableLevel == infoMgr.GetLevel())
         {
+            FindObjectOfType<AudioMgr>().Play("Congratulation");
             GainSkillDialog.gameObject.SetActive(true);
             dialogIcon.sprite = skillIcon.sprite;
             dialogIcon.color = skillIcon.color;
