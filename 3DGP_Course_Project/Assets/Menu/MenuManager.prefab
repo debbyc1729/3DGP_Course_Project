@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1573300538936020588}
   - component: {fileID: 1573300538936020587}
-  - component: {fileID: 1573300538936020586}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -49,20 +48,3 @@ MonoBehaviour:
   Options: {fileID: 0}
   WarningQuit: {fileID: 0}
   WarningRestart: {fileID: 0}
---- !u!114 &1573300538936020586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1573300538936020589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0916963c4dfa504a83f612800fc4784, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Options: {fileID: 0}
-  PasuedMenu: {fileID: 0}
-  WarningQuit: {fileID: 0}
-  WarningRestart: {fileID: 0}
-  FadeOut: {fileID: 0}
