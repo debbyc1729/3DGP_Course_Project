@@ -3450,16 +3450,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1528528438}
-    - target: {fileID: 227379222152414772, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SureToQuit
-      objectReference: {fileID: 0}
-    - target: {fileID: 227379222152414772, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuButton, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 812326457816022528, guid: f4aee01e3abfd144fbcccc43acae4a93,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3570,73 +3560,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 812326457816022529, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4430331890881450126, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 450
-      objectReference: {fileID: 0}
-    - target: {fileID: 4430331890881450126, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.00098801
-      objectReference: {fileID: 0}
     - target: {fileID: 5952027079786316081, guid: f4aee01e3abfd144fbcccc43acae4a93,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1528528438}
-    - target: {fileID: 5952027079786316081, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BackToTitle
-      objectReference: {fileID: 0}
-    - target: {fileID: 5952027079786316081, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuButton, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8893313565514681554, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_text
-      value: "You escape from \nthe cursed cave successfully!\r\n"
-      objectReference: {fileID: 0}
-    - target: {fileID: 8893313565514681554, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8893313565514681554, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 3b859264addebec40933fac09ce5ca05,
-        type: 2}
-    - target: {fileID: 8893313565514681554, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_fontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8893313565514681554, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8893313565514681554, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: -4718755285726721527, guid: 3b859264addebec40933fac09ce5ca05,
-        type: 2}
-    - target: {fileID: 8893313565514681554, guid: f4aee01e3abfd144fbcccc43acae4a93,
-        type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4aee01e3abfd144fbcccc43acae4a93, type: 3}
 --- !u!1001 &1491211554338395537
@@ -3834,6 +3762,22 @@ PrefabInstance:
       propertyPath: FadeOut
       value: 
       objectReference: {fileID: 1067298032}
+    - target: {fileID: 1038795056, guid: f3f62477a5e4aea48aa1c246ec04c71d, type: 3}
+      propertyPath: Options
+      value: 
+      objectReference: {fileID: 564243401}
+    - target: {fileID: 1038795056, guid: f3f62477a5e4aea48aa1c246ec04c71d, type: 3}
+      propertyPath: PasuedMenu
+      value: 
+      objectReference: {fileID: 4474179622577653308}
+    - target: {fileID: 1038795056, guid: f3f62477a5e4aea48aa1c246ec04c71d, type: 3}
+      propertyPath: WarningQuit
+      value: 
+      objectReference: {fileID: 6147947934054136468}
+    - target: {fileID: 1038795056, guid: f3f62477a5e4aea48aa1c246ec04c71d, type: 3}
+      propertyPath: WarningRestart
+      value: 
+      objectReference: {fileID: 5476794599163620707}
     - target: {fileID: 1573300538936020586, guid: f3f62477a5e4aea48aa1c246ec04c71d,
         type: 3}
       propertyPath: FadeOut
@@ -4102,40 +4046,15 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1528528438}
-    - target: {fileID: 961163271235191706, guid: 87a9fb65ee9b67c4c8e6118847fa8e5e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SureToRestart
-      objectReference: {fileID: 0}
-    - target: {fileID: 961163271235191706, guid: 87a9fb65ee9b67c4c8e6118847fa8e5e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuButton, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 1383895472821673291, guid: 87a9fb65ee9b67c4c8e6118847fa8e5e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1528528438}
-    - target: {fileID: 1383895472821673291, guid: 87a9fb65ee9b67c4c8e6118847fa8e5e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryAgain
-      objectReference: {fileID: 0}
-    - target: {fileID: 1383895472821673291, guid: 87a9fb65ee9b67c4c8e6118847fa8e5e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuButton, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 6091843499765628074, guid: 87a9fb65ee9b67c4c8e6118847fa8e5e,
         type: 3}
       propertyPath: m_Name
       value: DieMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 6091843499765628074, guid: 87a9fb65ee9b67c4c8e6118847fa8e5e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6091843499765628075, guid: 87a9fb65ee9b67c4c8e6118847fa8e5e,
         type: 3}
@@ -4247,16 +4166,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1528528438}
-    - target: {fileID: 6694800741191124127, guid: 87a9fb65ee9b67c4c8e6118847fa8e5e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SureToQuit
-      objectReference: {fileID: 0}
-    - target: {fileID: 6694800741191124127, guid: 87a9fb65ee9b67c4c8e6118847fa8e5e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuButton, Assembly-CSharp
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87a9fb65ee9b67c4c8e6118847fa8e5e, type: 3}
 --- !u!1001 &2424250164057099043
