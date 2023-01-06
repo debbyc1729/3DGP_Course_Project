@@ -368,6 +368,7 @@ public class Boss : MonoBehaviour
     {
         //Debug.Log("DieParticlesystem");
         //SoundPlay("Die");
+        FindObjectOfType<BGMPlay>().BGMStop();
         StartCoroutine(updateParticlesystem("Die", transform.position));
         Destroy(transform.gameObject, 0.5f);
     }
