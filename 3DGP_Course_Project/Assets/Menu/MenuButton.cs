@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
@@ -13,11 +14,18 @@ public class MenuButton : MonoBehaviour
     public GameObject WarningRestart;
     public GameObject HowToPlayMenu;
     public GameObject FadeOut;
+    public GameObject GainSkillDialog;
+    public GameObject NextLevelDialog;
     public Sound[] sounds = null;
     AudioMixer audioMixer;
 
     private void Start()
     {
+        if(SceneManager.GetActiveScene().name == "MainGameScene")
+        {
+            LockCursor();
+        }
+
         FadeOut.SetActive(true);
         FadeOut.GetComponent<FadeInOut>().StartFadeIn();
 
@@ -36,10 +44,13 @@ public class MenuButton : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "MainGameScene")
         {
             if (PasuedMenu.activeSelf == false)
             {
+                Cursor.lockState = CursorLockMode.None;
+                //Cursor.visible = true;
+
                 soundPlay("Menu");
                 PasuedMenu.SetActive(true);
                 Time.timeScale = 0;
@@ -47,6 +58,9 @@ public class MenuButton : MonoBehaviour
             }
             else
             {
+                Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.visible = false;
+
                 soundPlay("Menu");
                 PasuedMenu.SetActive(false);
                 Options.SetActive(false);
@@ -56,6 +70,18 @@ public class MenuButton : MonoBehaviour
                 //PasuedMenuFlg = true;
             }
         }
+        
+    }
+
+    public void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+    }
+    public void UnLockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
     }
 
     public void ShowStory()
@@ -78,12 +104,16 @@ public class MenuButton : MonoBehaviour
 
     public void Play()
     {
+        LockCursor();
+
         soundPlay("Play");
         FadeOut.SetActive(true);
         FadeOut.GetComponent<FadeInOut>().StartFadeOut("MainGameScene");
     }
     public void Resume()
     {
+        LockCursor();
+
         soundPlay("Menu");
         PasuedMenu.SetActive(false);
         Time.timeScale = 1;
@@ -100,6 +130,8 @@ public class MenuButton : MonoBehaviour
     }
     public void TryAgain()
     {
+        LockCursor();
+
         soundPlay("Play");
         //TryAgain
         GameObject.Find("Canvas/PlayerInfo").transform.GetComponent<PlayerInfoMgr>().BackToStartPoint();
@@ -109,6 +141,8 @@ public class MenuButton : MonoBehaviour
     }
     public void Restart()
     {
+        LockCursor();
+
         //game restart (reload scene)
         soundPlay("Play");
         FadeOut.SetActive(true);

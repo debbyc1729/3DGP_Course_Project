@@ -48,7 +48,7 @@ public class BGMPlayer : MonoBehaviour
 
         if(flg && level == 0)
         {
-            Debug.Log("level == 0 && !fadeOutStarting");
+            //Debug.Log("level == 0 && !fadeOutStarting");
             BGMPlay();
             flg = false;
         }
