@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Audio;
 
 public class MonsterAttaclAudio : MonoBehaviour
 {
     public Sound[] sounds;
+    AudioMixer audioMixer;
 
     void Awake()
     {
+        audioMixer = GameManager.instance.audioMixer[1];
+        AudioMixerGroup[] audioMixGroup = audioMixer.FindMatchingGroups("Master/Monster");
+        //Debug.Log("audioMixGroup= " + audioMixGroup[0].name);
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -16,6 +21,7 @@ public class MonsterAttaclAudio : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.outputAudioMixerGroup = audioMixGroup[0];
         }
     }
 

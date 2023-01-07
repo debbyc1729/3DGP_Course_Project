@@ -10,7 +10,7 @@ public class BGMPlayer : MonoBehaviour
     //public Sound BGM;
     int levelTemp = 0;
     bool flg = true;
-    private float fadeSpeed = 2.0f;
+    private float fadeSpeed = 1.0f;
     private float deltaTime;
     bool fadeOutStarting = false;
     bool fadeInStarting = false;
@@ -46,15 +46,17 @@ public class BGMPlayer : MonoBehaviour
             levelTemp = level;
         }*/
 
-        if(level == 0)
+        if(flg && level == 0)
         {
+            Debug.Log("level == 0 && !fadeOutStarting");
             BGMPlay();
+            flg = false;
         }
 
         if (fadeOutStarting)
         //if(Input.GetKeyDown(KeyCode.Space))
         {
-            //Debug.Log("FadeOutMusic");
+            Debug.Log("FadeOutMusic");
             FadeOutMusic();
         }
         if (fadeInStarting)
@@ -106,6 +108,7 @@ public class BGMPlayer : MonoBehaviour
 
     public void BGMStop()
     {
+        Debug.Log("BGMStop()");
         fadeOutStarting = true;
         fadeInStarting = false;
     }

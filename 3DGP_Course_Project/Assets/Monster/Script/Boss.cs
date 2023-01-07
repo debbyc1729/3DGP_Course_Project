@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 using TMPro;
+using UnityEngine.Audio;
 
 public class Boss : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Boss : MonoBehaviour
     public float target_ATK = 10;
     public float speed = 1;
     public float AutoChaseRadio = 10.0f;
-    float AutoHitRadio = 3.5f;
+    float AutoHitRadio = 5.0f;
 
     public bool isStop = true;
     public bool isInvulnerable = false;
@@ -58,6 +59,7 @@ public class Boss : MonoBehaviour
     public GameObject TornadoEffect;
     public GameObject TentacleEffect;
     public int maxTentacleNumber = 10;
+    AudioMixer audioMixer;
 
     //Initialization
     void Start()
@@ -66,6 +68,9 @@ public class Boss : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
 
+        audioMixer = GameManager.instance.audioMixer[1];
+        AudioMixerGroup[] audioMixGroup = audioMixer.FindMatchingGroups("Master/Monster");
+        //Debug.Log("audioMixGroup= " + audioMixGroup[0].name);
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -77,6 +82,7 @@ public class Boss : MonoBehaviour
             s.source.spatialBlend = 1.0f;
             s.source.maxDistance = 50.0f;
             s.source.minDistance = 0.0f;
+            s.source.outputAudioMixerGroup = audioMixGroup[0];
         }
 
         Health = MixHealth;
@@ -190,6 +196,7 @@ public class Boss : MonoBehaviour
         //Debug.Log("monsterMove, hurtCoolTimeFlg, postion= " + postion);
         stateChange("Walk");
         rigidbody.MovePosition(postion);
+        rigidbody.AddForce(Vector3.down);
     }
 
     void monsterAttack(Vector3 postion)
@@ -457,7 +464,7 @@ public class Boss : MonoBehaviour
         if (Health <= LowHealth)
         {
             speed = 1;
-            AutoHitRadio = 5.0f;
+            AutoHitRadio = 7.0f;
             stateChange("Anger");
         }
 

@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
-    public AudioMixer audioMixer;
+    public AudioMixer[] audioMixer;
     
     void Awake()
     {
@@ -24,25 +24,47 @@ public class GameManager : MonoBehaviour
     
     public void setMasterVolume(float volume)
     {
-        audioMixer.SetFloat("MasterVolume", volume);
+        audioMixer[0].SetFloat("MasterVolume", volume);
     }
 
     public void setBGMVolume(float volume)
     {
-        audioMixer.SetFloat("BGMVolume", volume);
+        audioMixer[0].SetFloat("BGMVolume", volume);
+    }
+    public void setPlayerVolume(float volume)
+    {
+        audioMixer[1].SetFloat("PlayerVolume", volume);
+    }
+
+    public void setMonsterVolume(float volume)
+    {
+        audioMixer[1].SetFloat("MonsterVolume", volume);
     }
 
     public float getMasterVolume()
     {
         float volume;
-        audioMixer.GetFloat("MasterVolume", out volume);
+        audioMixer[0].GetFloat("MasterVolume", out volume);
         return volume;
     }
 
     public float getBGMVolume()
     {
         float volume;
-        audioMixer.GetFloat("BGMVolume", out volume);
+        audioMixer[0].GetFloat("BGMVolume", out volume);
+        return volume;
+    }
+    public float getPlayerVolume()
+    {
+        float volume;
+        audioMixer[1].GetFloat("PlayerVolume", out volume);
+        return volume;
+    }
+
+    public float getMonsterVolume()
+    {
+        float volume;
+        audioMixer[1].GetFloat("MonsterVolume", out volume);
         return volume;
     }
 

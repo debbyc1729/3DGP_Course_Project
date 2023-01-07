@@ -52416,6 +52416,8 @@ GameObject:
   - component: {fileID: 4920297717707848}
   - component: {fileID: 198313640795591846}
   - component: {fileID: 5050737149915059421}
+  - component: {fileID: 1679924758047577047}
+  - component: {fileID: -1673494188273970057}
   m_Layer: 0
   m_Name: Tentacle trail
   m_TagString: Untagged
@@ -57262,6 +57264,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &1679924758047577047
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592711153756366}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.41
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1673494188273970057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592711153756366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33ec68e74921f140b50c4dfee2158b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1704756164917562
 GameObject:
   m_ObjectHideFlags: 0

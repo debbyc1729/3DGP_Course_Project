@@ -154,7 +154,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -672,14 +672,14 @@ MonoBehaviour:
   bullet: {fileID: 4207659822521573402}
   target: {fileID: 0}
   target_ATK: 20
-  speed: 0.5
+  speed: 1
   AutoChaseRadio: 15
   Health: 0
-  MixHealth: 40
+  MixHealth: 70
   HealthBar: {fileID: 6726360471270986676}
   slider: {fileID: 6726360471323057243}
-  maxAttackCoolTime: 3
-  maxHurtCoolTime: 3
+  maxAttackCoolTime: 2
+  maxHurtCoolTime: 2
   hitEffect: {fileID: 1570927096764274, guid: 6b8d93bfeba88384fb7ccb4197515540, type: 3}
   hurtEffect: {fileID: 0}
   dieEffect: {fileID: 0}

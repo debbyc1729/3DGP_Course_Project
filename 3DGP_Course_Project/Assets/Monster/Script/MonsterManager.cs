@@ -38,11 +38,14 @@ public class MonsterManager : MonoBehaviour
             SpawnPoint[i] = transform.GetChild(0).GetChild(i).position;
         }
 
-        Level2SP = new Vector3[Level2SpawnPoint.childCount];
+        /*Level2SP = new Vector3[Level2SpawnPoint.childCount];
         for (int i = 0; i < Level2SpawnPoint.childCount; i++)
         {
             Level2SP[i] = Level2SpawnPoint.GetChild(i).position;
-        }
+        }*/
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -80,15 +83,28 @@ public class MonsterManager : MonoBehaviour
 
     public void genLevelTwoMonsters()
     {
-        for (int i = 0; i < Level2SpawnPoint.childCount; i++)
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(true);
+        /*for (int i = 0; i < Level2SpawnPoint.childCount; i++)
         {
             GameObject Lv2Monster = Instantiate(LevelTwoMonsterObjects[i % 3], Level2SP[i], Quaternion.identity);
             Lv2Monster.transform.SetParent(transform.GetChild(1));
-        }
+        }*/
     }
     public void genBoss()
     {
-        if (transform.GetChild(2).childCount == 0)
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(true);
+
+        GameObject Boss = transform.GetChild(2).GetChild(0).gameObject;
+        Boss.GetComponent<Boss>().target = target;
+        Boss.GetComponent<Boss>().HealthBar = HealthBar;
+        Boss.GetComponent<Boss>().slider = slider;
+        Boss.GetComponent<Boss>().HPnumber = HPnumber;
+        Boss.GetComponent<Boss>().EndMountain = EndMountain;
+        /*if (transform.GetChild(2).childCount == 0)
         {
             GameObject Boss = Instantiate(BossObjects[0], BossSpawnPoint.position, Quaternion.identity);
             Boss.transform.SetParent(transform.GetChild(2));
@@ -98,6 +114,6 @@ public class MonsterManager : MonoBehaviour
             Boss.GetComponent<Boss>().slider = slider;
             Boss.GetComponent<Boss>().HPnumber = HPnumber;
             Boss.GetComponent<Boss>().EndMountain = EndMountain;
-        }
+        }*/
     }
 }

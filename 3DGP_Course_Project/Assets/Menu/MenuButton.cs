@@ -2,21 +2,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MenuButton : MonoBehaviour
 {
     public GameObject Options;
     public GameObject PasuedMenu;
+    public GameObject DieMenu;
     public GameObject WarningQuit;
     public GameObject WarningRestart;
     public GameObject FadeOut;
     public Sound[] sounds = null;
+    AudioMixer audioMixer;
 
     private void Start()
     {
         FadeOut.SetActive(true);
         FadeOut.GetComponent<FadeInOut>().StartFadeIn();
 
+        audioMixer = GameManager.instance.audioMixer[1];
+        AudioMixerGroup[] audioMixGroup = audioMixer.FindMatchingGroups("Master");
+        //Debug.Log("audioMixGroup= " + audioMixGroup[0].name);
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -24,6 +30,7 @@ public class MenuButton : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.outputAudioMixerGroup = audioMixGroup[0];
         }
     }
     void Update()
@@ -83,6 +90,10 @@ public class MenuButton : MonoBehaviour
     {
         soundPlay("Play");
         //TryAgain
+        GameObject.Find("Canvas/PlayerInfo").transform.GetComponent<PlayerInfoMgr>().BackToStartPoint();
+        DieMenu.SetActive(false);
+        PasuedMenu.SetActive(false);
+        Time.timeScale = 1;
     }
     public void Restart()
     {
@@ -129,9 +140,9 @@ public class MenuButton : MonoBehaviour
         FadeOut.GetComponent<FadeInOut>().StartFadeOut("Quit");
     }
 
-    void soundPlay(string name)
+    public void soundPlay(string name)
     {
-        Debug.Log("soundPlay, " + name);
+        //Debug.Log("soundPlay, " + name);
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();
     }

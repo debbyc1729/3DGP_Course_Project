@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Audio;
 
 public class Monster : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class Monster : MonoBehaviour
     public GameObject dieEffect;
     public GameObject dust;
     public Sound[] sounds = null;
+    AudioMixer audioMixer;
 
     //Initialization
     void Start()
@@ -65,6 +67,9 @@ public class Monster : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         originSpeed = speed;
 
+        audioMixer = GameManager.instance.audioMixer[1];
+        AudioMixerGroup[] audioMixGroup = audioMixer.FindMatchingGroups("Master/Monster");
+        //Debug.Log("audioMixGroup= " + audioMixGroup[0].name);
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -76,6 +81,7 @@ public class Monster : MonoBehaviour
             s.source.spatialBlend = 1.0f;
             s.source.maxDistance = 10.0f;
             s.source.minDistance = 0.0f;
+            s.source.outputAudioMixerGroup = audioMixGroup[0];
         }
 
         Health = MixHealth;
@@ -171,12 +177,16 @@ public class Monster : MonoBehaviour
             Rotate(face, 0.1f);
             //rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed  * Time.deltaTime);
             //monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed  * Time.deltaTime);
+
+            Debug.Log(transform.name + "monsterMove, moveDirection.normalized= " + moveDirection.normalized);
+            //Debug.Log(transform.name + "monsterMove, speed= " + speed);
+            //Debug.Log(transform.name + "monsterMove, Time.deltaTime= " + Time.deltaTime);
             monsterMove(transform.position + moveDirection.normalized * speed  * Time.deltaTime);
         }
         else//A_star
         {
             //Debug.Log("A_star timer= " + timer % 3 + ", startFind= "+ startFind);
-            if (timer % 3 < 1 && startFind)
+            if (timer % 3 < 1 && startFind && ChaseMode < 4)
             {
                 //Debug.Log("A_star, " + transform.name);
                 targetPositionTemp = target.position;
@@ -224,9 +234,10 @@ public class Monster : MonoBehaviour
     {
         if (hurtCoolTimeFlg) return;
 
-        //Debug.Log("monsterMove, hurtCoolTimeFlg, postion= " + postion);
+        //Debug.Log(transform.name + "monsterMove, postion= " + postion);
         stateChange("Walk");
         rigidbody.MovePosition(postion);
+        rigidbody.AddForce(Vector3.down);
     }
 
     void monsterAttack(Vector3 postion)
@@ -280,7 +291,7 @@ public class Monster : MonoBehaviour
 
         dieFlg = true;
         FindObjectOfType<PlayerInfoMgr>().ModifyLevel(2.3f);//Player level up
-        transform.GetComponent<Collider>().enabled = false;
+        //transform.GetComponent<Collider>().enabled = false;
         //transform.GetChild(0).GetChild(0).GetComponent<Collider>().enabled = false;
         StopCoroutine("FollowPath");
         //SoundPlay("Die");

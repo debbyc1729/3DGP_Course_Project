@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.Audio;
 
 public class AudioMgr : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class AudioMgr : MonoBehaviour
         audioSource.volume = s.volume;
         audioSource.pitch = s.pitch;
         audioSource.loop = s.loop;
+
+        AudioMixer audioMixer = GameManager.instance.audioMixer[1];
+        AudioMixerGroup[] audioMixGroup = audioMixer.FindMatchingGroups("Master/Player");
+        audioSource.outputAudioMixerGroup = audioMixGroup[0];
     }
 
     void RemoveSource(Sound s)

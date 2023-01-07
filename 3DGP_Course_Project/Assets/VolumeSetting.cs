@@ -16,6 +16,14 @@ public class VolumeSetting : MonoBehaviour
         {
             transform.GetComponent<Slider>().value = GameManager.instance.getBGMVolume();
         }
+        if (transform.parent.name == "PlayerVolume")
+        {
+            transform.GetComponent<Slider>().value = GameManager.instance.getPlayerVolume();
+        }
+        if (transform.parent.name == "MonsterVolume")
+        {
+            transform.GetComponent<Slider>().value = GameManager.instance.getMonsterVolume();
+        }
     }
 
     // Update is called once per frame
@@ -29,6 +37,14 @@ public class VolumeSetting : MonoBehaviour
         if (transform.parent.name == "BGMVolume")
         {
             GameManager.instance.setBGMVolume(transform.GetComponent<Slider>().value);
+        }
+        if (transform.parent.name == "PlayerVolume")
+        {
+            GameManager.instance.setPlayerVolume(transform.GetComponent<Slider>().value);
+        }
+        if (transform.parent.name == "MonsterVolume")
+        {
+            GameManager.instance.setMonsterVolume(transform.GetComponent<Slider>().value);
         }
     }
 }

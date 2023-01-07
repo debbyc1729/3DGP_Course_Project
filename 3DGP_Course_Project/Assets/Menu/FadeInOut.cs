@@ -61,6 +61,15 @@ public class FadeInOut : MonoBehaviour
         if (backImage.color.a >= 0.99f) {
             if (SceneName == "Ending")
             {
+                /*GameObject.Find("/Maze").transform.GetComponent<BGMPlayer>().BGMStop();
+                GameObject.Find("/MineMaze").transform.GetComponent<BGMPlayer>().BGMStop();
+                GameObject.Find("/MineMaze/BossRoom").transform.GetComponent<BGMPlayer>().BGMStop();
+                GameObject.Find("/MineMaze").transform.GetComponent<BGMPlayer>().BGMStop();
+                BGMPlayer[] bgmPlayer = FindObjectsOfType<BGMPlayer>();
+                foreach (BGMPlayer b in bgmPlayer)
+                {
+                    b.BGMStop();
+                }*/
                 return;
             }
             if(SceneName == "Quit")
@@ -78,6 +87,13 @@ public class FadeInOut : MonoBehaviour
 
     public void StartFadeOut(string SName)
     {
+        BGMPlayer[] bgmPlayer = FindObjectsOfType<BGMPlayer>();
+        foreach (BGMPlayer b in bgmPlayer)
+        {
+            Debug.Log("b.gameObject.name" + b.gameObject.name);
+            b.BGMStop();
+        }
+
         sceneOutStarting = true;
         SceneName = SName;
 

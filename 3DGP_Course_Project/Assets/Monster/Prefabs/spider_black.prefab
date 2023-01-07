@@ -2246,14 +2246,14 @@ MonoBehaviour:
   bullet: {fileID: 8873578269657382521}
   target: {fileID: 0}
   target_ATK: 20
-  speed: 1
+  speed: 2
   AutoChaseRadio: 15
   Health: 0
   MixHealth: 80
   HealthBar: {fileID: 2024650647651162343}
   slider: {fileID: 2024650647266339746}
-  maxAttackCoolTime: 3
-  maxHurtCoolTime: 3
+  maxAttackCoolTime: 2
+  maxHurtCoolTime: 2
   hitEffect: {fileID: 1570927096764274, guid: 6b8d93bfeba88384fb7ccb4197515540, type: 3}
   hurtEffect: {fileID: 0}
   dieEffect: {fileID: 0}

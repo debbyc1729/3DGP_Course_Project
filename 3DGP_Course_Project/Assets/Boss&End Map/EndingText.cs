@@ -6,10 +6,11 @@ public class EndingText : MonoBehaviour
 {
     public bool isRoll = true;
     public GameObject WinMenu;
+    float originPosY;
     // Start is called before the first frame update
     void Start()
     {
-        
+        originPosY = transform.GetComponent<RectTransform>().anchoredPosition.y;
     }
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class EndingText : MonoBehaviour
             transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(posX, posY);
 
 
-            if (posY > transform.GetComponent<RectTransform>().rect.height / 3)
+            if (posY > -originPosY)
             {
                 WinMenu.SetActive(true);
                 isRoll = false;
