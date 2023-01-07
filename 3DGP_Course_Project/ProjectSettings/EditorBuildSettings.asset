@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StoryScene.unity
     guid: 1587d4c75611144dc91a473cf6aa3508
+  - enabled: 1
+    path: Assets/Scenes/MineMaze.unity
+    guid: 0567c9b9909b845c88ff22ea5a60b463
   m_configObjects: {}
