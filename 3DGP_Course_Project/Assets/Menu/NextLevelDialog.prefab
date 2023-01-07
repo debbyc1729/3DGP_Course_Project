@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 621331955742687091}
   - component: {fileID: 621331955742687090}
   m_Layer: 5
-  m_Name: Accept
+  m_Name: Okay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -12,6 +12,7 @@ public class PlayerInfoMgr : MonoBehaviour
     Image levelAmount;
     Transform FullScreen;
     Transform DieMenu;
+    Transform NextLevelDialog;
     float Hp;
     float Mp;
     float healSpeed;
@@ -28,6 +29,8 @@ public class PlayerInfoMgr : MonoBehaviour
         levelAmount = LevelBar.Find("Bar").GetComponent<Image>();
         FullScreen  = transform.Find("FullScreen");
         DieMenu = GameObject.Find("/Canvas").transform.Find("DieMenu");
+        NextLevelDialog = GameObject.Find("/Canvas").transform.Find("NextLevelDialog");
+        NextLevelDialog.Find("Background/Button/Okay").GetComponent<Button>().onClick.AddListener(CloseDialog);
 
         Hp = 1f;
         Mp = 1f;
@@ -182,10 +185,19 @@ public class PlayerInfoMgr : MonoBehaviour
         if (targetLevel == 15 && int.Parse(levelText.text) != targetLevel)
         {
             FindObjectOfType<PortalController>().ShowPortals();
+            FindObjectOfType<AudioMgr>().Play("Congratulation");
+            NextLevelDialog.gameObject.SetActive(true);
+            Time.timeScale = 0f;
         }
         levelText.text = targetLevel.ToString();
 
         yield break;
+    }
+
+    public void CloseDialog()
+    {
+        NextLevelDialog.gameObject.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     IEnumerator GetHurt()
