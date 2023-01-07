@@ -11,6 +11,7 @@ public class MenuButton : MonoBehaviour
     public GameObject DieMenu;
     public GameObject WarningQuit;
     public GameObject WarningRestart;
+    public GameObject HowToPlayMenu;
     public GameObject FadeOut;
     public Sound[] sounds = null;
     AudioMixer audioMixer;
@@ -62,6 +63,17 @@ public class MenuButton : MonoBehaviour
         soundPlay("Play");
         FadeOut.SetActive(true);
         FadeOut.GetComponent<FadeInOut>().StartFadeOut("StoryScene");
+    }
+
+    public void OpenHowToPlay()
+    {
+        soundPlay("OtherBotton");
+        HowToPlayMenu.SetActive(true);
+    }
+    public void CloseHowToPlay()
+    {
+        soundPlay("OtherBotton");
+        HowToPlayMenu.SetActive(false);
     }
 
     public void Play()
