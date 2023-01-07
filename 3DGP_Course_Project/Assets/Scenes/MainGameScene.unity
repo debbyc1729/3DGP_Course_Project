@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -842.24}
-  m_SizeDelta: {x: 750, y: 2764.471}
+  m_AnchoredPosition: {x: 0, y: -1508.8567}
+  m_SizeDelta: {x: 750, y: 4097.7217}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &11776786
 MonoBehaviour:
@@ -2908,7 +2908,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u300C\u7D42\u65BC\u51FA\u4F86\u4E86\uFF01\u300D\r\n\u6EFF\u6708\u9AD8\u639B\u5929\u4E0A\n\u7051\u843D\u7684\u6708\u5149\u7167\u4EAE\u524D\u65B9\u7684\u9053\u8DEF\n\u662F\u5E7E\u5929\u524D\u7D93\u904E\u7684\u68EE\u6797\uFF01\r\n\r\n\u770B\u898B\u719F\u6089\u7684\u666F\u8272\n\u63A2\u96AA\u5BB6\u624D\u6562\u9B06\u4E00\u53E3\u6C23\n\r\n\u56DE\u5230\u57CE\u93AE\u5F8C\u767C\u73FE\n\u5F9E\u4ED6\u9032\u5165\u6D1E\u7A9F\u5230\u73FE\u5728\u624D\u904E\u4E86\u4E00\u5929\u7684\u6642\u9593\n\r\n\u63A2\u96AA\u5BB6\u76E4\u9EDE\u7684\u8490\u96C6\u5230\u5BF6\u7269\u6E96\u5099\u62FF\u53BB\u8B8A\u8CE3\u6642\n\u5728\u888B\u4E2D\u767C\u73FE\u4E86\u4E00\u500B\u81EA\u5DF1\u6C92\u770B\u904E\u7684\u77F3\u982D\u2026\u2026"
+  m_Text: "\u300C\u7D42\u65BC\u51FA\u4F86\u4E86\uFF01\u300D\r\n\u6EFF\u6708\u9AD8\u639B\u5929\u4E0A\n\u7051\u843D\u7684\u6708\u5149\u7167\u4EAE\u524D\u65B9\u7684\u9053\u8DEF\n\u662F\u5E7E\u5929\u524D\u7D93\u904E\u7684\u68EE\u6797\uFF01\r\n\r\n\u770B\u898B\u719F\u6089\u7684\u666F\u8272\n\u63A2\u96AA\u5BB6\u624D\u6562\u9B06\u4E00\u53E3\u6C23\n\r\n\u5927\u53E3\u5438\u8457\u68EE\u6797\u88E1\u6E05\u65B0\u7684\u7A7A\u6C23\n\u60F3\u8457\u9019\u6B21\u7684\u5192\u96AA\u5927\u6982\u6703\u6210\u70BA\u93AE\u4E0A\u7684\u50B3\u5947\u5427\n\r\n\u4E00\u908A\u505A\u8457\u6210\u540D\u7684\u7F8E\u5922\u4E00\u908A\u56DE\u5230\u57CE\u93AE\n\r\n\u56DE\u5230\u9152\u9928\u5F8C\n\u9152\u9928\u88E1\u7684\u4EBA\u537B\u600E\u9EBC\u4E5F\u4E0D\u76F8\u4FE1\n\u70BA\u4E86\u8B49\u660E\u81EA\u5DF1\u6C92\u6709\u8AAA\u8B0A\uFF0C\u5E36\u8457\u4EBA\u5011\u56DE\u5230\u68EE\u6797\n\u537B\u767C\u73FE\u672C\u61C9\u662F\u6D1E\u7A9F\u4F4D\u7F6E\n\u73FE\u5728\u537B\u53EA\u6709\u4E00\u7247\u9661\u5CED\u7684\u5C71\u58C1......\r\n\r\n\r\n\"Finally!
+    I escaped!! It's the forest that I passed a few days ago!\"\r\n\r\nFull moon
+    hangs in the sky, and the moonlight is falling on the ground.\r\n\r\n\r\nThe
+    explorer breath in the forest air and think about this adventure might become
+    a legend in the town.\r\n\r\nHowever, after he returns to the tavern, the owner
+    and other people did't believe it.\r\n\r\nTo prove he didn't lie, he took the
+    owner and other people in tavern back to the cave. \r\n\r\nBut there was only
+    a steep mountain wall... "
 --- !u!222 &181857813
 CanvasRenderer:
   m_ObjectHideFlags: 0
