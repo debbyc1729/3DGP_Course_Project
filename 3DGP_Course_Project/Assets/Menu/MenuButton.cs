@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,66 +10,111 @@ public class MenuButton : MonoBehaviour
     public GameObject WarningQuit;
     public GameObject WarningRestart;
     public GameObject FadeOut;
+    public Sound[] sounds = null;
 
     private void Start()
     {
         FadeOut.SetActive(true);
         FadeOut.GetComponent<FadeInOut>().StartFadeIn();
+
+        foreach (Sound s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.loop;
+        }
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (PasuedMenu.activeSelf == false)
+            {
+                soundPlay("Menu");
+                PasuedMenu.SetActive(true);
+                Time.timeScale = 0;
+                //PasuedMenuFlg = false;
+            }
+            else
+            {
+                soundPlay("Menu");
+                PasuedMenu.SetActive(false);
+                Options.SetActive(false);
+                WarningQuit.SetActive(false);
+                WarningRestart.SetActive(false);
+                Time.timeScale = 1;
+                //PasuedMenuFlg = true;
+            }
+        }
     }
 
     public void ShowStory()
     {
+        soundPlay("Play");
         FadeOut.SetActive(true);
         FadeOut.GetComponent<FadeInOut>().StartFadeOut("StoryScene");
     }
 
     public void Play()
     {
+        soundPlay("Play");
         FadeOut.SetActive(true);
         FadeOut.GetComponent<FadeInOut>().StartFadeOut("MainGameScene");
     }
     public void Resume()
     {
+        soundPlay("Menu");
         PasuedMenu.SetActive(false);
         Time.timeScale = 1;
     }
     public void Option()
     {
+        soundPlay("OtherBotton");
         Options.SetActive(true);
     }
     public void BackFromOptions()
     {
+        soundPlay("OtherBotton");
         Options.SetActive(false);
     }
     public void TryAgain()
     {
+        soundPlay("Play");
         //TryAgain
     }
     public void Restart()
     {
         //game restart (reload scene)
+        soundPlay("Play");
         FadeOut.SetActive(true);
         FadeOut.GetComponent<FadeInOut>().StartFadeOut("MainGameScene");
     }
     public void BackToTitle()
     {
+        soundPlay("Play");
         FadeOut.SetActive(true);
         FadeOut.GetComponent<FadeInOut>().StartFadeOut("StartMenu");
     }
     public void SureToQuit()
     {
+        soundPlay("OtherBotton");
         WarningQuit.SetActive(true);
     }
     public void NOQuit()
     {
+        soundPlay("OtherBotton");
         WarningQuit.SetActive(false);
     }
     public void SureToRestart()
     {
+        soundPlay("OtherBotton");
         WarningRestart.SetActive(true);
     }
     public void NORestart()
     {
+        soundPlay("OtherBotton");
         WarningRestart.SetActive(false);
     }
     public void Quit()
@@ -78,7 +124,15 @@ public class MenuButton : MonoBehaviour
 #else
         Application.Quit();
 #endif*/
+        soundPlay("Play");
         FadeOut.SetActive(true);
         FadeOut.GetComponent<FadeInOut>().StartFadeOut("Quit");
+    }
+
+    void soundPlay(string name)
+    {
+        Debug.Log("soundPlay, " + name);
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.Play();
     }
 }

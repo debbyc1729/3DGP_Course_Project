@@ -31,4 +31,19 @@ public class GameManager : MonoBehaviour
     {
         audioMixer.SetFloat("BGMVolume", volume);
     }
+
+    public float getMasterVolume()
+    {
+        float volume;
+        audioMixer.GetFloat("MasterVolume", out volume);
+        return volume;
+    }
+
+    public float getBGMVolume()
+    {
+        float volume;
+        audioMixer.GetFloat("BGMVolume", out volume);
+        return volume;
+    }
+
 }

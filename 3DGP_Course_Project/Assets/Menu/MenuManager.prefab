@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1573300538936020588}
-  - component: {fileID: 1573300538936020587}
   - component: {fileID: 1038795056}
   m_Layer: 0
   m_Name: MenuManager
@@ -33,22 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1573300538936020587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1573300538936020589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8427389d89d3b5841b954449d139ac48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PasuedMenu: {fileID: 0}
-  Options: {fileID: 0}
-  WarningQuit: {fileID: 0}
-  WarningRestart: {fileID: 0}
 --- !u!114 &1038795056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,3 +49,28 @@ MonoBehaviour:
   WarningQuit: {fileID: 0}
   WarningRestart: {fileID: 0}
   FadeOut: {fileID: 0}
+  sounds:
+  - name: Menu
+    clip: {fileID: 8300000, guid: 81ccfb62558e3f04c8c0c0d6ece8e233, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    duration: 0
+    source: {fileID: 0}
+    sourceList: []
+  - name: Play
+    clip: {fileID: 8300000, guid: ec685c359d110e04697c0173b2912622, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    duration: 0
+    source: {fileID: 0}
+    sourceList: []
+  - name: OtherBotton
+    clip: {fileID: 8300000, guid: aa4e7bc8219e4c349a64602cd46d98ee, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    duration: 0
+    source: {fileID: 0}
+    sourceList: []
