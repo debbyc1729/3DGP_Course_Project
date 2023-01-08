@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     float xMouseMove;
     float yMouseMove;
     float pitch;
+    float raw;
     Crosshair target;
     
     bool flgPickGem;
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
         cameraOffset = new Vector3(0f, 0.8f, -0.15f);
         anima = GetComponent<Animator>();
         pitch = 0f;
+        raw = 0f;
         target = FindObjectOfType<Crosshair>();
         flgPickGem = false;
         scaleRate = 0f;
@@ -97,10 +99,12 @@ public class Player : MonoBehaviour
 
     void UpdateRotation()
     {
-        if ((xMouseMove = Input.GetAxis("Mouse X")) != 0 || (yMouseMove = Input.GetAxis("Mouse Y")) != 0)
+        if ((xMouseMove = Input.GetAxis("Mouse X")) != 0 && (yMouseMove = Input.GetAxis("Mouse Y")) != 0)
         {
-            transform.Rotate(0f, rotateSpeed * Time.deltaTime * xMouseMove, 0f);
-            pitch -= 2 * rotateSpeed * Time.deltaTime * yMouseMove;
+            //transform.Rotate(0f, rotateSpeed * Time.deltaTime * xMouseMove, 0f);
+            //pitch -= 2 * rotateSpeed * Time.deltaTime * yMouseMove;
+            transform.Rotate(0f, 0.5f * rotateSpeed * Time.deltaTime * xMouseMove, 0f);
+            pitch -= 0.5f * rotateSpeed * Time.deltaTime * yMouseMove;
 
             if (pitch < -60f)
             {
@@ -110,6 +114,27 @@ public class Player : MonoBehaviour
             {
                 pitch = 60f;
             }
+
+            //------------------------------
+            /*pitch -= rotateSpeed * 0.25f * Time.deltaTime * yMouseMove;
+            raw += rotateSpeed * 0.5f * Time.deltaTime * xMouseMove;
+            transform.rotation = Quaternion.Euler(0, raw, 0);
+            if (pitch < -80f)
+            {
+                pitch = -80f;
+            }
+            else if (pitch > 80f)
+            {
+                pitch = 80f;
+            }
+            if (raw < 0f)
+            {
+                raw += 360f;
+            }
+            else if (raw > 360f)
+            {
+                raw -= 360f;
+            }*/
         }
     }
 
@@ -119,6 +144,10 @@ public class Player : MonoBehaviour
         Camera.main.transform.rotation = transform.rotation;
         Camera.main.transform.Translate(cameraOffset);
         Camera.main.transform.Rotate(pitch, 0f, 0f);
+
+        //-----------------------------------
+        //Camera.main.transform.position = transform.position + cameraOffset;
+        //Camera.main.transform.rotation = Quaternion.Euler(pitch, raw, 0);
     }
 
     void PickGem()
