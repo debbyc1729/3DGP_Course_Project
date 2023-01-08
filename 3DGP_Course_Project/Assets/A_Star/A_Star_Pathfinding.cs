@@ -74,7 +74,6 @@ public class A_Star_Pathfinding : MonoBehaviour
             waypoints = RetracePath(startNode, targetNode);
         }
         requestManager.FinishedProcessingPath(waypoints, pathSuccess);
-
     }
 
     Vector3[] RetracePath(Node startNode, Node endNode)

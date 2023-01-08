@@ -31,17 +31,17 @@ public class FadeInOut : MonoBehaviour
             StartScene();
         }
     }
-    // 渐现
+    
     private void FadeToClear()
     {
         backImage.color = Color.Lerp(backImage.color, Color.clear, fadeSpeed * deltaTime);
     }
-    // 渐隐
+    
     private void FadeToBlack()
     {
         backImage.color = Color.Lerp(backImage.color, Color.black, fadeSpeed * deltaTime);
     }
-    // 初始化时调用
+    
     private void StartScene()
     {
         backImage.enabled = true;
@@ -53,7 +53,7 @@ public class FadeInOut : MonoBehaviour
             sceneInStarting = false;
         }
     }
-    // 结束时调用
+    
     public void EndScene()
     {
         backImage.enabled = true;
