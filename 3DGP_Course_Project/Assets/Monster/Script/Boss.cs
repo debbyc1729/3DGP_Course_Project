@@ -138,20 +138,15 @@ public class Boss : MonoBehaviour
     {
         if (dieFlg) return;
         if (hurtCoolTimeFlg || !attackCoolTimeFlg) return;
-
-        //Tracing directly when close enough
-        //Debug.Log("(target.position - transform.position).magnitude= " + (target.position - transform.position).magnitude);
+        
         if ((target.position - transform.position).magnitude < AutoChaseRadio && !attackFlg)
         {
             Vector3 face = new Vector3(target.position.x, transform.position.y, target.position.z);
             Vector3 targ = target.position - transform.position;
             targ.y = 0.0f;
             moveDirection = targ;
-
-            //Debug.Log("Tracing directly, " + moveDirection.normalized * speed * Time.deltaTime);
+            
             Rotate(face, 0.1f);
-            //rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
-            //monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed * Time.deltaTime);
             monsterMove(transform.position + moveDirection.normalized * speed * Time.deltaTime);
         }
         if((target.position - transform.position).magnitude >= AutoChaseRadio)
@@ -162,24 +157,19 @@ public class Boss : MonoBehaviour
 
     void checkHitPlayer()
     {
-        //Debug.Log("hurtCoolTimeFlg= " + hurtCoolTimeFlg);
         if (dieFlg) return;
         if (hurtCoolTimeFlg) return;
 
         float targetRadius = target.GetComponent<CapsuleCollider>().radius;
         Vector3 distence = target.position - transform.position;
-        //Debug.Log("distence= "+ distence.magnitude + ", AutoHitRadio= " + AutoHitRadio);
-        //if (distence.magnitude < targetRadius * 3)
         if (distence.magnitude < AutoHitRadio)
         {
-            //Debug.Log("distence.magnitude < AutoHitRadio");
-            //if(!attackCoolTimeFlg) return;
-            //StopCoroutine("FollowPath");
             monsterAttack(target.position);
             hitplayerSuccessful = true;
             attackFlg = true;
 
-            Vector3 face = new Vector3(target.position.x, transform.position.y, target.position.z);
+            Vector3 face = 
+                new Vector3(target.position.x, transform.position.y, target.position.z);
             Rotate(face, 0.1f);
         }
         else
@@ -219,13 +209,8 @@ public class Boss : MonoBehaviour
 
         dieFlg = true;
         FindObjectOfType<PlayerInfoMgr>().ModifyLevel(2.3f);
-        //transform.GetComponent<Collider>().enabled = false;
-        //transform.GetChild(0).GetChild(0).GetComponent<Collider>().enabled = false;
-        //StopCoroutine("FollowPath");
-        //SoundPlay("Die");//"Die roar"
         stateChange("Die");
         HealthBar.SetActive(false);
-        //Destroy(transform.gameObject, 10.0f);
     }
     public void bossRoar()
     {
@@ -383,7 +368,6 @@ public class Boss : MonoBehaviour
             float rangeZ = UnityEngine.Random.Range(transform.position.z - 10, transform.position.z + 10);
 
             GameObject tentacle = Instantiate(TentacleEffect, new Vector3(rangeX, center.y, rangeZ), Quaternion.identity);
-
             tentacle.transform.SetParent(transform);
         }
     }

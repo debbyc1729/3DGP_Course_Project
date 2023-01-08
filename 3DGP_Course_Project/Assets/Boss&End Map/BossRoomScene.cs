@@ -31,7 +31,11 @@ public class BossRoomScene : MonoBehaviour
         }
     }
 
-    public void goToEndScene()
+    public void closeStartMountain()
+    {
+        StartMountain.SetActive(false);
+    }
+public void goToEndScene()
     {
 
     }

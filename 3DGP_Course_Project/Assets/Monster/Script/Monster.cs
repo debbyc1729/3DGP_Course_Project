@@ -164,8 +164,6 @@ public class Monster : MonoBehaviour
         if (dieFlg) return;
         if (hurtCoolTimeFlg || !attackCoolTimeFlg) return;
 
-        //Tracing directly when close enough
-        //Debug.Log("(target.position - transform.position).magnitude= " + (target.position - transform.position).magnitude);
         if ((target.position - transform.position).magnitude < AutoChaseRadio && !attackFlg)
         {
             Vector3 face = new Vector3(target.position.x, transform.position.y, target.position.z);
@@ -173,22 +171,13 @@ public class Monster : MonoBehaviour
             targ.y = 0.0f;
             moveDirection = targ;
 
-            //Debug.Log("Tracing directly, " + moveDirection.normalized * speed  * Time.deltaTime);
             Rotate(face, 0.1f);
-            //rigidbody.MovePosition(transform.position + moveDirection.normalized * moveDirectionLen * speed  * Time.deltaTime);
-            //monsterMove(transform.position + moveDirection.normalized * moveDirectionLen * speed  * Time.deltaTime);
-
-            Debug.Log(transform.name + "monsterMove, moveDirection.normalized= " + moveDirection.normalized);
-            //Debug.Log(transform.name + "monsterMove, speed= " + speed);
-            //Debug.Log(transform.name + "monsterMove, Time.deltaTime= " + Time.deltaTime);
             monsterMove(transform.position + moveDirection.normalized * speed  * Time.deltaTime);
         }
         else//A_star
         {
-            //Debug.Log("A_star timer= " + timer % 3 + ", startFind= "+ startFind);
             if (timer % 3 < 1 && startFind && ChaseMode < 4)
             {
-                //Debug.Log("A_star, " + transform.name);
                 targetPositionTemp = target.position;
                 hitplayerSuccessful = false;
                 startFind = false;
@@ -203,18 +192,13 @@ public class Monster : MonoBehaviour
     
     void checkHitPlayer()
     {
-        //Debug.Log("hurtCoolTimeFlg= " + hurtCoolTimeFlg);
         if (dieFlg) return;
         if (hurtCoolTimeFlg) return;
 
         float targetRadius = target.GetComponent<CapsuleCollider>().radius;
         Vector3 distence = target.position - transform.position;
-        //Debug.Log("distence= "+ distence.magnitude + ", AutoHitRadio= " + AutoHitRadio);
-        //if (distence.magnitude < targetRadius * 3)
         if (distence.magnitude < AutoHitRadio)
         {
-            //Debug.Log("distence.magnitude < AutoHitRadio");
-            //if(!attackCoolTimeFlg) return;
             StopCoroutine("FollowPath");
             monsterAttack(target.position);
             hitplayerSuccessful = true;
@@ -291,10 +275,7 @@ public class Monster : MonoBehaviour
 
         dieFlg = true;
         FindObjectOfType<PlayerInfoMgr>().ModifyLevel(2.3f);//Player level up
-        //transform.GetComponent<Collider>().enabled = false;
-        //transform.GetChild(0).GetChild(0).GetComponent<Collider>().enabled = false;
         StopCoroutine("FollowPath");
-        //SoundPlay("Die");
         stateChange("Die");
         Destroy(transform.gameObject, 3.0f);
     }

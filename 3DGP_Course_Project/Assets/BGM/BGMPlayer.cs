@@ -15,6 +15,7 @@ public class BGMPlayer : MonoBehaviour
     bool fadeOutStarting = false;
     bool fadeInStarting = false;
     AudioSource[] BGM;
+    string mapNameTemp;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +46,6 @@ public class BGMPlayer : MonoBehaviour
             FindObjectOfType<BGMManager>().Play(level.ToString());
             levelTemp = level;
         }*/
-
         if(flg && level == 0)
         {
             //Debug.Log("level == 0 && !fadeOutStarting");
@@ -99,6 +99,12 @@ public class BGMPlayer : MonoBehaviour
             BGMStop();
             flg = true;
         }
+    }
+
+    public void FlgOpen()
+    {
+        BGMStop();
+        flg = true;
     }
     public void BGMPlay()
     {

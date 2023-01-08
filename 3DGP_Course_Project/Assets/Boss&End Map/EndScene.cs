@@ -32,4 +32,9 @@ public class EndScene : MonoBehaviour
             EndingText.GetChild(0).GetComponent<FadeInOut>().StartFadeOut("Ending");
         }
     }
+
+    public void openDoor()
+    {
+        Door.SetActive(false);
+    }
 }
