@@ -120,6 +120,8 @@ public class SkillMgr : MonoBehaviour
         {
             if (s.effect != null)
                 StopCoroutine(s.effect);
+            if (s.flgCooldown)
+                s.IconImage.fillAmount = 0f;
         }
 
         infoMgr.SetAutoHealFactor(1f);
@@ -238,16 +240,15 @@ public class SkillMgr : MonoBehaviour
     IEnumerator CoolDownCoroutine(Skill s)
     {
         s.flgCooldown = true;
-        Image skillImage = s.IconImage;
         float timer = 0f;
-        while (skillImage.fillAmount > 0f)
+        while (s.IconImage.fillAmount > 0f)
         {
             timer += Time.deltaTime;
-            skillImage.fillAmount = Mathf.Lerp(1f, 0f, timer / s.cooldown);
+            s.IconImage.fillAmount = Mathf.Lerp(1f, 0f, timer / s.cooldown);
             yield return null;
         }
 
-        skillImage.fillAmount = 1f;
+        s.IconImage.fillAmount = 1f;
         s.flgCooldown = false;
         yield break;
     }

@@ -85,6 +85,7 @@ public class BuffMgr : MonoBehaviour
                 b.RemoveObj(obj);
             }
         }
+        buffCount = 0;
     }
 
     void SetAppearance(Buff b, BuffObj obj)
