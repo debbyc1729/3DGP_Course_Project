@@ -8,7 +8,7 @@ public class Boss_Smash : MonoBehaviour
     public GameObject SmashEffect;
     public GameObject RockRain;
     public GameObject parent;
-    public int maxRockNumber = 50;
+    public int maxRockNumber = 200;
     // Start is called before the first frame update
     void Start()
     {
