@@ -38,12 +38,17 @@ public class SkillMgr : MonoBehaviour
         foreach (Skill s in skills)
         {
             s.cost = s.duration * 0.05f;
+            s.isLockedByLevel = true;
+
+            if (s.name == "Fire")
+                s.isLockedByLevel = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateSkillLock();
         UpdateSkillEnable();
 
         if (Input.GetKey(KeyCode.Keypad1) || Input.GetKey(KeyCode.Alpha1))
@@ -68,22 +73,17 @@ public class SkillMgr : MonoBehaviour
         }
     }
 
-    public void EnableSkill(Skill s)
+    public void UnLockedLevel(Skill s)
     {
-        Button skillBtn = skillUI.transform.Find("Skill_" + s.name + "/Border").GetComponent<Button>();
+        FindObjectOfType<AudioMgr>().Play("Congratulation");
+
         Image skillIcon = skillUI.transform.Find("Skill_" + s.name + "/Mask/Icon").GetComponent<Image>();
+        dialogIcon.sprite = skillIcon.sprite;
+        dialogIcon.color = skillIcon.color;
+        GainSkillDialog.gameObject.SetActive(true);
+        Time.timeScale = 0f;
 
-        if (!skillBtn.interactable && s.enableLevel == infoMgr.GetLevel())
-        {
-            FindObjectOfType<AudioMgr>().Play("Congratulation");
-            GainSkillDialog.gameObject.SetActive(true);
-            dialogIcon.sprite = skillIcon.sprite;
-            dialogIcon.color = skillIcon.color;
-            Time.timeScale = 0f;
-        }
-
-        skillBtn.interactable = true;
-        s.enable = true;
+        s.isLockedByLevel = false;
     }
 
     public void CloseDialog()
@@ -92,11 +92,29 @@ public class SkillMgr : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public void EnableSkill(Skill s)
+    {
+        Button skillBtn = skillUI.transform.Find("Skill_" + s.name + "/Border").GetComponent<Button>();
+        skillBtn.interactable = true;
+        s.enable = true;
+    }
+
     public void DisableSkill(Skill s)
     {
         Button skillBtn = skillUI.transform.Find("Skill_" + s.name).Find("Border").GetComponent<Button>();
         skillBtn.interactable = false;
         s.enable = false;
+    }
+
+    public void UpdateSkillLock()
+    {
+        foreach (Skill s in skills)
+        {
+            if (s.isLockedByLevel && s.enableLevel == infoMgr.GetLevel())
+            {
+                UnLockedLevel(s);
+            }
+        }
     }
 
     public void UpdateSkillEnable()

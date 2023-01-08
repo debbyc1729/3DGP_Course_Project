@@ -24,6 +24,8 @@ public class Skill
     public Coroutine effect;
     [HideInInspector]
     public bool enable;
+    [HideInInspector]
+    public bool isLockedByLevel;
 }
 
 [System.Serializable]
