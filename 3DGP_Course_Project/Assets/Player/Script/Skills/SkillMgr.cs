@@ -114,6 +114,20 @@ public class SkillMgr : MonoBehaviour
         }
     }
 
+    public void StopAllSkills()
+    {
+        foreach (Skill s in skills)
+        {
+            if (s.effect != null)
+                StopCoroutine(s.effect);
+        }
+
+        infoMgr.SetAutoHealFactor(1f);
+        playerScript.setWalkSpeedFactor(1f);
+        playerScript.SetFlying(false);
+        playerScript.SetFloating(false);
+    }
+
     void UseSkill(string name)
     {
         Skill s = Array.Find(skills, skill => skill.name == name);
@@ -273,7 +287,7 @@ public class SkillMgr : MonoBehaviour
     {
         FindObjectOfType<AudioMgr>().Play("Fly", s.ps.lifeTime);
         yield return new WaitForSeconds(delay);
-        playerScript.Fly(2f, 0.2f);
+        playerScript.SetFlying(true, 2f, 0.2f);
         // playerScript.SetFloating(true, 1f);
         yield return new WaitForSeconds(s.duration);
         playerScript.SetFloating(false, 0f);

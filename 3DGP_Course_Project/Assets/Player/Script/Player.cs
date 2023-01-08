@@ -181,9 +181,16 @@ public class Player : MonoBehaviour
         // anima.SetFloat("speed", factor);
     }
 
-    public void Fly(float force = 3f, float delay = 0f)
+    public void SetFlying(bool toFly = true, float force = 3f, float delay = 0f)
     {
-        StartCoroutine(FlyCoroutine(force, delay));
+        if (toFly)
+        {
+            recordCoroutine = StartCoroutine(FlyCoroutine(force, delay));
+        }
+        else if (recordCoroutine != null)
+        {
+            StopCoroutine(recordCoroutine);
+        }
     }
 
     IEnumerator FlyCoroutine(float force = 3f, float delay = 0f)

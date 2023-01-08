@@ -104,23 +104,22 @@ public class PlayerInfoMgr : MonoBehaviour
         if (Hp > 1f) Hp = 1f;
         if (Hp < 0f) Hp = 0f;
 
-        if (value < 0f)
-        {
-            StartCoroutine(GetHurt());
-        }
         if (Hp == 0f)
         {
             DieMenu.gameObject.SetActive(true);
             Time.timeScale = 0;
-            //Hp = 1f;
-            //Mp = 1f;
-            //FindObjectOfType<PortalController>().SetPosition(GameObject.Find("/Player"));
+        }
+        else if (value < 0f)
+        {
+            StartCoroutine(GetHurt());
         }
     }
     public void BackToStartPoint()
     {
         Hp = 1f;
         Mp = 1f;
+        FindObjectOfType<SkillMgr>().StopAllSkills();
+        FindObjectOfType<BuffMgr>().RemoveAll();
         FindObjectOfType<PortalController>().SetPosition(GameObject.Find("/Player"));
     }
 

@@ -121,7 +121,7 @@ public class PortalController : MonoBehaviour
 
         yield return new WaitForSeconds(0.6f);
         client.transform.position = new Vector3(target.transform.position.x,
-                                                client.transform.position.y + target.transform.position.y,
+                                                target.transform.position.y + 0.5f,
                                                 target.transform.position.z);
 
         client.transform.rotation = Quaternion.identity;

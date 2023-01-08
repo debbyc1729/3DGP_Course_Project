@@ -43,7 +43,7 @@ public class BuffMgr : MonoBehaviour
                 }
                 else
                 {
-                    RestartBuff(b, b.objList[0]);
+                    RestartBuff(b);
                 }
                 break;
             case Buff.Type.Multiple:
@@ -68,10 +68,23 @@ public class BuffMgr : MonoBehaviour
         buffCount += 1;
     }
 
-    void RestartBuff(Buff b, BuffObj obj)
+    void RestartBuff(Buff b)
     {
-        StopCoroutine(obj.countdown);
-        obj.countdown = StartCoroutine(CountDownCoroutine(b, obj));
+        StopCoroutine(b.objList[0].countdown);
+        b.objList[0].countdown = StartCoroutine(CountDownCoroutine(b, b.objList[0]));
+    }
+
+    public void RemoveAll()
+    {
+        foreach (Buff b in buffList)
+        {
+            foreach (BuffObj obj in b.objList)
+            {
+                StopCoroutine(obj.countdown);
+                Destroy(obj.prefab, 0f);
+                b.RemoveObj(obj);
+            }
+        }
     }
 
     void SetAppearance(Buff b, BuffObj obj)
