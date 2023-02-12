@@ -30,6 +30,8 @@ public class EndScene : MonoBehaviour
             EndingText.gameObject.SetActive(true);
             EndingText.GetChild(0).gameObject.SetActive(true);
             EndingText.GetChild(0).GetComponent<FadeInOut>().StartFadeOut("Ending");
+
+            Time.timeScale = 0;
         }
     }
 

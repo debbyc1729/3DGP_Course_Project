@@ -48,6 +48,8 @@ public class SkillMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameObject.Find("/Canvas").transform.Find("DieMenu").gameObject.activeSelf) return;
+
         UpdateSkillLock();
         UpdateSkillEnable();
 

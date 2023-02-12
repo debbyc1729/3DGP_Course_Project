@@ -35,7 +35,7 @@ public class PortalController : MonoBehaviour
         portalCount = 2;
 
         Vector3[] portalPosList = new Vector3[] {
-            new Vector3(0f, 0.1f, 1f), 
+            new Vector3(0f, -0.2f, 1f), 
             new Vector3(-1000f, -0.29f, -1.15f), 
             // new Vector3(0f, 0.2f, 5f), 
             // new Vector3(-50f, 0.2f, -28f), 
@@ -121,7 +121,7 @@ public class PortalController : MonoBehaviour
 
         yield return new WaitForSeconds(0.6f);
         client.transform.position = new Vector3(target.transform.position.x,
-                                                target.transform.position.y + 0.5f,
+                                                target.transform.position.y + 0.1f,
                                                 target.transform.position.z);
 
         client.transform.rotation = Quaternion.identity;

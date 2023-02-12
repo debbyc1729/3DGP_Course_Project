@@ -43,16 +43,16 @@ public class PlayerInfoMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-            ModifyHp(-0.1f);
-        if (Input.GetKeyDown(KeyCode.O))
-            ModifyHp(0.1f);
-        if (Input.GetKeyDown(KeyCode.K))
-            ModifyMp(-0.1f);
-        if (Input.GetKeyDown(KeyCode.L))
-            ModifyMp(0.1f);
-        if (Input.GetKeyDown(KeyCode.P))
-            ModifyLevel(5.3f);
+        // if (Input.GetKeyDown(KeyCode.I))
+        //     ModifyHp(-0.1f);
+        // if (Input.GetKeyDown(KeyCode.O))
+        //     ModifyHp(0.1f);
+        // if (Input.GetKeyDown(KeyCode.K))
+        //     ModifyMp(-0.1f);
+        // if (Input.GetKeyDown(KeyCode.L))
+        //     ModifyMp(0.1f);
+        // if (Input.GetKeyDown(KeyCode.P))
+        //     ModifyLevel(15f);
 
         // FullScreen.GetComponent<Animator>().SetBool("hurt", false);
 

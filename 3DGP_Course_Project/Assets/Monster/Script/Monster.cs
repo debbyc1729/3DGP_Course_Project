@@ -277,7 +277,7 @@ public class Monster : MonoBehaviour
         FindObjectOfType<PlayerInfoMgr>().ModifyLevel(2.3f);//Player level up
         StopCoroutine("FollowPath");
         stateChange("Die");
-        Destroy(transform.gameObject, 3.0f);
+        Destroy(transform.gameObject, 1.0f);
     }
 
     public void monsterAttackSound()

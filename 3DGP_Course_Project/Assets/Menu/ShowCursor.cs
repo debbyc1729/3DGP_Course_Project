@@ -15,7 +15,6 @@ public class ShowCursor : MonoBehaviour
     {
         if (transform.gameObject.activeSelf)
         {
-            Debug.Log("Cursor.lockState = CursorLockMode.None;");
             Cursor.lockState = CursorLockMode.None;
             //Cursor.visible = true;
         }

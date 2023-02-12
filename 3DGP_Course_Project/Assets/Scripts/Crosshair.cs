@@ -12,6 +12,7 @@ public class Crosshair : MonoBehaviour
     public bool hitGem;
     [HideInInspector]
     public GameObject gem;
+    public LayerMask mask;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,7 @@ public class Crosshair : MonoBehaviour
         ray = Camera.main.ScreenPointToRay(transform.position);
         hitGem = false;
         
-        if (Physics.Raycast(ray, out hit)) {
+        if (Physics.Raycast(ray, out hit, 45, mask)) {
             if (hit.transform.tag == "gem")
             {
                 hitGem = true;
@@ -34,4 +35,11 @@ public class Crosshair : MonoBehaviour
             }
         }
     }
+    
+    void OnDrawGizmos() {
+        Gizmos.color=Color.red;
+        ray = Camera.main.ScreenPointToRay(transform.position);
+        Gizmos.DrawRay(ray);
+    }
+
 }

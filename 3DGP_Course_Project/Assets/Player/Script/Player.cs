@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
             RigidbodyConstraints.FreezeRotation;
 
         walkSpeed = 2f;
-        rotateSpeed = 500f;
+        rotateSpeed = 300f;
         cameraOffset = new Vector3(0f, 0.8f, -0.15f);
         anima = GetComponent<Animator>();
         pitch = 0f;
@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
             infoMgr.ModifyMp(0.2f);
         }
 
-        if (flgPickGem && target.gem != null)
+        if (flgPickGem && scaleRate == 0f && target.gem != null)
         {
             if (scaleRate < Time.deltaTime * 0.2f)
             {

@@ -12,8 +12,8 @@ public class BGMPlayer : MonoBehaviour
     bool flg = true;
     private float fadeSpeed = 1.0f;
     private float deltaTime;
-    bool fadeOutStarting = false;
-    bool fadeInStarting = false;
+    public bool fadeOutStarting = false;
+    public bool fadeInStarting = false;
     AudioSource[] BGM;
     string mapNameTemp;
     // Start is called before the first frame update
@@ -56,7 +56,7 @@ public class BGMPlayer : MonoBehaviour
         if (fadeOutStarting)
         //if(Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("FadeOutMusic");
+            //Debug.Log("FadeOutMusic");
             FadeOutMusic();
         }
         if (fadeInStarting)
@@ -108,6 +108,12 @@ public class BGMPlayer : MonoBehaviour
     }
     public void BGMPlay()
     {
+        foreach (AudioSource s in BGM)
+        {
+            s.volume = 0;
+            s.Play();
+        }
+        
         fadeInStarting = true;
         fadeOutStarting = false;
     }

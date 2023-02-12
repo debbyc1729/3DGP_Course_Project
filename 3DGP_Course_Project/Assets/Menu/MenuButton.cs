@@ -135,11 +135,11 @@ public class MenuButton : MonoBehaviour
         soundPlay("Play");
         //TryAgain
         GameObject.Find("Canvas/PlayerInfo").transform.GetComponent<PlayerInfoMgr>().BackToStartPoint();
-        GameObject.Find("Maze").transform.GetComponent<BGMPlayer>().FlgOpen();
-        GameObject.Find("MineMaze").transform.GetComponent<BGMPlayer>().FlgOpen();
-        GameObject.Find("BossRoom").transform.GetComponent<BGMPlayer>().FlgOpen();
+        //GameObject.Find("Maze").transform.GetComponent<BGMPlayer>().FlgOpen();
+        //GameObject.Find("MineMaze").transform.GetComponent<BGMPlayer>().FlgOpen();
+        //GameObject.Find("BossRoom").transform.GetComponent<BGMPlayer>().FlgOpen();
         GameObject.Find("BossRoom").transform.GetComponent<BossRoomScene>().closeStartMountain();
-        GameObject.Find("End_Grassland").transform.GetComponent<BGMPlayer>().FlgOpen();
+        //GameObject.Find("End_Grassland").transform.GetComponent<BGMPlayer>().FlgOpen();
         GameObject.Find("End_Grassland").transform.GetComponent<EndScene>().openDoor();
         DieMenu.SetActive(false);
         PasuedMenu.SetActive(false);
@@ -159,6 +159,8 @@ public class MenuButton : MonoBehaviour
         soundPlay("Play");
         FadeOut.SetActive(true);
         FadeOut.GetComponent<FadeInOut>().StartFadeOut("StartMenu");
+        
+        Time.timeScale = 1;
     }
     public void SureToQuit()
     {
